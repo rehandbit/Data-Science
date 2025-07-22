@@ -1,1 +1,134 @@
+-- create database movies;
+-- SHOW databases;
+-- DROP database movies; 
+-- DESC contact;
 
+
+-- create database employees;
+
+use employees;
+-- creating a table
+
+Create table emp_detail(
+	emp_id varchar(5) primary key,
+	emp_name varchar(20) not null,
+    emp_salary int check(emp_salary < 40000),
+    emp_department char(10) default 'General' ,
+    emp_email varchar(20) unique);
+
+SELECT * FROM emp_detail;
+
+desc emp_detail;
+-- alter table emp_detail RENAME column em_email to emp_email;
+
+use employees;
+-- rename table column
+
+alter table emp_detail RENAME column emp_department to emp_dept;
+
+select * from emp_detail;
+
+-- inserting record into emp_detail
+
+insert emp_detail (emp_id, emp_name, emp_salary, emp_dept, emp_email) values
+('EMP01', 'JOHN', 30000, 'MARKETING','john@gmail.com');
+
+-- inserting multiple record at once
+
+insert emp_detail (emp_id, emp_name, emp_salary, emp_dept, emp_email) values
+('EMP02', 'SARA', 31000, 'SALES','sara@gmail.com'),
+('EMP03', 'MIKE', 20000, 'SUPPORT','mike@gmail.com'),
+('EMP04', 'RAJU', 39000, 'CONSULT','raju@gmail.com'),
+('EMP05', 'FARHAN', 27000, 'DEVELOER','farhan@gmail.com');
+
+insert emp_detail (emp_id, emp_name, emp_salary, emp_dept, emp_email) 
+values('EMP09','SANJAY',39000,'UI/UX','sanjay@gmail.com');
+
+-- remove record.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--  fetch all the null value in sales column
+select * from sales where sales is NULL;
+
+
+-- fetch all the not nulll values from city column
+select * from orders where city is not null;
+
+-- fetch 15 records from california
+select * from orders where city = 'California' LIMIT 15;
+
+-- fetch 30 records from storage subcategory and arrange the profit column in desc
+select * from orders where subcategory = 'Storage' order by profit desc limit 30;
+
+-- fetch 100 record i.e., about east region and arrange sales in asc
+select * from orders where region = 'east' order by sales asc limit 100;
+
+-- fetch 53 records i.e. from south region and arrange qantity in desc
+select * from orders where region = 'south' order by quantity desc limit 53;
+
+-- IN CLAUSE
+select * from orders where category in ('office supplies','technology');
+
+-- 
+select * from orders where subcategory IN ('chairs', 'paper', 'phones', 'binders');
+
+-- fetch the data from seattle, washington and texas from state column
+select * from orders where state IN ('Seattle','Washington','texas');
+
+-- fetch the 70 records data i.e., parker, atlanta, mesa, tampa, from city colmn
+select * from orders where city IN ('parker','atlanta','mesa','tampa') limit 70;
+
+-- fetch the 23 records from subcategory column and also fetch the data related to bookcase 
+-- furnishing, paper, storage, 
+select * from orders where subcategory IN ('bookcases','furnishings','paper','storage') limit 23;
+
+-- BETWEEN 
+-- fetch the data records from rowid column in range between 56-76
+select * from orders where rowid between '56' AND '76';
+
+-- fetch the records from orderdate column range is 01-01-2015 to 01-01-2017
+select * from orders where orderdate between 2015-01-01 AND 2017-01-01;
+
+-- fetch the recods from orderid range is orderid CA-2015-1150000 to CA_2015-1160000
+select * from orders where orderid between 'CA-2015-1150000' AND 'CA-20150-1160000' order by orderid asc;
+
+select * from orders where cname LIKE 'A%';
+-- LIKE OPERATOR
+-- fetcch the data from region column use the pattern %al
+select * from orders where region LIKE '%al';
+select * from orders;
+
+-- fetch the data from subcategory column the pattern is 'a%'
+select * from orders where subcategory LIKE 'a%';
+
+-- fetch the data from cname column the pattern is '%Ha%'
+select * from orders where cname LIKE '%Ha%';
+
+-- fetch the data from rowid where the pattern is 3_
+select * from orders where rowid LIKE '3_';
+
+-- fetch the data from pid column the pattern is %4000
+select * from orders where pid LIKE '%4000';
+select * from orders where pid LIKE '%4%';
+
+
+select * from orders where orderdate like '2015______';
