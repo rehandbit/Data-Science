@@ -47,6 +47,88 @@ values('EMP09','SANJAY',39000,'UI/UX','sanjay@gmail.com');
 -- remove record.
 
 
+----------------------------------------------------------------------------------------------------------------------------
+-- date 22 july 25
+select * from orders;
+
+SELECT orderid, orderdate, country , Region FROM orders;
+
+SELECT profit FROM orders;
+
+-- fetch data for subcategory, order id and sales
+SELECT orderid, subcategory, sales FROM orders;
+
+-- fetch the data for category and customerid
+SELECT cid, pid, category FROM orders;
+
+-- select distinct from category
+
+SELECT DISTINCT(category) from orders;
+SELECT DISTINCT(segement) FROM orders;
+SELECT DISTINCT segement FROM orders;
+
+SELECT cid,cname, state, quantity from orders WHERE quantity > 10;
+
+SELECT cid,cname, state, sales from orders WHERE sales < 5000 limit 100;
+
+-- aliases ( changing the name of a colun temporarily)
+
+select rowid as id from orders;
+
+select orderdate as date from orders;
+
+
+-- fetch all the data i.e., is related t ssouth region 
+select * from orders where region ='south';
+
+-- fetch all the data i.e., related to furniture category
+select * from orders where category = 'Furniture';
+
+-- fetch the records where the profit is less than or equal to 0
+select * from orders where profit <= 0;
+
+-- fetch the records where the quantity should be greater than 5
+select * from orders where quantity > 5;
+
+-- Logical (AND, OR, NOT)
+-- fetch the records where the state should be california, sales should be less than
+-- 100 using and logical operator
+select * from orders where state= 'California' AND sales < 100;
+
+-- fetch the records where the quanitity should be less than 0, the subcategory should be 
+-- phone using AND logical operator.
+select * from orders where quantity <0 AND subcategory = 'Phones';
+
+-- fetch the data where the shipmode is not equal to standard class
+
+select * from orders where shipmode != 'standard class';
+
+-- fetch the data where the segement should be consumer , state should be houstan
+-- using or logical operator
+select * from orders where segement = 'consumer' or state= 'houstan';
+
+-- fetch the data i.e., not related to central region using NOT logical operator
+select * from orders WHERE NOT region = 'Central';
+
+-- fetch the records wher teh state shuld be orem, category should be technology
+-- using (AND,OR) both logical operator
+select * from orders where state = 'Orem' or category = 'Technology';
+
+-- order by (ascending, descending)
+-- arrange the sales column in desc format
+-- select * from orders order by
+desc orders; 
+-- arrange the profit in asc format
+select * from orders where profit order by profit;
+
+-- filter the record i.e., related to binders subcategory and arrange the quanntity in desc
+select * from orders where subcategory = 'binder' order by quantity desc;
+
+-- arrange the state column in asc
+select * from orders order by state asc;
+
+-- fetch the record that is related to technology category and arrange the subcategory in asce
+select * from orders where category = 'Technology' order by subcategory asc;
 
 
 
@@ -63,7 +145,7 @@ values('EMP09','SANJAY',39000,'UI/UX','sanjay@gmail.com');
 
 
 
-
+----------------------------------------------------------------------------------------------------------------------------
 -- date - 22 july 25
 
 --  fetch all the null value in sales column
