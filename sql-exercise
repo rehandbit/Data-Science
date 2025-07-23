@@ -64,7 +64,7 @@ values('EMP09','SANJAY',39000,'UI/UX','sanjay@gmail.com');
 
 
 
-
+-- date - 22 july 25
 
 --  fetch all the null value in sales column
 select * from sales where sales is NULL;
@@ -132,3 +132,69 @@ select * from orders where pid LIKE '%4%';
 
 
 select * from orders where orderdate like '2015______';
+
+
+-- date - 23 july 2025
+-- find total sales from corporate
+select sum(sales) from orders where segement='corporate';
+-- find total salesf from kentucky state
+select sum(sales) from orders where state = 'kentucky';
+-- find total sales from both east and west region
+select sum(sales) from orders where region = ('east' and 'west');
+
+-- 
+select avg(profit) from orders;
+
+-- find avg profit in phone subcategory
+select avg(profit) from orders where subcategory = 'phones';
+-- find avg discount given for california state for customer segement
+select avg(discount) from orders where (state = 'california' and segement = 'consumer');
+
+-- find minimum sales value for the state name starting with A
+select min(sales) from orders where state LIKE 'A%';
+select count(sales) from orders where state LIKE 'A%';
+
+-- find minimum profit value from central region for the technology category
+select MIN(profit) from orders where (region = 'central' AND category = 'technology');
+select count(profit) from orders where (region = 'central' AND category = 'technology');
+
+-- find minimum quantity sold in tables subcategory
+select min(quantity) from orders where subcategory = 'tables';
+select subcategory, min(quantity) from orders group by subcategory;
+
+-- find maximum sales value for the arts subcategory in east region
+select max(sales) as 'art and east region' from orders where (subcategory = 'art' AND region = 'east');
+
+select * from orders order by state asc;
+
+-- GROUP BY
+select region, max(sales) from orders group by region;
+select category, sum(profit) from orders group by category;
+select state, max(discount) from orders group by state order by max(discount) desc;
+select state, avg(sales) from orders group by state order by avg(sales) desc; 
+-- select category, subcategory, avg(sales) from orders group by category, subcategory; 
+select subcategory, avg(sales) from orders group by subcategory order by avg(sales) desc;
+select category, subcategory, avg(sales) from orders group by category, subcategory;
+select subcategory, sum(sales) from orders group by subcategory having sum(sales) > 50000;
+
+-- fetch the region which have sales greater than 50000
+select region, sum(sales) from orders group by region having sum(sales) > 500000;
+select state, sum(sales) from orders group by state having sum(sales) > 50000;
+
+-- fetch the cities which have discount greater than 0.5
+select city, max(discount) from orders group by city having max(discount) > 0.5;
+
+-- SUBQUERY
+-- find max sales in city 
+select * from orders where sales = (select max(sales) from orders);
+select max(sales) from orders;
+select * from orders where sales = 22638.48;
+
+-- fetch the records where maximum discount is given 
+select * from orders where discount = ( select max(discount) from orders);
+
+-- fetch the records where we have maximum pprofit
+select * from orders where profit = (select max(profit) from orders);
+
+-- fetch the records of the customers who made purchase for more than the average sale value
+select * from orders where sales > (select avg(sales) from orders);
