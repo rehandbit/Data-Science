@@ -103,9 +103,9 @@ select * from orders where quantity <0 AND subcategory = 'Phones';
 
 select * from orders where shipmode != 'standard class';
 
--- fetch the data where the segement should be consumer , state should be houstan
+-- fetch the data where the segement should be consumer , city should be houstan
 -- using or logical operator
-select * from orders where segement = 'consumer' or state= 'houstan';
+select * from orders where segement = 'consumer' or city = 'houstan';
 
 -- fetch the data i.e., not related to central region using NOT logical operator
 select * from orders WHERE NOT region = 'Central';
