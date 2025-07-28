@@ -1,6 +1,8 @@
 he Challenge: Analyzing Sales Performance Through the Management Hierarchy
 
-You are the lead data analyst for a large e-commerce company. The executive team wants a detailed report on sales performance, but they don't just want to see total sales. They want to understand how sales performance cascades through the management hierarchy and identify top-performing customers for each sales manager's team.
+You are the lead data analyst for a large e-commerce company. The executive team wants a detailed report on sales performance, 
+but they don't just want to see total sales. They want to understand how sales performance cascades through the management hierarchy and 
+identify top-performing customers for each sales manager's team.
 
 The Database Schema
 
