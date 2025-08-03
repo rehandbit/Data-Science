@@ -1,0 +1,70 @@
+
+Database credentials have been shared in another file in SQL folder.
+Using those credentials get the data and perform the below queries.
+(Note: it is not required to submit this anywhere, its just for practice)
+
+
+
+25 SQL Questions for Practice
+
+Customers Table
+1. List all customers and their cities.
+
+2. Find all customers from the state California.
+
+3. Count the number of customers in each state.
+
+4. List the unique cities customers are from.
+
+5. Show customer names starting with the letter 'A'.
+
+
+Products Table
+
+6. Display all product names with their categories.
+
+7. Find all products in the Furniture category.
+
+8. List all unique sub-categories available.
+
+9. Show products with the word "Chair" in their name.
+
+10. Count how many products are there in each sub-category.
+
+
+Orders Table
+
+11. List all orders placed in the year 2017.
+
+12. Find the total number of orders.
+
+13. Show the total sales for each customer.
+
+14. List the top 5 highest sales amounts.
+
+15. Find all orders where quantity is more than 5.
+
+
+Employees Table
+
+16. List all employees and their job titles.
+
+17. Show the employees hired before the year 1995.
+
+18. Find the total number of employees in each department.
+
+19. Show employees who earn a salary above 1500.
+
+20. List all employees who have no commission.
+
+
+Join-Based Questions
+21. List all orders along with customer names.
+
+22. Show customer names and the total quantity of products they’ve ordered.
+
+23. List all products that have been ordered along with their sales amount.
+
+24. Display each employee and their department number (just a lookup).
+
+25. Find customer names, their cities, and the products they ordered.
