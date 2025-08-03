@@ -1,0 +1,140 @@
+create TABLE customers (
+	customer_id varchar(10),
+	customer_name varchar(20),
+	city varchar(30),
+	state varchar(30),
+	postal_code integer
+)
+
+create table employee (
+	empno integer UNIQUE,
+	ename varchar(10),
+	job varchar(20),
+	mgr integer null,
+	hiredate date,
+	salary DOUBLE PRECISION,
+	commission double precision NULL,
+	deptnum integer
+)
+
+create table orders (
+	order_id varchar(20),
+	order_date date,
+	customer_id varchar(20),
+	product_id varchar(20),
+	sales double precision,
+	quantity integer
+)
+
+create table products (
+	product_id varchar(20),
+	category varchar(30),
+	sub_category varchar(20),
+	product_name varchar(80)	
+)
+
+
+-- customer table
+-- list all the customer and their cities
+
+select * from customers;
+
+-- find all customers from the state california
+select * from customers where state = 'California';
+
+-- #count the number of customer in each state
+
+
+--# list the unique cities customers are from.
+SELECT cities from customers where  ;
+
+-- # show customer name starting with the letter 'A'.
+select customer_name from customers where customer_name like 'A%';
+
+----------------------------------------------------------------------
+-- product tbale
+-- display all product name with their categories
+-- find all product in the furniture category,
+-- list all the unique subcategories available,
+-- show product with the word 'chair' in their NAME
+-- count how many products are there in each sub-category
+select * from products;
+select product_name, category from products;
+select * from products where category = 'Furniture';
+select distinct(sub_category) from products;
+SELECT product_name from products where product_name LIKE '%Chairs%';
+select sub_category, count(*) as total_no_of_product from products group by sub_category order by total_no_of_product desc;
+
+-------------------------------------------------------------------------------
+-- Orders TABLE
+-- list all orders placed in the year 2017
+-- find the total number of orders.
+-- show the total sales for each customer.
+-- list the top 5 highest sales amounts.
+-- find all orders where quantity is more than 5.
+select * from orders;
+select * from orders where order_date between '2017-01-01' AND '2017-12-31';
+select sum(quantity) as total_num from orders;
+select  customer_id, sum(sales) as sales, count(quantity) from orders GROUP BY customer_id order by sum(sales) desc;
+select * from orders order by sales desc limit 5;
+select * from orders where quantity > 5;
+
+
+-------------------------------------------------------------------------------------
+-- Employees table
+-- list all the employees and their job titles.
+-- show the employees hired before the year 1995.
+-- find the total number of employee in each department.
+-- show employees who earn a salary above 1500.
+-- list all the employees who have no commission.
+select ename, job from employee;
+select * from employee where hiredate < '1995-01-01';
+select count(empno) from employee group by deptnum;
+select ename, job, salary from employee where salary > 1499 order by salary;
+select ename, commission, job from employee where commission = 0;
+
+
+select * from employee;
+
+
+-----------------------------------------------------------------------------------
+-- list all orders along with customer names.
+-- show customer names and the total quantity of products they've ordered.
+-- list all products that have been ordered along with their sales amount.
+-- display each employee and their department number (just a lookup)
+-- find customer name, their cities , and the products they ordered.
+select * from orders where customer_id = (select customer_id from customers group by customer_id);
+
+select order_id, order_date, o.customer_id, c.customer_name, c.city, c.state from orders as o inner join customers as c on o.customer_id = c.customer_id;
+
+
+select product_name, sales from orders as o
+inner join products as p 
+on p.product_id = o.product_id
+order by sales desc;
+
+select ename, deptnum from employee; 
+
+select 
+customer_name, city, product_name
+from orders as o
+INNER JOIN customers as c
+ON o.customer_id = c.customer_id
+INNER JOIN products as p
+ON o.product_id = p.product_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
