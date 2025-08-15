@@ -1,0 +1,136 @@
+Of course. This is the best way to learn. I will give you a complete, realistic task that a Data Analyst would receive in their first year at a company.
+
+This task will not just be a single SQL query. It will be a multi-step investigation that requires you to:
+
+Understand the business problem.
+
+Write SQL to get the necessary data.
+
+Analyze the results.
+
+Communicate your findings and a recommendation.
+
+Part 1: The Business Request
+To: You, Data Analyst
+From: Maria, Head of Product for "StreamNow" (our video streaming service)
+Subject: Urgent Help Needed: Investigating User Churn
+
+Hi there,
+
+I'm getting worried about our user retention numbers. It feels like we're losing more subscribers than ever, but I don't have the data to back this up or understand why it's happening.
+
+I need your help. Can you please dig into our user data and prepare a brief report for me? I need to understand:
+
+What is our overall churn rate?
+
+Are there specific types of users who are more likely to churn? (e.g., based on their subscription plan, the device they use, etc.)
+
+Most importantly, why are they leaving? Is it related to how much they use our service?
+
+Based on your findings, I'd like a clear recommendation on what we should do next.
+
+Thanks,
+Maria
+
+Part 2: Your Task & The Data
+Your task is to answer Maria's questions. You have access to the following three tables in a PostgreSQL database.
+
+First, create these tables and insert the sample data I've provided.
+
+code
+SQL
+-- Create the Tables
+CREATE TABLE users (
+    user_id INTEGER PRIMARY KEY,
+    signup_date DATE,
+    device_type VARCHAR(10), -- 'Desktop', 'Mobile', 'Tablet'
+    location VARCHAR(20)
+);
+
+CREATE TABLE subscriptions (
+    subscription_id INTEGER PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id),
+    plan_type VARCHAR(10), -- 'Basic', 'Premium'
+    start_date DATE,
+    end_date DATE -- This is NULL if the subscription is still active
+);
+
+CREATE TABLE watch_history (
+    history_id INTEGER PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id),
+    watch_date DATE,
+    minutes_watched INTEGER
+);
+
+-- Insert Sample Data
+INSERT INTO users (user_id, signup_date, device_type, location) VALUES
+(1, '2023-01-15', 'Desktop', 'California'),
+(2, '2023-02-20', 'Mobile', 'New York'),
+(3, '2023-03-10', 'Tablet', 'California'),
+(4, '2023-04-05', 'Mobile', 'Texas'),
+(5, '2023-05-12', 'Desktop', 'Texas'),
+(6, '2023-06-18', 'Mobile', 'New York'),
+(7, '2023-07-25', 'Desktop', 'California'),
+(8, '2023-08-30', 'Mobile', 'Florida');
+
+INSERT INTO subscriptions (subscription_id, user_id, plan_type, start_date, end_date) VALUES
+(1, 1, 'Premium', '2023-01-15', NULL),          -- Active
+(2, 2, 'Basic', '2023-02-20', '2024-03-20'),   -- CHURNED
+(3, 3, 'Basic', '2023-03-10', NULL),          -- Active
+(4, 4, 'Premium', '2023-04-05', '2024-02-05'),   -- CHURNED
+(5, 5, 'Premium', '2023-05-12', NULL),          -- Active
+(6, 6, 'Basic', '2023-06-18', '2024-01-18'),   -- CHURNED
+(7, 7, 'Premium', '2023-07-25', NULL),          -- Active
+(8, 8, 'Basic', '2023-08-30', NULL);          -- Active
+
+INSERT INTO watch_history (history_id, user_id, watch_date, minutes_watched) VALUES
+(1, 1, '2024-01-10', 120),
+(2, 1, '2024-01-12', 150),
+(3, 2, '2024-02-05', 30),  -- Low watch time before churning
+(4, 3, '2024-01-20', 800),
+(5, 3, '2024-02-15', 750),
+(6, 4, '2024-01-15', 60),  -- Low watch time before churning
+(7, 5, '2024-02-18', 1100),
+(8, 6, '2024-01-01', 15),  -- Very low watch time before churning
+(9, 7, '2024-02-25', 1300),
+(10, 8, '2024-02-28', 400);
+Part 3: The Steps to Follow (Your Investigation)
+Definition: A user has "churned" if their end_date in the subscriptions table is NOT NULL.
+
+Step 1: Calculate the Overall Churn Rate
+Write a single SQL query to find the overall churn rate.
+
+Hint: You'll need to count the total number of users and the number of users who have churned. The formula is (Churned Users / Total Users) * 100. A CASE statement inside a COUNT or SUM is very useful here.
+
+Step 2: Find the "Who" - Segment by device_type
+Write a SQL query that shows the churn rate for each device_type.
+
+Hint: You will need to JOIN the users and subscriptions tables. Then, GROUP BY device type and use a similar churn calculation as in Step 1.
+
+Analyze: Look at the results. Is there a device type with a surprisingly high churn rate?
+
+Step 3: Find the "Why" - Analyze User Engagement
+Write a SQL query to compare the average total minutes watched for users who are still active versus users who have churned.
+
+Hint: You will need to JOIN all three tables. First, aggregate the watch_history to get total minutes per user. Then, join that to your subscription data to see who is churned vs. active. Finally, calculate the average of those totals for each group.
+
+Part 4: The Final Deliverable (Your Communication)
+This is the most important part. After you have the results from your SQL queries, you must communicate them to Maria.
+
+Write a short email to Maria. Structure it using the "BLUF" (Bottom Line Up Front) method we discussed.
+
+Your email should include:
+
+The Main Point (Bottom Line): Start with the single most important finding and your recommendation.
+
+Key Findings (The Evidence): Briefly list your 2-3 most important data points in simple language.
+
+The overall churn rate.
+
+The segment that is churning the most.
+
+The key difference in behavior between active and churned users.
+
+Recommendation (The Action): Based on your findings, what is one specific, actionable thing you think the company should do? (e.g., "We should investigate the user experience on...")
+
+This entire process, from getting the request to sending the final email, is a complete and realistic example of a data analyst's work. Good luck
