@@ -9,7 +9,7 @@ Write SQL to get the necessary data.
 Analyze the results.
 
 Communicate your findings and a recommendation.
-
+------------------------------------------------------------------------------------------------------------------------
 Part 1: The Business Request
 To: You, Data Analyst
 From: Maria, Head of Product for "StreamNow" (our video streaming service)
@@ -31,7 +31,7 @@ Based on your findings, I'd like a clear recommendation on what we should do nex
 
 Thanks,
 Maria
-
+-------------------------------------------------------------------------------------------------------------------
 Part 2: Your Task & The Data
 Your task is to answer Maria's questions. You have access to the following three tables in a PostgreSQL database.
 
@@ -97,11 +97,13 @@ INSERT INTO watch_history (history_id, user_id, watch_date, minutes_watched) VAL
 Part 3: The Steps to Follow (Your Investigation)
 Definition: A user has "churned" if their end_date in the subscriptions table is NOT NULL.
 
+-------------------------------------------------------------------------------------------------------------------
 Step 1: Calculate the Overall Churn Rate
 Write a single SQL query to find the overall churn rate.
 
 Hint: You'll need to count the total number of users and the number of users who have churned. The formula is (Churned Users / Total Users) * 100. A CASE statement inside a COUNT or SUM is very useful here.
 
+-------------------------------------------------------------------------------------------------------------------
 Step 2: Find the "Who" - Segment by device_type
 Write a SQL query that shows the churn rate for each device_type.
 
@@ -109,11 +111,13 @@ Hint: You will need to JOIN the users and subscriptions tables. Then, GROUP BY d
 
 Analyze: Look at the results. Is there a device type with a surprisingly high churn rate?
 
+-------------------------------------------------------------------------------------------------------------------
 Step 3: Find the "Why" - Analyze User Engagement
 Write a SQL query to compare the average total minutes watched for users who are still active versus users who have churned.
 
 Hint: You will need to JOIN all three tables. First, aggregate the watch_history to get total minutes per user. Then, join that to your subscription data to see who is churned vs. active. Finally, calculate the average of those totals for each group.
 
+-------------------------------------------------------------------------------------------------------------------
 Part 4: The Final Deliverable (Your Communication)
 This is the most important part. After you have the results from your SQL queries, you must communicate them to Maria.
 
