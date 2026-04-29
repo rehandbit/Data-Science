@@ -10,7 +10,7 @@
 ---
 
 | Variance | Standard Deviation |
-|------|--------|
+|----------|--------------------|
 |Variance is the average of squared deviation from the mean. Squaring makes all values positive and amplifies outliers, but it also give you units squared, which is hard to interpret directly|Standard Deviation is simply the square root of variance, which brings it back to the original units of data|
 ||Standard deviation measures *how much the data is spread out from the mean (average)*|
 |* *if values are close to the mean -> low variance* <br>* *if values are far from the mean -> high variance*|* *if values are close to the mean -> low standard deviation* <br>* *if values are far from the mean -> high standard deviation*|
@@ -19,5 +19,6 @@
 ---
 
 | Skewness | Kurtosis |
-|------|--------|
-|Skewness measures the symmetry of a destribution|Kurtosis describe the shape of tails|
+|----------|----------|
+|Skewness measure the asymmetry of a distribution. Positive skew indicate a longer right tail, while negative skew indicate a longer left tail,|Kurtosis describe the shape of tails, how extreme the outlier are |
+|(+ve) skew indicate right tail <br> (-ve) skew indicate left tail.| indicate extreme outlier are.|
