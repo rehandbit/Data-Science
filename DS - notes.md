@@ -22,3 +22,16 @@
 |----------|----------|
 |Skewness measure the asymmetry of a distribution. Positive skew indicate a longer right tail, while negative skew indicate a longer left tail,|Kurtosis describe the shape of tails, how extreme the outlier are |
 |(+ve) skew indicate right tail <br> (-ve) skew indicate left tail.| indicate extreme outlier are.|
+
+
+---
+> Statistical measure used to describe the destribution of data by dividing an ordered dataset into equal parts.
+
+|Percentile|Quartiles|IQR|
+|---------|---------|-----|
+|Percentile divide data into 100 equal part, indicating the percentage of values below a certain score.| Quartile divide data into four equal quarters (Q1 = 25%, Q2 = 50% or *mean* , Q3 = 75%)||
+|Used to rank data, such as 95th percentile test score, meaning you performed better than 95% of test taker in exam|Q1 - lower quartile <br> Q2 - median <br> upper quartile||
+
+---
+**Outlier**
+> Any value below Q1 minus 1.5 times IQR, or above Q3 plus 1.5 times IQR , is flagged as an outlier. This is what exactly box plot visualize.
