@@ -34,4 +34,4 @@
 
 ---
 **Outlier**
-> Any value below Q1 minus 1.5 times IQR, or above Q3 plus 1.5 times IQR , is flagged as an outlier. This is what exactly box plot visualize.
+> Any value below Q1 minus 1.5 times IQR, or above Q3 plus 1.5 times IQR , is flagged as an outlier. This is what exactly box plot visualize..
