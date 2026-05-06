@@ -34,4 +34,34 @@
 
 ---
 **Outlier**
-> Any value below Q1 minus 1.5 times IQR, or above Q3 plus 1.5 times IQR , is flagged as an outlier. This is what exactly box plot visualize..
+> *An Outlier is a data point that **deviates** significantly from the rest, and right way to handle it depends entirely on whether it represents a data error or a genuine extreme event, which is why investigation always comes before treatment*.
+
+> Explanation : An outlier is a data point that deviates significantly from the rest of the distribution.
+
+> But before deciding what to do with it, I always investigate cause. Outlier can arise from data entry errors, measurement failures, or sampling issues, in which case they should be corrected or removed.  But they can also be genuine extreme events that carry the most interesting signal in the data, like a fraud transaction or a viral post. The treatment depends entirely on the cause.
+
+>IQR method uses Tukey's fences — Q1 minus 1.5×IQR as lower bound, Q3 plus 1.5×IQR as upper. It's non-parametric so it works even on skewed distributions like salary or house prices.
+
+
+
+Summary
+
+| | |
+|---|---|
+|Definition|A value that deviates from the rest of the distribution, may or may not belong to the same distribution|
+|4 Causes|Data entry error, measurement error, sampling error, genuine rare event|
+|IQR method|Below Q1-1.5xIQR or above Q3+1.5xIQR|
+|z-score method|\|z\| > 3. Assume normality. Use for sysmmetric, normal distributions.|
+|visual methods|Box Plot, scatter Plot, histogram—always do this first|
+|5 treatments|Remove, Cap(winsorize), Transform(log), keep with robust model, model separately|
+|Golden rule|Never blindly remove. Always ask WHY it exists first.|
+
+
+
+Question :- How outlier affect models ?
+
+Answer :- 
+Linear Regression
+---
+
+
