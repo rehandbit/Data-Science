@@ -61,7 +61,11 @@ Summary
 Question :- How outlier affect models ?
 
 Answer :- 
-Linear Regression
+Linear Regression and K-means are highly sensitive to outlier because they rely on means and distances. Tree based model like Random forest and xgboost are naturally robust they split on ranges, not distance. So outlier strategy also depends on which model I'm using.
 ---
 
+
+### Hypothesis testing
+
+> Hypothesis testing 
 
