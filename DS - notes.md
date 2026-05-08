@@ -67,5 +67,26 @@ Linear Regression and K-means are highly sensitive to outlier because they rely 
 
 ### Hypothesis testing
 
-> Hypothesis testing 
+> Hypothesis testing is a statistical framework to decide whether the observed data provide enough evidence to reject a default assumption.
+
+Null Hypothesis : 
+>The null hypothesis is the default assumption of no effect. it just mean our evidence wasn't strong enough.
+
+Alternative Hypothesis:
+> what you are trying to prove. like new teaching method improve test score.
+
+p-value :
+>A p-value is the probability of obeserving results atleast as extreme as our, assuming the null hypothesis is true.
+
+||Short Summary|
+|-------|---------|
+|H₀|Null hypothesis — default "nothing changed" assumption|
+|H₁|Alternative hypothesis — what you're trying to prove|
+|p-value|Probability of your data if H₀ were true. Small = surprising.|
+|α (alpha)|Your threshold. Usually 0.05. Set before the test.|
+|Reject H₀?|Yes, if p-value < α. No, if p-value ≥ α.|
+|Type I error|False positive — rejected H₀ but it was true. Rate = α.|
+|Type II error|False negative — missed a real effect. Rate = β|
+|power|1-β. Probability of catching a real effect. Increase with more data.|
+
 
