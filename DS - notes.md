@@ -78,6 +78,11 @@ Alternative Hypothesis:
 p-value :
 >A p-value is the probability of obeserving results atleast as extreme as our, assuming the null hypothesis is true.
 
+Type 1 and 2 error:
+>A Type 1 error (false positive) occurs when a true null hypothesis is incorrectly rejected, often denoted by (alpha). 
+
+>A Type 2 error (false negative) happens when a false null hypothesis is not rejected, often denoted by (beta)
+
 ||Short Summary|
 |-------|---------|
 |H₀|Null hypothesis — default "nothing changed" assumption|
@@ -89,4 +94,6 @@ p-value :
 |Type II error|False negative — missed a real effect. Rate = β|
 |power|1-β. Probability of catching a real effect. Increase with more data.|
 
-
+---
+A/B Testing :
+>"A/B testing is a randomized experiment where you show two versions of a product to different segments of users to determine which one performs better. We use hypothesis testing to ensure that the results are statistically significant and not just a result of random noise."
