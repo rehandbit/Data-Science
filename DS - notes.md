@@ -21,7 +21,9 @@
 | Skewness | Kurtosis |
 |----------|----------|
 |Skewness measure the asymmetry of a distribution. Positive skew indicate a longer right tail, while negative skew indicate a longer left tail,|Kurtosis describe the shape of tails, how extreme the outlier are |
-|(+ve) skew indicate right tail <br> (-ve) skew indicate left tail.| indicate extreme outlier are.|
+|left skew mean negative skew and data is on the right and tail is on the left. <br> right skew mean positive skew and data is on left and tail is on right side of mean| indicate extreme outlier are.|
+|positive skew mean data is on left <br> negative skew mean data is on right ||
+|||
 
 
 ---
@@ -83,6 +85,10 @@ Type 1 and 2 error:
 
 >A Type 2 error (false negative) happens when a false null hypothesis is not rejected, often denoted by (beta)
 
+
+A/B Testing :
+>"A/B testing is a randomized experiment where you show two versions of a product to different segments of users to determine which one performs better. We use hypothesis testing to ensure that the results are statistically significant and not just a result of random noise."
+
 ||Short Summary|
 |-------|---------|
 |H₀|Null hypothesis — default "nothing changed" assumption|
@@ -95,5 +101,3 @@ Type 1 and 2 error:
 |power|1-β. Probability of catching a real effect. Increase with more data.|
 
 ---
-A/B Testing :
->"A/B testing is a randomized experiment where you show two versions of a product to different segments of users to determine which one performs better. We use hypothesis testing to ensure that the results are statistically significant and not just a result of random noise."
