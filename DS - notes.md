@@ -36,13 +36,17 @@
 
 ---
 **Outlier**
-> *An Outlier is a data point that **deviates** significantly from the rest, and right way to handle it depends entirely on whether it represents a data error or a genuine extreme event, which is why investigation always comes before treatment*.
+> _`An Outlier is a data point that deviates significantly from the rest of the distribution`, and right way to handle it depends entirely on whether it represents a data error or a genuine extreme event, which is why investigation always comes before treatment.``_
 
 > Explanation : An outlier is a data point that deviates significantly from the rest of the distribution.
 
 > But before deciding what to do with it, I always investigate cause. Outlier can arise from data entry errors, measurement failures, or sampling issues, in which case they should be corrected or removed.  But they can also be genuine extreme events that carry the most interesting signal in the data, like a fraud transaction or a viral post. The treatment depends entirely on the cause.
 
->IQR method uses Tukey's fences — Q1 minus 1.5×IQR as lower bound, Q3 plus 1.5×IQR as upper. It's non-parametric so it works even on skewed distributions like salary or house prices.
+`Lower fence = Q1 - 1.5 * IQR`
+
+`Upper fence = Q3 + 1.5 * IQR`
+
+`Extreme :  Q1 - 3*IQR / Q3 + 3*IQR`
 
 
 
@@ -65,8 +69,15 @@ Question :- How outlier affect models ?
 Answer :- 
 Linear Regression and K-means are highly sensitive to outlier because they rely on means and distances. Tree based model like Random forest and xgboost are naturally robust they split on ranges, not distance. So outlier strategy also depends on which model I'm using.
 ---
+### Overfitting
+> Overfitting is when a model learns the training data too well -- including the noise -- so it fails on new data.
+> Works perfectly on training data but fails on new data.
+|Overfitting|Underfitting|
+|---|---|
+|Overfitting is when a model learns the training too well including the noise;<br> So it fails on new data||
+|Works perfectly on training data but fails on new data.|A model is too simple to capture the pattern. Performs badly on both training and new data.|
 
-
+---
 ### Hypothesis testing
 
 > Hypothesis testing is a statistical framework to decide whether the observed data provide enough evidence to reject a default assumption.
@@ -101,3 +112,4 @@ A/B Testing :
 |power|1-β. Probability of catching a real effect. Increase with more data.|
 
 ---
+
