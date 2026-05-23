@@ -30,7 +30,7 @@
 > Statistical measure used to describe the destribution of data by dividing an ordered dataset into equal parts.
 
 |Percentile|Quartiles|IQR|
-|---------|---------|-----|
+|----------|---------|-----|
 |Percentile divide data into 100 equal part, indicating the percentage of values below a certain score.| Quartile divide data into four equal quarters (Q1 = 25%, Q2 = 50% or *mean* , Q3 = 75%)||
 |Used to rank data, such as 95th percentile test score, meaning you performed better than 95% of test taker in exam|Q1 - lower quartile <br> Q2 - median <br> upper quartile||
 
@@ -69,14 +69,28 @@ Question :- How outlier affect models ?
 Answer :- 
 Linear Regression and K-means are highly sensitive to outlier because they rely on means and distances. Tree based model like Random forest and xgboost are naturally robust they split on ranges, not distance. So outlier strategy also depends on which model I'm using.
 ---
-### Overfitting
-> Overfitting is when a model learns the training data too well -- including the noise -- so it fails on new data.
-> Works perfectly on training data but fails on new data.
-|Overfitting|Underfitting|
-|---|---|
-|Overfitting is when a model learns the training too well including the noise;<br> So it fails on new data||
-|Works perfectly on training data but fails on new data.|A model is too simple to capture the pattern. Performs badly on both training and new data.|
 
+|.   |Overfitting|Underfitting|
+|----|-----------|------------|
+|DEfinition|Overfitting is when a model learns the training data too well including the noise;<br> So it fails on new data|Underfitting is when the model is too simple to capture the underlying pattern and perform  poorly everywhere.|
+||Works perfectly on training data but fails on new data.|A model is too simple to capture the pattern. Performs badly on both training and new data.|
+|how to detect it|Training accuracy high <br> Validation Accuracy low|Both Training and Validation accuracy is low|
+
+
+ques: What are some of the technique to reduce underfitting and overfitting during model training ?
+
+> For reducing underfitting
+> * increase model complexity
+> * Increase the number of features
+> * Remove the noise from the data
+> * INcrease the number of training epochs
+
+> For Reducing Overfitting
+> * Increase training data
+> * stop early while training
+> * Lasso regularization
+> * Cross-Validation
+> * Random dropouts
 ---
 ### Hypothesis testing
 
@@ -112,4 +126,12 @@ A/B Testing :
 |power|1-β. Probability of catching a real effect. Increase with more data.|
 
 ---
-
+> Machine Learning
+> Machine learning is a way of teaching Computer to learn pattern from the data, instead of programming.
+> Machine learning devide into three parts
+> 1. Supervised Data
+> 2. Unsupervised Data
+> 3. Reinforcement
+|Supervised Data|Unsupervised Data|Reinforcement|
+|---------------|-----------------|-------------|
+||||
