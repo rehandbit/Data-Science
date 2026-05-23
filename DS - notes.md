@@ -132,6 +132,9 @@ A/B Testing :
 > 1. Supervised Data
 > 2. Unsupervised Data
 > 3. Reinforcement
+
+
 |Supervised Data|Unsupervised Data|Reinforcement|
 |---------------|-----------------|-------------|
-||||
+|**Labelled Data**|**No Labels**|**Reward & Penalty**|
+|Supervised learning **trains** on labelled data to predicts an output; like predicting house price|Unsupervised Learning **model finds patterns and groups on it own** like customer segmentation, topic modelling|Reinforcement learning trains an agent through trial and error using rewards; like teaching robot to walk.|
