@@ -138,3 +138,11 @@ A/B Testing :
 |---------------|-----------------|-------------|
 |**Labelled Data**|**No Labels**|**Reward & Penalty**|
 |Supervised learning **trains** on labelled data to predicts an output; like predicting house price|Unsupervised Learning **model finds patterns and groups on it own** like customer segmentation, topic modelling|Reinforcement learning trains an agent through trial and error using rewards; like teaching robot to walk.|
+
+---
+|Bagging|Boosting|
+|-------|--------|
+|Bagging train multiple model in parallel on random samples and combine their output|Boosting train models sequentially, where each new model focus on the example the previous one got wrong.|
+|It reduces variance and prevent overfitting|It reduces bias and build a strong model from weak ones|
+|Example - random forest|Example - XGBoost & LightGBm|
+---
