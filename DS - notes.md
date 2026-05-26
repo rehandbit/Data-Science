@@ -146,3 +146,7 @@ A/B Testing :
 |It reduces variance and prevent overfitting|It reduces bias and build a strong model from weak ones|
 |Example - random forest|Example - XGBoost & LightGBm|
 ---
+
+
+**Confusion Matrix**
+> Confusion matrix is a table used to evaluate the performance of the classification algorithm. It shows True Positive, True Negative, False Positive, False Negative.
