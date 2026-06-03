@@ -150,3 +150,27 @@ A/B Testing :
 
 **Confusion Matrix**
 > Confusion matrix is a table used to evaluate the performance of the classification algorithm. It shows True Positive, True Negative, False Positive, False Negative.
+
+**Hyperparameters in Machine Learning**
+> Hyperparameter is the process of finding best configuration of model. hyperparameter is to maximize the performance on a validation metric,<br> for example, tuning a random forest's number of tree or max depth
+
+
+---
+**PRIMARY KEY**
+> A Primary key is uniquely identifies each row in a table. It enforce entity integrity
+
+> primary key connot contain NULL
+
+>no two rows share same primary key value
+
+> and value is immutable.
+
+**TRUNCATE**
+> truncate table is a faster way to remove all rows from a table while keeping its structure
+
+`CREATE TABLE CUSTOMER ( ID INT PRIMARY KEY, AGE INT);` <br>
+`INSERT INTO CUSTOMER (ID, AGE) VALUES (1, 21 );` <br>
+`UPDATE CUSTOMER SET AGE = 29 WHERE ID = 1;` <BR>
+`DELETE FROM CUSTOMER WHERE ID = 1;` <BR>
+`DROP TABLE CUSTOMER` <BR>
+`TRUNCATE TABLE CUSTOMER` <BR>
