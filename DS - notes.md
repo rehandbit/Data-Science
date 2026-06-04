@@ -149,7 +149,11 @@ A/B Testing :
 
 
 **Confusion Matrix**
-> Confusion matrix is a table used to evaluate the performance of the classification algorithm. It shows True Positive, True Negative, False Positive, False Negative.
+> Confusion matrix is a table used to evaluate the performance of the classification algorithm. It shows True Positive, True Negative, False Positive, False Negative. From this we predict accuracy, precision, recall, and F1-score.
+
+precision measure how reliable our positive prediction are .
+
+Recall measure how many real positive we found.
 
 **Hyperparameters in Machine Learning**
 > Hyperparameter is the process of finding best configuration of model. hyperparameter is to maximize the performance on a validation metric,<br> for example, tuning a random forest's number of tree or max depth
