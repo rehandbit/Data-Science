@@ -1,3 +1,14 @@
+### Deep copy vs Shallow Copy
+
+|Deep Copy|Shallow Copy|
+|---------|------------|
+|Deep Copy recursively copies everything creating a completely independent close.|Shallow copy create a new outer container but inner object are still shared, so modifying nested data affects both variable's value.|
+> In data science I use deepcopy when i need to modify a dataset without touching the original data.
+
+
+
+
+
 Assumption of Linear Regression
 > Assumption mean it is like a <i>guess</i> you make before you do something
 |sl| Answer|
