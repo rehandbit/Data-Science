@@ -1,0 +1,365 @@
+
+<h2 class="sr-only">Complete beginner's guide to hypothesis testing — covering what it is, null vs alternative hypothesis, p-value, significance level, Type I and II errors, and a full worked example with interactive steps.</h2>
+
+<style>
+  * { box-sizing: border-box; }
+  .sec { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); margin-bottom: 14px; overflow: hidden; }
+  .sec-head { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 1.2rem; cursor: pointer; background: var(--color-background-secondary); user-select: none; }
+  .sec-head:hover { background: var(--color-background-tertiary); }
+  .sec-head h3 { margin: 0; font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .sec-body { padding: 1.1rem 1.2rem; background: var(--color-background-primary); display: none; }
+  .sec-body.open { display: block; }
+  .chev { font-size: 11px; color: var(--color-text-secondary); transition: transform 0.2s; }
+  .chev.open { transform: rotate(180deg); }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 20px; margin-right: 8px; }
+  .b-purple { background: #EEEDFE; color: #3C3489; }
+  .b-teal   { background: #E1F5EE; color: #085041; }
+  .b-blue   { background: #E6F1FB; color: #0C447C; }
+  .b-amber  { background: #FAEEDA; color: #633806; }
+  .b-red    { background: #FCEBEB; color: #791F1F; }
+  .b-gray   { background: #F1EFE8; color: #444441; }
+  .say { border-left: 3px solid #1D9E75; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; background: #E1F5EE; padding: 0.75rem 1rem; margin-top: 10px; font-size: 13px; color: #085041; line-height: 1.65; }
+  .say-lbl { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #0F6E56; margin-bottom: 4px; }
+  .warn { border-left: 3px solid #EF9F27; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; background: #FAEEDA; padding: 0.75rem 1rem; margin-top: 10px; font-size: 13px; color: #633806; line-height: 1.65; }
+  .warn-lbl { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #854F0B; margin-bottom: 4px; }
+  .info { border-left: 3px solid #378ADD; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; background: #E6F1FB; padding: 0.75rem 1rem; margin-top: 10px; font-size: 13px; color: #0C447C; line-height: 1.65; }
+  .body-txt { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin: 0 0 10px; }
+  .body-txt strong { font-weight: 500; color: var(--color-text-primary); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+  .card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; border: 0.5px solid var(--color-border-tertiary); }
+  .card-lbl { font-size: 11px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .card-val { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .card-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 3px; line-height: 1.5; }
+  .formula { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.5rem 1rem; font-family: var(--font-mono); font-size: 13px; color: var(--color-text-primary); margin: 6px 0; }
+  .step-row { display: flex; gap: 0; margin: 10px 0; }
+  .step-dot { width: 28px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
+  .step-num { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; background: #534AB7; color: #EEEDFE; flex-shrink: 0; }
+  .step-line { flex: 1; width: 1px; background: var(--color-border-tertiary); margin: 3px 0; min-height: 16px; }
+  .step-content { flex: 1; padding-bottom: 12px; }
+  .step-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+  .step-body { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+  .err-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden; margin: 10px 0; }
+  .err-cell { padding: 8px 10px; font-size: 12px; }
+  .err-head { background: var(--color-background-secondary); font-weight: 500; color: var(--color-text-secondary); font-size: 11px; }
+  .err-ok { background: #E1F5EE; color: #085041; }
+  .err-t1 { background: #FCEBEB; color: #791F1F; }
+  .err-t2 { background: #FAEEDA; color: #633806; }
+  .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .btns button { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-primary); color: var(--color-text-primary); cursor: pointer; }
+  .btns button:hover { background: var(--color-background-secondary); }
+  .analogy-box { border-radius: var(--border-radius-md); background: var(--color-background-secondary); padding: 0.85rem 1rem; margin: 10px 0; }
+  .analogy-lbl { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 10px 0; }
+  .highlight-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .highlight-row:last-child { border-bottom: none; }
+  .hl-key { font-size: 12px; color: var(--color-text-secondary); width: 100px; flex-shrink: 0; }
+  .hl-val { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .page-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+  .page-sub { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 1.25rem; }
+</style>
+
+<p class="page-title">Hypothesis testing — complete guide</p>
+<p class="page-sub">From "what is it" to "what to say in an interview." Open each section in order.</p>
+
+<div class="sec" id="s0">
+  <div class="sec-head" onclick="tog('s0')">
+    <div style="display:flex;align-items:center">
+      <span class="badge b-gray">Start here</span>
+      <h3>What even is a hypothesis test?</h3>
+    </div>
+    <span class="chev" id="c0">▼</span>
+  </div>
+  <div class="sec-body open" id="b0">
+    <p class="body-txt">Imagine you work at a company and someone says: <strong>"Our new website design gets more clicks than the old one."</strong> That is a claim. But how do you know it's actually true and not just random chance?</p>
+    <p class="body-txt">A hypothesis test is a <strong>structured method to decide whether a claim about data is real, or just happened by luck.</strong> It uses maths to answer: "If nothing actually changed, how likely is it that I'd see results this extreme?"</p>
+
+    <div class="analogy-box">
+      <div class="analogy-lbl">Real-world analogy — court of law</div>
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:0;line-height:1.7;">In a court, a person is <strong style="color:var(--color-text-primary)">innocent until proven guilty</strong>. You start by assuming innocence (nothing changed), then look at evidence. Only if the evidence is overwhelmingly against innocence do you convict (reject the assumption). Hypothesis testing works exactly the same way.</p>
+    </div>
+
+    <div class="say">
+      <div class="say-lbl">Say this in an interview</div>
+      "Hypothesis testing is a statistical framework to decide whether observed data provides enough evidence to reject a default assumption. We start by assuming nothing is different — the null hypothesis — and then calculate the probability of seeing our data if that assumption were true. If that probability is very low, we reject the null and accept there is a real effect."
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s1">
+  <div class="sec-head" onclick="tog('s1')">
+    <div style="display:flex;align-items:center">
+      <span class="badge b-purple">Step 1</span>
+      <h3>Null hypothesis (H₀) vs alternative hypothesis (H₁)</h3>
+    </div>
+    <span class="chev" id="c1">▼</span>
+  </div>
+  <div class="sec-body" id="b1">
+    <p class="body-txt">Every hypothesis test starts with two competing statements about the world:</p>
+
+    <div class="two-col">
+      <div class="card" style="border-left: 2px solid #534AB7;">
+        <div class="card-lbl">H₀ — null hypothesis</div>
+        <div class="card-val" style="color:#3C3489;">No effect. Nothing changed.</div>
+        <div class="card-sub">The default, boring, skeptical assumption. Like "innocent until proven guilty." You assume this is true until evidence says otherwise.</div>
+        <div style="margin-top:8px;font-size:12px;color:#534AB7;font-style:italic;">e.g. "The new button colour has no effect on click rate."</div>
+      </div>
+      <div class="card" style="border-left: 2px solid #1D9E75;">
+        <div class="card-lbl">H₁ — alternative hypothesis</div>
+        <div class="card-val" style="color:#085041;">There IS an effect.</div>
+        <div class="card-sub">This is what you want to prove. You only accept it if the data provides strong enough evidence to reject H₀.</div>
+        <div style="margin-top:8px;font-size:12px;color:#1D9E75;font-style:italic;">e.g. "The new button colour increases click rate."</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-lbl">Critical point to memorise</div>
+      You never "prove" the null hypothesis. You either <strong>reject H₀</strong> (evidence is strong enough) or <strong>fail to reject H₀</strong> (evidence is not strong enough). You never say "H₀ is true" — absence of evidence is not evidence of absence.
+    </div>
+
+    <div class="say">
+      <div class="say-lbl">Say this in an interview</div>
+      "The null hypothesis is the default assumption of no effect — for example, 'this drug has no impact on blood pressure'. The alternative is what we're trying to demonstrate. We never directly test the alternative; instead, we try to disprove the null. If the evidence makes the null extremely unlikely, we reject it and accept the alternative. Importantly, failing to reject the null doesn't mean it's true — it just means our evidence wasn't strong enough."
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s2">
+  <div class="sec-head" onclick="tog('s2')">
+    <div style="display:flex;align-items:center">
+      <span class="badge b-blue">Step 2</span>
+      <h3>P-value — the most important number</h3>
+    </div>
+    <span class="chev" id="c2">▼</span>
+  </div>
+  <div class="sec-body" id="b2">
+    <p class="body-txt">The p-value answers one very specific question:</p>
+    <div style="background:#E6F1FB;border-radius:var(--border-radius-md);padding:0.8rem 1rem;margin:8px 0 12px;font-size:14px;font-weight:500;color:#0C447C;text-align:center;">"If the null hypothesis were true, what is the probability of getting results at least this extreme?"</div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-lbl">Small p-value (e.g. 0.02)</div>
+        <div class="card-val" style="color:#A32D2D;">Rare result under H₀</div>
+        <div class="card-sub">Only a 2% chance of seeing this if nothing changed. This is suspicious — maybe something did change. Reject H₀.</div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Large p-value (e.g. 0.45)</div>
+        <div class="card-val" style="color:#085041;">Common result under H₀</div>
+        <div class="card-sub">45% chance of seeing this even if nothing changed. This is totally normal. Don't reject H₀.</div>
+      </div>
+    </div>
+
+    <div class="analogy-box">
+      <div class="analogy-lbl">Simple analogy — coin flip</div>
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:0;line-height:1.7;">You flip a coin 10 times. H₀: "The coin is fair." You get 9 heads. The p-value asks: <em>if the coin were fair, how likely is getting 9+ heads?</em> The answer is about 1% — very unlikely. So you reject H₀ and conclude the coin is probably biased.</p>
+    </div>
+
+    <div class="warn">
+      <div class="warn-lbl">The biggest misconception — interviewers love testing this</div>
+      A p-value is <strong>NOT</strong> the probability that H₀ is true. It is the probability of your data, assuming H₀ is true. This is a subtle but critical difference. p = 0.03 does not mean "there's a 3% chance nothing changed" — it means "if nothing changed, there's a 3% chance of seeing results this extreme."
+    </div>
+
+    <div class="say">
+      <div class="say-lbl">Say this in an interview</div>
+      "The p-value is the probability of observing results at least as extreme as ours, assuming the null hypothesis is true. A small p-value — typically below 0.05 — means our results would be very unlikely under the null, so we reject it. It's important to clarify that the p-value is not the probability that the null is true; it's a measure of how surprising our data is under the null assumption."
+    </div>
+
+    <div class="btns">
+      <button onclick="sendPrompt('What is the difference between p-value and probability that null hypothesis is true? Give an example.')">P-value misconception example ↗</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s3">
+  <div class="sec-head" onclick="tog('s3')">
+    <div style="display:flex;align-items:center">
+      <span class="badge b-teal">Step 3</span>
+      <h3>Significance level (α) — where you draw the line</h3>
+    </div>
+    <span class="chev" id="c3">▼</span>
+  </div>
+  <div class="sec-body" id="b3">
+    <p class="body-txt">Before running your test, you decide a threshold called the <strong>significance level (α)</strong>. This is the p-value cutoff below which you'll reject H₀. It's your definition of "surprising enough."</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;">
+      <div class="card" style="text-align:center;">
+        <div class="card-lbl">α = 0.05</div>
+        <div class="card-val">Most common</div>
+        <div class="card-sub">Used in most business & social science. 5% false alarm rate accepted.</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="card-lbl">α = 0.01</div>
+        <div class="card-val">Stricter</div>
+        <div class="card-sub">Used in medicine & safety. Only 1% false alarm rate allowed.</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="card-lbl">α = 0.001</div>
+        <div class="card-val">Very strict</div>
+        <div class="card-sub">Used in physics (e.g. CERN particle detection). Near-zero false alarms.</div>
+      </div>
+    </div>
+
+    <div class="formula">Decision rule:  if p-value &lt; α  →  reject H₀  (statistically significant)</div>
+    <div class="formula">               if p-value ≥ α  →  fail to reject H₀  (not significant)</div>
+
+    <div class="info">
+      <strong>Why 0.05?</strong> It's a convention, not a law. Ronald Fisher suggested it in the 1920s as a rough guide. In high-stakes domains like clinical trials, much lower α values are required. In exploratory data analysis, 0.1 might be acceptable. Always set α before you see the data — changing it afterwards is p-hacking.
+    </div>
+
+    <div class="say">
+      <div class="say-lbl">Say this in an interview</div>
+      "The significance level α is the threshold we set before the test — typically 0.05. If the p-value falls below α, we call the result statistically significant and reject the null. It represents the maximum false-positive rate we're willing to tolerate. The choice of α depends on context — medical trials often use 0.01 or lower because the cost of a false positive is much higher."
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s4">
+  <div class="sec-head" onclick="tog('s4')">
+    <div style="display:flex;align-items:center">
+      <span class="badge b-red">Step 4</span>
+      <h3>Type I and Type II errors — the two ways to be wrong</h3>
+    </div>
+    <span class="chev" id="c4">▼</span>
+  </div>
+  <div class="sec-body" id="b4">
+    <p class="body-txt">No test is perfect. There are two ways a hypothesis test can make a mistake:</p>
+
+    <div class="err-grid">
+      <div class="err-cell err-head"></div>
+      <div class="err-cell err-head">H₀ is actually TRUE</div>
+      <div class="err-cell err-head">H₀ is actually FALSE</div>
+      <div class="err-cell err-head">You reject H₀</div>
+      <div class="err-cell err-t1"><strong>Type I Error ✗</strong><br>False positive. You said there's an effect — there isn't.</div>
+      <div class="err-cell err-ok"><strong>Correct ✓</strong><br>True positive. You correctly detected a real effect.</div>
+      <div class="err-cell err-head">You don't reject H₀</div>
+      <div class="err-cell err-ok"><strong>Correct ✓</strong><br>True negative. Correctly found no effect.</div>
+      <div class="err-cell err-t2"><strong>Type II Error ✗</strong><br>False negative. You missed a real effect.</div>
+    </div>
+
+    <div class="two-col" style="margin-top:10px;">
+      <div class="card">
+        <div class="card-lbl">Type I error rate = α</div>
+        <div class="card-val" style="color:#A32D2D;">False positive</div>
+        <div class="card-sub">Rejecting H₀ when it's actually true. Probability = α. You control this by setting α.</div>
+        <div style="margin-top:6px;font-size:12px;color:#A32D2D;">e.g. Concluding a drug works when it doesn't.</div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Type II error rate = β</div>
+        <div class="card-val" style="color:#854F0B;">False negative</div>
+        <div class="card-sub">Failing to reject H₀ when it's actually false. Reduced by increasing sample size.</div>
+        <div style="margin-top:6px;font-size:12px;color:#854F0B;">e.g. Concluding a drug doesn't work when it does.</div>
+      </div>
+    </div>
+
+    <div class="info">
+      <strong>Power = 1 − β.</strong> Statistical power is the probability of correctly detecting a real effect. High power is good. You increase power by collecting more data (larger sample size), which shrinks β without changing α.
+    </div>
+
+    <div class="say">
+      <div class="say-lbl">Say this in an interview</div>
+      "A Type I error is a false positive — rejecting the null when it's actually true. Its probability equals α, so setting α = 0.05 means we accept a 5% chance of a Type I error. A Type II error is a false negative — missing a real effect. Its probability is β, and 1 minus β is called statistical power. There's a trade-off: making α smaller reduces Type I errors but increases Type II errors unless you compensate with a larger sample size."
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s5">
+  <div class="sec-head" onclick="tog('s5')">
+    <div style="display:flex;align-items:center">
+      <span class="badge b-amber">Worked example</span>
+      <h3>Full A/B test — step by step</h3>
+    </div>
+    <span class="chev" id="c5">▼</span>
+  </div>
+  <div class="sec-body" id="b5">
+    <p class="body-txt">Scenario: You changed the colour of a "Buy Now" button from grey to orange. You want to know if this increased the click-through rate.</p>
+    <div class="divider"></div>
+
+    <div class="step-row">
+      <div class="step-dot"><div class="step-num">1</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-title">State the hypotheses</div>
+        <div class="step-body">H₀: The orange button has no effect on click rate (p_orange = p_grey)<br>H₁: The orange button has a higher click rate (p_orange > p_grey)</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-dot"><div class="step-num">2</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-title">Choose significance level</div>
+        <div class="step-body">α = 0.05. Standard choice for a business experiment.</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-dot"><div class="step-num">3</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-title">Collect data</div>
+        <div class="step-body">Grey button: 1000 visitors, 50 clicks (5% CTR)<br>Orange button: 1000 visitors, 70 clicks (7% CTR)</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-dot"><div class="step-num">4</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-title">Run the statistical test</div>
+        <div class="step-body">Use a two-proportion z-test. The test calculates how many standard deviations the observed difference is from zero (the null). Result: p-value = 0.018</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-dot"><div class="step-num">5</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-title">Make the decision</div>
+        <div class="step-body">p = 0.018 &lt; α = 0.05 → <strong>Reject H₀</strong><br>The orange button's higher CTR is statistically significant. Ship it.</div>
+      </div>
+    </div>
+
+    <div class="say">
+      <div class="say-lbl">Say this as the conclusion</div>
+      "With a p-value of 0.018, which is below our significance threshold of 0.05, we reject the null hypothesis. The evidence suggests the orange button genuinely increases click-through rate and the result is unlikely to be due to random chance alone. However, we should also check the practical significance — a 2% absolute lift — and whether that is worth deploying."
+    </div>
+
+    <div class="warn" style="margin-top:10px;">
+      <div class="warn-lbl">Don't forget — statistical significance ≠ practical significance</div>
+      With millions of users, even a 0.001% improvement can be statistically significant (tiny p-value), but it might not be worth engineering effort. Always report <strong>effect size</strong> alongside p-value.
+    </div>
+
+    <div class="btns">
+      <button onclick="sendPrompt('Write Python code to run a two-proportion z-test for an A/B test on click-through rates')">Python code for this test ↗</button>
+      <button onclick="sendPrompt('What is statistical power and how do I calculate the sample size needed for an A/B test?')">Sample size calculation ↗</button>
+      <button onclick="sendPrompt('What is the difference between one-tailed and two-tailed hypothesis tests?')">One-tailed vs two-tailed ↗</button>
+      <button onclick="sendPrompt('What are common hypothesis tests in data science? t-test, chi-square, ANOVA — when to use each?')">Which test to use? ↗</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s6">
+  <div class="sec-head" onclick="tog('s6')">
+    <div style="display:flex;align-items:center">
+      <span class="badge b-gray">Summary</span>
+      <h3>Everything in one cheat sheet</h3>
+    </div>
+    <span class="chev" id="c6">▼</span>
+  </div>
+  <div class="sec-body" id="b6">
+    <div class="highlight-row"><span class="hl-key">H₀</span><span class="hl-val">Null hypothesis — default "nothing changed" assumption</span></div>
+    <div class="highlight-row"><span class="hl-key">H₁</span><span class="hl-val">Alternative hypothesis — what you're trying to prove</span></div>
+    <div class="highlight-row"><span class="hl-key">p-value</span><span class="hl-val">Probability of your data if H₀ were true. Small = surprising.</span></div>
+    <div class="highlight-row"><span class="hl-key">α (alpha)</span><span class="hl-val">Your threshold. Usually 0.05. Set before the test.</span></div>
+    <div class="highlight-row"><span class="hl-key">Reject H₀?</span><span class="hl-val">Yes, if p-value &lt; α. No, if p-value ≥ α.</span></div>
+    <div class="highlight-row"><span class="hl-key">Type I error</span><span class="hl-val">False positive — rejected H₀ but it was true. Rate = α.</span></div>
+    <div class="highlight-row"><span class="hl-key">Type II error</span><span class="hl-val">False negative — missed a real effect. Rate = β.</span></div>
+    <div class="highlight-row"><span class="hl-key">Power</span><span class="hl-val">1 − β. Probability of catching a real effect. Increase with more data.</span></div>
+
+    <div class="say" style="margin-top:12px;">
+      <div class="say-lbl">One-sentence summary to memorise</div>
+      "Hypothesis testing is a method to decide whether observed data is surprising enough — given a pre-set threshold — to conclude that a real effect exists rather than just random variation."
+    </div>
+  </div>
+</div>
+
+<script>
+function tog(id) {
+  const n = id.slice(1);
+  const b = document.getElementById('b'+n);
+  const c = document.getElementById('c'+n);
+  const open = b.classList.contains('open');
+  b.classList.toggle('open', !open);
+  c.classList.toggle('open', !open);
+}
+</script>

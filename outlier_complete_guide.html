@@ -1,0 +1,408 @@
+
+<h2 class="sr-only">Complete guide to outliers in data science — covering definition, types, causes, detection methods (IQR, Z-score, visualization), treatment strategies, and interview answers, with an interactive dot plot.</h2>
+<style>
+  *{box-sizing:border-box}
+  .sec{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:12px;overflow:hidden}
+  .sh{display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.1rem;cursor:pointer;background:var(--color-background-secondary);user-select:none}
+  .sh:hover{background:var(--color-background-tertiary)}
+  .sh h3{margin:0;font-size:14px;font-weight:500;color:var(--color-text-primary)}
+  .sb{padding:1.1rem 1.1rem;background:var(--color-background-primary);display:none}
+  .sb.open{display:block}
+  .cv{font-size:11px;color:var(--color-text-secondary);transition:transform .2s}
+  .cv.open{transform:rotate(180deg)}
+  .bdg{display:inline-block;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px;margin-right:7px}
+  .bp{background:#EEEDFE;color:#3C3489}.bt{background:#E1F5EE;color:#085041}
+  .bb{background:#E6F1FB;color:#0C447C}.ba{background:#FAEEDA;color:#633806}
+  .br{background:#FCEBEB;color:#791F1F}.bg{background:#F1EFE8;color:#444441}
+  .bc{background:#FAECE7;color:#712B13}
+  .say{border-left:3px solid #1D9E75;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E1F5EE;padding:.7rem 1rem;margin-top:10px;font-size:13px;color:#085041;line-height:1.65}
+  .say-l{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#0F6E56;margin-bottom:4px}
+  .warn{border-left:3px solid #EF9F27;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#FAEEDA;padding:.7rem 1rem;margin-top:10px;font-size:13px;color:#633806;line-height:1.65}
+  .warn-l{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#854F0B;margin-bottom:4px}
+  .info{border-left:3px solid #378ADD;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E6F1FB;padding:.7rem 1rem;margin-top:10px;font-size:13px;color:#0C447C;line-height:1.65}
+  .bt2{font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin:0 0 8px}
+  .bt2 strong{font-weight:500;color:var(--color-text-primary)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0}
+  .card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.7rem .9rem;border:0.5px solid var(--color-border-tertiary)}
+  .cl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+  .cv2{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+  .cs{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.5}
+  .fml{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.45rem .9rem;font-family:var(--font-mono);font-size:13px;color:var(--color-text-primary);margin:5px 0}
+  .method-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:.85rem 1rem;margin-bottom:8px}
+  .mc-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .mc-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
+  .mc-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+  .mc-body{font-size:12.5px;color:var(--color-text-secondary);line-height:1.65}
+  .step-row{display:flex;gap:0;margin:6px 0}
+  .step-dot{width:26px;flex-shrink:0;display:flex;flex-direction:column;align-items:center}
+  .snum{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;background:#534AB7;color:#EEEDFE;flex-shrink:0}
+  .sline{flex:1;width:1px;background:var(--color-border-tertiary);margin:3px 0;min-height:12px}
+  .sc{flex:1;padding-bottom:10px}
+  .st{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:1px}
+  .sb2{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+  .hlr{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .hlr:last-child{border-bottom:none}
+  .hk{font-size:12px;color:var(--color-text-secondary);width:110px;flex-shrink:0;padding-top:1px}
+  .hv{font-size:13px;color:var(--color-text-primary);line-height:1.5}
+  .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .btns button{font-size:12px;padding:5px 11px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer}
+  .btns button:hover{background:var(--color-background-secondary)}
+  .chart-wrap{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;margin:10px 0}
+  .ptitle{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 3px}
+  .psub{font-size:13px;color:var(--color-text-secondary);margin:0 0 1.1rem}
+  .treat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:8px 0}
+  .treat-card{border-radius:var(--border-radius-md);padding:.7rem .9rem;border:0.5px solid var(--color-border-tertiary)}
+</style>
+
+<p class="ptitle">Outliers — complete guide</p>
+<p class="psub">What they are, how to find them, and how to handle them.</p>
+
+<div class="sec" id="s0">
+  <div class="sh" onclick="tog('0')">
+    <div style="display:flex;align-items:center"><span class="bdg bg">Foundation</span><h3>What is an outlier? (deep definition)</h3></div>
+    <span class="cv" id="c0">▼</span>
+  </div>
+  <div class="sb open" id="b0">
+    <p class="bt2">You already have the right instinct — an outlier is a value that is <strong>very different from the rest of the data</strong>. But the full definition goes deeper than just "too big or too small."</p>
+    <p class="bt2">An outlier is a data point that <strong>deviates so much from the other observations that it raises the question: does this point belong to the same distribution as the rest?</strong></p>
+
+    <div class="grid3">
+      <div class="card" style="border-left:2px solid #E24B4A">
+        <div class="cl">Global outlier</div>
+        <div class="cv2" style="color:#A32D2D">Extreme overall</div>
+        <div class="cs">A value extreme compared to the entire dataset. Most common type. e.g. salary of £2M in a dataset where most earn £35k.</div>
+      </div>
+      <div class="card" style="border-left:2px solid #EF9F27">
+        <div class="cl">Contextual outlier</div>
+        <div class="cv2" style="color:#633806">Extreme in context</div>
+        <div class="cs">Normal globally but extreme in context. e.g. 30°C temperature is normal in July, but an outlier in January.</div>
+      </div>
+      <div class="card" style="border-left:2px solid #534AB7">
+        <div class="cl">Collective outlier</div>
+        <div class="cv2" style="color:#3C3489">Group is unusual</div>
+        <div class="cs">Individual values look normal but together they form an unusual pattern. e.g. a flat region in a normally fluctuating signal.</div>
+      </div>
+    </div>
+
+    <div style="margin:10px 0">
+      <div class="bt2" style="margin-bottom:6px"><strong>Why do outliers exist? The four causes:</strong></div>
+      <div class="hlr"><span class="hk">Data entry error</span><span class="hv">Someone typed 9999 instead of 99. Age = 999. Salary = £0. These are noise — should be fixed or removed.</span></div>
+      <div class="hlr"><span class="hk">Measurement error</span><span class="hv">Sensor malfunction, broken scale, corrupted reading. The data is wrong, not the real world.</span></div>
+      <div class="hlr"><span class="hk">Sampling error</span><span class="hv">A CEO accidentally included in a salary survey of junior staff. Wrong population sampled.</span></div>
+      <div class="hlr"><span class="hk">Genuine rarity</span><span class="hv">A real event that is just rare — Usain Bolt's speed, a viral tweet, a market crash. These are true outliers that carry real information and should NOT be removed.</span></div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-l">Most important point for interviews</div>
+      Never blindly remove outliers. First ask: <strong>why does this outlier exist?</strong> If it's an error — fix or remove it. If it's genuine — keep it, or use models that are robust to it. Removing real outliers = losing real information.
+    </div>
+
+    <div class="say">
+      <div class="say-l">Say this in an interview</div>
+      "An outlier is a data point that deviates significantly from the rest of the distribution. But before deciding what to do with it, I always investigate the cause. Outliers can arise from data entry errors, measurement failures, or sampling issues — in which case they should be corrected or removed. But they can also be genuine extreme events that carry the most interesting signal in the data, like a fraud transaction or a viral post. The treatment depends entirely on the cause."
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s1">
+  <div class="sh" onclick="tog('1')">
+    <div style="display:flex;align-items:center"><span class="bdg bp">Detection 1</span><h3>IQR method (Tukey's fences) — non-parametric</h3></div>
+    <span class="cv" id="c1">▼</span>
+  </div>
+  <div class="sb" id="b1">
+    <p class="bt2">This is the method used by box plots. It makes <strong>no assumption about the shape of the distribution</strong> — works even with skewed data. You already know IQR = Q3 − Q1.</p>
+    <div class="fml">Lower fence  =  Q1  −  1.5 × IQR</div>
+    <div class="fml">Upper fence  =  Q3  +  1.5 × IQR</div>
+    <div class="fml">Extreme outlier:  Q1 − 3×IQR  or  Q3 + 3×IQR  (sometimes called "far out")</div>
+
+    <div class="chart-wrap">
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Live example — salary data (£k). Drag the outlier slider.</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="font-size:12px;color:var(--color-text-secondary)">Outlier value:</span>
+        <input type="range" id="outlierSlider" min="60" max="600" step="10" value="200" style="flex:1">
+        <span id="outlierVal" style="font-size:13px;font-weight:500;color:var(--color-text-primary);min-width:50px">£200k</span>
+      </div>
+      <canvas id="iqrChart" height="90"></canvas>
+      <div id="iqrResult" style="font-size:12px;margin-top:8px;padding:6px 10px;border-radius:var(--border-radius-md)"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="cl">Pros</div>
+        <div class="cs">Works for any distribution. Not affected by the outliers themselves. Simple to calculate by hand. The industry default.</div>
+      </div>
+      <div class="card">
+        <div class="cl">Cons</div>
+        <div class="cs">Can flag too many points in heavily skewed data. The 1.5 multiplier is a convention, not a law — may need tuning.</div>
+      </div>
+    </div>
+
+    <div class="say">
+      <div class="say-l">Say this in an interview</div>
+      "The IQR method uses Tukey's fences — Q1 minus 1.5 times IQR as the lower bound, and Q3 plus 1.5 times IQR as the upper bound. Anything outside these fences is flagged as an outlier. The key advantage is it's non-parametric — it doesn't assume a normal distribution, so it's reliable even for skewed data like salary or house prices."
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s2">
+  <div class="sh" onclick="tog('2')">
+    <div style="display:flex;align-items:center"><span class="bdg bb">Detection 2</span><h3>Z-score method — for normally distributed data</h3></div>
+    <span class="cv" id="c2">▼</span>
+  </div>
+  <div class="sb" id="b2">
+    <p class="bt2">The Z-score tells you <strong>how many standard deviations a point is away from the mean</strong>. If a value is more than 3 standard deviations away, it's considered an outlier.</p>
+    <div class="fml">Z  =  (x − μ) / σ</div>
+    <div class="fml">Outlier threshold:  |Z| > 2  (lenient)   or   |Z| > 3  (strict, most common)</div>
+
+    <div style="margin:10px 0">
+      <div class="bt2" style="margin-bottom:6px"><strong>Worked example:</strong></div>
+      <div class="hlr"><span class="hk">Dataset</span><span class="hv">Exam scores: mean = 70, std dev = 8</span></div>
+      <div class="hlr"><span class="hk">Score = 95</span><span class="hv">Z = (95 − 70) / 8 = 3.125 → |Z| > 3 → outlier</span></div>
+      <div class="hlr"><span class="hk">Score = 55</span><span class="hv">Z = (55 − 70) / 8 = −1.875 → |Z| < 3 → not an outlier</span></div>
+      <div class="hlr"><span class="hk">Score = 20</span><span class="hv">Z = (20 − 70) / 8 = −6.25 → extreme outlier — possible data error</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="cl">Pros</div>
+        <div class="cs">Gives a precise numeric score. Easy to interpret. Works well for normally distributed, symmetric data.</div>
+      </div>
+      <div class="card">
+        <div class="cl">Cons</div>
+        <div class="cs">Uses mean and std dev — both are themselves sensitive to outliers. Can be unreliable when outliers are severe or data is skewed. Assumes normality.</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-l">When to choose IQR vs Z-score</div>
+      Data is normal/symmetric → Z-score works fine. Data is skewed (income, prices, web traffic) → use IQR. Data has extreme outliers already → use IQR (Z-score's mean and std dev are distorted by those same outliers, making them less reliable detectors).
+    </div>
+
+    <div class="say">
+      <div class="say-l">Say this in an interview</div>
+      "The Z-score method calculates how many standard deviations a point is from the mean. Values with |Z| greater than 3 are typically flagged as outliers. It's intuitive and gives a precise measure, but it assumes the data is roughly normal and it's sensitive to extreme values — the outliers themselves distort the mean and std dev used in the calculation. For skewed data, I prefer the IQR method."
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s3">
+  <div class="sh" onclick="tog('3')">
+    <div style="display:flex;align-items:center"><span class="bdg bc">Detection 3</span><h3>Visual methods — always do these first</h3></div>
+    <span class="cv" id="c3">▼</span>
+  </div>
+  <div class="sb" id="b3">
+    <p class="bt2">Before any calculation, <strong>plot your data</strong>. Numbers can miss patterns that your eye catches instantly. These are the three essential plots for outlier detection:</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="cl">Box plot</div>
+        <div class="cv2">Best for distributions</div>
+        <div class="cs">Shows Q1, Q3, IQR, fences and outlier dots all at once. Best first look for any numerical column.</div>
+      </div>
+      <div class="card">
+        <div class="cl">Scatter plot</div>
+        <div class="cv2">Best for relationships</div>
+        <div class="cs">Reveals outliers in two-dimensional space — a point that is isolated from the cluster of other points.</div>
+      </div>
+      <div class="card">
+        <div class="cl">Histogram</div>
+        <div class="cv2">Best for single columns</div>
+        <div class="cs">Shows the full shape of a distribution. Isolated bars far from the main bulk are immediate outlier signals.</div>
+      </div>
+    </div>
+    <div class="say">
+      <div class="say-l">Say this in an interview</div>
+      "I always start with visualisation before running any statistical test. A box plot immediately shows outlier dots beyond the whiskers. A scatter plot reveals bivariate outliers that wouldn't be visible in a single-column analysis. Only after visual inspection do I apply IQR or Z-score to formally quantify and flag them."
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s4">
+  <div class="sh" onclick="tog('4')">
+    <div style="display:flex;align-items:center"><span class="bdg bt">Treatment</span><h3>What to do with outliers — 5 strategies</h3></div>
+    <span class="cv" id="c4">▼</span>
+  </div>
+  <div class="sb" id="b4">
+    <p class="bt2">This is what separates good analysts from great ones. The treatment must match the cause.</p>
+    <div class="treat-row">
+      <div class="treat-card" style="border-top:2px solid #A32D2D">
+        <div class="cl">Strategy 1</div>
+        <div class="cv2" style="color:#A32D2D;font-size:13px">Remove it</div>
+        <div class="cs">Only if confirmed as a data error. Document what you removed and why. Never silently drop rows.</div>
+      </div>
+      <div class="treat-card" style="border-top:2px solid #EF9F27">
+        <div class="cl">Strategy 2</div>
+        <div class="cv2" style="color:#633806;font-size:13px">Cap it (Winsorize)</div>
+        <div class="cs">Replace extreme values with the fence value (e.g. anything above P99 becomes P99). Keeps the row, reduces distortion.</div>
+      </div>
+      <div class="treat-card" style="border-top:2px solid #534AB7">
+        <div class="cl">Strategy 3</div>
+        <div class="cv2" style="color:#3C3489;font-size:13px">Transform it</div>
+        <div class="cs">Apply log, sqrt, or Box-Cox transform to compress the scale. Makes extreme values less extreme without removing information.</div>
+      </div>
+      <div class="treat-card" style="border-top:2px solid #1D9E75">
+        <div class="cl">Strategy 4</div>
+        <div class="cv2" style="color:#085041;font-size:13px">Keep it</div>
+        <div class="cs">If the outlier is genuine and important (fraud, viral event, record performance). Use robust models like tree-based methods that aren't sensitive to extreme values.</div>
+      </div>
+      <div class="treat-card" style="border-top:2px solid #185FA5">
+        <div class="cl">Strategy 5</div>
+        <div class="cv2" style="color:#0C447C;font-size:13px">Treat separately</div>
+        <div class="cs">Build a separate model or segment for the outlier group. e.g. model whale customers separately from average users.</div>
+      </div>
+    </div>
+
+    <div class="info" style="margin-top:10px">
+      <strong>Log transformation explained simply:</strong> If your salary data has values like [30k, 35k, 40k, 500k], taking log gives [10.3, 10.5, 10.6, 13.1]. The gap between the outlier and the rest shrinks dramatically. Very common for right-skewed data like income, prices, and population.
+    </div>
+
+    <div class="say">
+      <div class="say-l">Say this in an interview</div>
+      "My approach to handling outliers depends on their cause. If it's a data entry or measurement error, I'll correct or remove it — with documentation. If it's a genuine extreme value, I have several options: I can cap it using Winsorization at the 99th percentile, apply a log transform to compress the scale, keep it and use tree-based models that are naturally robust to outliers, or model the outlier group separately. I never blindly delete outliers — every removal is a decision that needs justification."
+    </div>
+
+    <div class="btns">
+      <button onclick="sendPrompt('Show me Python code to detect and handle outliers using IQR and Z-score on a pandas DataFrame')">Python code — IQR + Z-score ↗</button>
+      <button onclick="sendPrompt('What is Winsorization and how do I apply it in Python?')">Winsorization in Python ↗</button>
+      <button onclick="sendPrompt('What is a log transformation and when should I use it for outliers?')">Log transform explained ↗</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s5">
+  <div class="sh" onclick="tog('5')">
+    <div style="display:flex;align-items:center"><span class="bdg ba">Impact</span><h3>How outliers affect ML models</h3></div>
+    <span class="cv" id="c5">▼</span>
+  </div>
+  <div class="sb" id="b5">
+    <p class="bt2">Outliers don't just distort statistics — they can severely damage model performance. Knowing which models are sensitive vs robust shows real depth.</p>
+    <div class="grid2">
+      <div class="card" style="border-top:2px solid #E24B4A">
+        <div class="cl">Sensitive to outliers</div>
+        <div class="cv2" style="color:#A32D2D;font-size:13px">Handle with care</div>
+        <div class="cs" style="margin-top:6px">
+          <strong style="color:var(--color-text-primary)">Linear regression</strong> — outliers pull the best-fit line dramatically.<br><br>
+          <strong style="color:var(--color-text-primary)">K-means clustering</strong> — outliers distort cluster centroids.<br><br>
+          <strong style="color:var(--color-text-primary)">KNN</strong> — distance-based, so extreme values dominate nearest-neighbour calculations.<br><br>
+          <strong style="color:var(--color-text-primary)">PCA</strong> — outliers inflate variance in principal components.
+        </div>
+      </div>
+      <div class="card" style="border-top:2px solid #1D9E75">
+        <div class="cl">Robust to outliers</div>
+        <div class="cv2" style="color:#085041;font-size:13px">Naturally resilient</div>
+        <div class="cs" style="margin-top:6px">
+          <strong style="color:var(--color-text-primary)">Decision trees / Random Forest</strong> — split on thresholds, not distances.<br><br>
+          <strong style="color:var(--color-text-primary)">Gradient boosting (XGBoost)</strong> — tree-based, handles skew well.<br><br>
+          <strong style="color:var(--color-text-primary)">Median-based methods</strong> — median is robust to extremes by definition.<br><br>
+          <strong style="color:var(--color-text-primary)">SVM with RBF kernel</strong> — uses support vectors, not all points.
+        </div>
+      </div>
+    </div>
+    <div class="say">
+      <div class="say-l">Say this in an interview</div>
+      "Outliers have very different impacts depending on the algorithm. Linear regression and K-means are highly sensitive because they're based on means and distances — a single extreme value can shift the regression line or a centroid significantly. Tree-based models like Random Forest and XGBoost are naturally robust because they split on value ranges rather than computing distances. So my outlier treatment strategy changes based on which model I'm using downstream."
+    </div>
+    <div class="btns">
+      <button onclick="sendPrompt('Show me visually how one outlier affects linear regression vs a decision tree on the same data')">Outlier impact on models ↗</button>
+      <button onclick="sendPrompt('What is Isolation Forest for outlier detection and how does it work?')">Isolation Forest ↗</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s6">
+  <div class="sh" onclick="tog('6')">
+    <div style="display:flex;align-items:center"><span class="bdg bg">Cheat sheet</span><h3>Full summary — everything to remember</h3></div>
+    <span class="cv" id="c6">▼</span>
+  </div>
+  <div class="sb" id="b6">
+    <div class="hlr"><span class="hk">Definition</span><span class="hv">A value that deviates significantly from the rest — may or may not belong to the same distribution</span></div>
+    <div class="hlr"><span class="hk">3 types</span><span class="hv">Global (extreme overall), Contextual (extreme in context), Collective (group is unusual)</span></div>
+    <div class="hlr"><span class="hk">4 causes</span><span class="hv">Data entry error, measurement error, sampling error, genuine rare event</span></div>
+    <div class="hlr"><span class="hk">IQR method</span><span class="hv">Below Q1−1.5×IQR or above Q3+1.5×IQR. Non-parametric. Use for skewed data.</span></div>
+    <div class="hlr"><span class="hk">Z-score method</span><span class="hv">|Z| > 3. Assumes normality. Use for symmetric, normal distributions.</span></div>
+    <div class="hlr"><span class="hk">Visual methods</span><span class="hv">Box plot, scatter plot, histogram — always do this first</span></div>
+    <div class="hlr"><span class="hk">5 treatments</span><span class="hv">Remove, cap (Winsorize), transform (log), keep with robust model, model separately</span></div>
+    <div class="hlr"><span class="hk">Golden rule</span><span class="hv">Never blindly remove. Always ask WHY it exists first.</span></div>
+
+    <div class="say" style="margin-top:12px">
+      <div class="say-l">One-sentence summary</div>
+      "An outlier is a data point that deviates significantly from the rest, and the right way to handle it depends entirely on whether it represents a data error or a genuine extreme event — which is why investigation always comes before treatment."
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function tog(n) {
+  const b = document.getElementById('b'+n);
+  const c = document.getElementById('c'+n);
+  const open = b.classList.contains('open');
+  b.classList.toggle('open', !open);
+  c.classList.toggle('open', !open);
+}
+
+const basePts = [28,32,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,50,52,55,58];
+let chartInst = null;
+
+function buildChart(outlierVal) {
+  const pts = [...basePts, outlierVal].sort((a,b)=>a-b);
+  const sorted = [...basePts].sort((a,b)=>a-b);
+  const n = sorted.length;
+  const q1 = sorted[Math.floor(n*0.25)];
+  const q3 = sorted[Math.floor(n*0.75)];
+  const iqr = q3 - q1;
+  const lower = q1 - 1.5*iqr;
+  const upper = q3 + 1.5*iqr;
+  const isOut = outlierVal > upper || outlierVal < lower;
+
+  const colors = pts.map(p => {
+    if(p === outlierVal) return isOut ? '#E24B4A' : '#1D9E75';
+    return '#888780';
+  });
+
+  const res = document.getElementById('iqrResult');
+  if(isOut) {
+    res.style.background='#FCEBEB'; res.style.color='#791F1F';
+    res.textContent = `Outlier detected! Q1=${q1}k, Q3=${q3}k, IQR=${iqr}k → Upper fence = ${Math.round(upper)}k. Value of £${outlierVal}k exceeds the fence.`;
+  } else {
+    res.style.background='#E1F5EE'; res.style.color='#085041';
+    res.textContent = `Not an outlier. Upper fence = ${Math.round(upper)}k. Value of £${outlierVal}k is within normal range.`;
+  }
+
+  if(chartInst) { chartInst.destroy(); chartInst = null; }
+  const ctx = document.getElementById('iqrChart').getContext('2d');
+  chartInst = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        data: pts.map((v,i)=>({x:i,y:v})),
+        pointBackgroundColor: colors,
+        pointRadius: pts.map(p=>p===outlierVal?7:5),
+        pointBorderWidth: 0,
+      },{
+        data: pts.map((v,i)=>({x:i,y:upper})),
+        type:'line', borderColor:'#EF9F27', borderWidth:1.5,
+        borderDash:[5,4], pointRadius:0, label:'Upper fence'
+      }]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{
+        callbacks:{ label: ctx => `£${ctx.parsed.y}k` }
+      }},
+      scales:{
+        x:{display:false},
+        y:{grid:{color:'var(--color-border-tertiary)'},ticks:{callback:v=>v+'k',font:{size:11}},border:{display:false}}
+      }
+    }
+  });
+}
+
+document.getElementById('outlierSlider').addEventListener('input', function() {
+  const v = parseInt(this.value);
+  document.getElementById('outlierVal').textContent = '£'+v+'k';
+  buildChart(v);
+});
+
+buildChart(200);
+</script>

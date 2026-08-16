@@ -1,0 +1,186 @@
+
+<h2 class="sr-only">Hypothesis testing interview Q&A — 8 common interview questions with exact answers to say out loud, covering null/alternative hypothesis, p-value, significance level, Type I/II errors, and practical vs statistical significance.</h2>
+<style>
+  *{box-sizing:border-box}
+  .qa{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:10px;overflow:hidden}
+  .qh{display:flex;justify-content:space-between;align-items:flex-start;padding:.85rem 1.1rem;cursor:pointer;background:var(--color-background-secondary);user-select:none;gap:10px}
+  .qh:hover{background:var(--color-background-tertiary)}
+  .ql{display:flex;align-items:flex-start;gap:10px;flex:1}
+  .qnum{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:1px}
+  .qtxt{font-size:13.5px;font-weight:500;color:var(--color-text-primary);line-height:1.45}
+  .qb{padding:1rem 1.1rem;background:var(--color-background-primary);display:none}
+  .qb.open{display:block}
+  .cv{font-size:11px;color:var(--color-text-secondary);transition:transform .2s;flex-shrink:0;margin-top:3px}
+  .cv.open{transform:rotate(180deg)}
+  .why{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin:0 0 10px}
+  .why strong{font-weight:500;color:var(--color-text-primary)}
+  .say{border-left:3px solid #1D9E75;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E1F5EE;padding:.75rem 1rem;font-size:13px;color:#085041;line-height:1.7}
+  .sl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#0F6E56;margin-bottom:5px}
+  .trap{border-left:3px solid #EF9F27;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#FAEEDA;padding:.7rem 1rem;margin-top:10px;font-size:12.5px;color:#633806;line-height:1.6}
+  .tl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#854F0B;margin-bottom:4px}
+  .bonus{border-left:3px solid #378ADD;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E6F1FB;padding:.7rem 1rem;margin-top:10px;font-size:12.5px;color:#0C447C;line-height:1.6}
+  .bl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#185FA5;margin-bottom:4px}
+  .ptitle{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 3px}
+  .psub{font-size:13px;color:var(--color-text-secondary);margin:0 0 1rem}
+  .difficulty{font-size:11px;padding:2px 7px;border-radius:20px;float:right;margin-left:8px}
+</style>
+
+<p class="ptitle">Hypothesis testing — interview Q&A</p>
+<p class="psub">8 real interview questions. Tap each to see exactly what to say.</p>
+
+<div class="qa" id="q0">
+  <div class="qh" onclick="tog('q0')">
+    <div class="ql">
+      <span class="qnum" style="background:#EEEDFE;color:#3C3489">Q1</span>
+      <span class="qtxt">What is hypothesis testing? Explain it simply.</span>
+    </div>
+    <span class="cv" id="cq0">▼</span>
+  </div>
+  <div class="qb" id="bq0">
+    <p class="why">This is the opening question. Interviewers want to know if you understand the <strong>purpose</strong> — not just the steps. Keep it simple and use an analogy.</p>
+    <div class="say">
+      <div class="sl">Say this</div>
+      "Hypothesis testing is a statistical method to decide whether observed data provides enough evidence to reject a default assumption. Think of it like a court of law — you assume innocence (null hypothesis) until the evidence is strong enough to convict. We collect data, measure how surprising that data would be if nothing changed, and if it's surprising enough — below our significance threshold — we reject the null and conclude there's a real effect."
+    </div>
+    <div class="bonus"><div class="bl">Bonus line to add</div>"It answers the question: is what I'm seeing real, or just random luck?"</div>
+  </div>
+</div>
+
+<div class="qa" id="q1">
+  <div class="qh" onclick="tog('q1')">
+    <div class="ql">
+      <span class="qnum" style="background:#E1F5EE;color:#085041">Q2</span>
+      <span class="qtxt">What is the null hypothesis and alternative hypothesis?</span>
+    </div>
+    <span class="cv" id="cq1">▼</span>
+  </div>
+  <div class="qb" id="bq1">
+    <p class="why">Core concept. Must be clean and confident. Always give a <strong>real example</strong> — not just abstract definitions.</p>
+    <div class="say">
+      <div class="sl">Say this</div>
+      "The null hypothesis H₀ is the default assumption of no effect — for example, 'this new webpage design has no impact on click rate.' The alternative hypothesis H₁ is what we're trying to prove — 'the new design does increase click rate.' We don't test H₁ directly. Instead we try to disprove H₀. If the evidence makes H₀ very unlikely, we reject it and accept H₁."
+    </div>
+    <div class="trap"><div class="tl">Common mistake</div>Never say "we prove the null is true." You either reject H₀ or fail to reject it. Failing to reject does NOT mean H₀ is true — it just means the evidence wasn't strong enough.</div>
+  </div>
+</div>
+
+<div class="qa" id="q2">
+  <div class="qh" onclick="tog('q2')">
+    <div class="ql">
+      <span class="qnum" style="background:#E6F1FB;color:#0C447C">Q3</span>
+      <span class="qtxt">What is a p-value? — most asked question</span>
+    </div>
+    <span class="cv" id="cq2">▼</span>
+  </div>
+  <div class="qb" id="bq2">
+    <p class="why">The single most tested concept. <strong>9 out of 10 candidates get the definition slightly wrong.</strong> Getting this right will make you stand out immediately.</p>
+    <div class="say">
+      <div class="sl">Say this — word for word</div>
+      "The p-value is the probability of observing results at least as extreme as ours, assuming the null hypothesis is true. A small p-value — say 0.02 — means there's only a 2% chance of seeing this data if nothing actually changed. That's suspicious, so we reject the null. A large p-value means the data is totally expected under the null — no reason to reject it."
+    </div>
+    <div class="trap"><div class="tl">The trap — interviewers test this specifically</div>The p-value is NOT the probability that the null hypothesis is true. p = 0.03 does NOT mean "there's a 3% chance nothing changed." It means "if nothing changed, there's a 3% chance of seeing results this extreme." Those are completely different statements.</div>
+    <div class="bonus"><div class="bl">Bonus line</div>"p-value measures how surprised we should be by our data, not how likely the null is."</div>
+  </div>
+</div>
+
+<div class="qa" id="q3">
+  <div class="qh" onclick="tog('q3')">
+    <div class="ql">
+      <span class="qnum" style="background:#FAEEDA;color:#633806">Q4</span>
+      <span class="qtxt">What is significance level alpha? Why is it usually 0.05?</span>
+    </div>
+    <span class="cv" id="cq3">▼</span>
+  </div>
+  <div class="qb" id="bq3">
+    <p class="why">Shows you understand that 0.05 is a <strong>convention, not a law</strong> — which most candidates don't realise.</p>
+    <div class="say">
+      <div class="sl">Say this</div>
+      "The significance level alpha is the threshold we set before the test — the maximum p-value at which we'll reject the null. It represents the false-positive rate we're willing to accept. If alpha is 0.05, we accept a 5% chance of incorrectly rejecting a true null. The 0.05 convention comes from Ronald Fisher in the 1920s — it's a rule of thumb, not a law. In medical trials where false positives are dangerous, we use 0.01 or even 0.001. In exploratory analysis, 0.10 might be acceptable."
+    </div>
+    <div class="trap"><div class="tl">Never do this</div>Never change alpha after seeing the data. Setting it beforehand is what makes the test valid. Changing it to get a significant result is called p-hacking.</div>
+  </div>
+</div>
+
+<div class="qa" id="q4">
+  <div class="qh" onclick="tog('q4')">
+    <div class="ql">
+      <span class="qnum" style="background:#FCEBEB;color:#791F1F">Q5</span>
+      <span class="qtxt">What is Type I and Type II error? Which is worse?</span>
+    </div>
+    <span class="cv" id="cq4">▼</span>
+  </div>
+  <div class="qb" id="bq4">
+    <p class="why">The "which is worse" part is a trap. There's no universal answer — the right answer shows you understand <strong>context and trade-offs</strong>.</p>
+    <div class="say">
+      <div class="sl">Say this</div>
+      "A Type I error is a false positive — rejecting the null when it's actually true. Its probability equals alpha. A Type II error is a false negative — failing to detect a real effect. Its probability is beta, and 1 minus beta is called statistical power. As for which is worse — it depends entirely on context. In medical drug testing, a Type I error means approving a drug that doesn't work — wasteful and potentially harmful. But a Type II error means rejecting a drug that actually works — patients miss out on treatment. In that domain, both errors are serious, which is why alpha is set very low and sample sizes are very large."
+    </div>
+    <div class="bonus"><div class="bl">Memory trick</div>Type I = false alarm (you cried wolf). Type II = missed signal (the wolf came and you said nothing).</div>
+  </div>
+</div>
+
+<div class="qa" id="q5">
+  <div class="qh" onclick="tog('q5')">
+    <div class="ql">
+      <span class="qnum" style="background:#EEEDFE;color:#3C3489">Q6</span>
+      <span class="qtxt">What is statistical power? How do you increase it?</span>
+    </div>
+    <span class="cv" id="cq5">▼</span>
+  </div>
+  <div class="qb" id="bq5">
+    <p class="why">Slightly advanced question — shows you understand the full framework, not just the basics.</p>
+    <div class="say">
+      <div class="sl">Say this</div>
+      "Statistical power is 1 minus beta — the probability of correctly detecting a real effect when one exists. High power is good. The most direct way to increase power is to increase sample size — more data reduces variability and makes real effects easier to detect. You can also increase power by increasing the effect size you're looking for, using a higher alpha threshold, or reducing measurement noise in your data. In practice, before running an experiment, we calculate the minimum sample size needed to achieve a target power — usually 0.8 or 80%."
+    </div>
+  </div>
+</div>
+
+<div class="qa" id="q6">
+  <div class="qh" onclick="tog('q6')">
+    <div class="ql">
+      <span class="qnum" style="background:#E1F5EE;color:#085041">Q7</span>
+      <span class="qtxt">What's the difference between statistical significance and practical significance?</span>
+    </div>
+    <span class="cv" id="cq6">▼</span>
+  </div>
+  <div class="qb" id="bq6">
+    <p class="why">This is a <strong>senior-level question</strong> that separates analysts from data scientists. Most people only talk about p-values — bringing up effect size shows real maturity.</p>
+    <div class="say">
+      <div class="sl">Say this</div>
+      "Statistical significance just tells you the result is unlikely to be due to chance. But with a large enough sample, even a completely trivial effect becomes statistically significant. Practical significance asks: is the effect actually large enough to matter in the real world? For example, a new feature might show p = 0.001 — extremely significant — but only increase revenue by £0.01 per user. With a million users that's a statistically rock-solid result, but the business impact is negligible. That's why I always report effect size alongside p-value — something like Cohen's d or a simple percentage lift — to separate what's real from what's useful."
+    </div>
+    <div class="bonus"><div class="bl">One-liner to remember</div>"Statistical significance asks: is it real? Practical significance asks: does it matter?"</div>
+  </div>
+</div>
+
+<div class="qa" id="q7">
+  <div class="qh" onclick="tog('q7')">
+    <div class="ql">
+      <span class="qnum" style="background:#E6F1FB;color:#0C447C">Q8</span>
+      <span class="qtxt">Walk me through a complete A/B test from start to finish.</span>
+    </div>
+    <span class="cv" id="cq7">▼</span>
+  </div>
+  <div class="qb" id="bq7">
+    <p class="why">This is the "put it all together" question. Structure your answer in clear steps — shows you can apply the theory in practice.</p>
+    <div class="say">
+      <div class="sl">Say this — follow these 5 steps</div>
+      "Sure. Say we changed a button colour from grey to orange and want to know if it increases click rate.<br><br>
+      Step 1 — State hypotheses. H₀: no difference in click rate. H₁: orange button has a higher click rate.<br><br>
+      Step 2 — Set alpha before the test. I'd use 0.05 for a standard business experiment.<br><br>
+      Step 3 — Calculate required sample size for 80% power, based on the minimum lift we'd care about — say 1%.<br><br>
+      Step 4 — Run the experiment. Split traffic randomly, collect data until sample size is reached. Run a two-proportion z-test.<br><br>
+      Step 5 — Interpret. If p-value is below 0.05, we reject the null — the orange button is significantly better. But I'd also check the actual lift in percentage points, and confirm the result is practically meaningful before shipping."
+    </div>
+    <div class="trap"><div class="tl">Don't forget to mention</div>Always calculate sample size before running — stopping early when you see significance (peeking) inflates your false positive rate. Run to the predetermined sample size.</div>
+  </div>
+</div>
+
+<script>
+function tog(id){
+  const b=document.getElementById('b'+id), c=document.getElementById('c'+id);
+  const o=b.classList.contains('open');
+  b.classList.toggle('open',!o); c.classList.toggle('open',!o);
+}
+</script>

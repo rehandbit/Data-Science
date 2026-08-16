@@ -1,0 +1,459 @@
+
+<h2 class="sr-only">Complete ML interview guide covering core concepts, supervised vs unsupervised, regression vs classification, model evaluation metrics, and algorithm intuition with exact interview answers.</h2>
+<style>
+  *{box-sizing:border-box}
+  .ptitle{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 3px}
+  .psub{font-size:13px;color:var(--color-text-secondary);margin:0 0 1rem}
+  .cat{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-secondary);margin:1.4rem 0 .5rem;padding:0 2px;display:flex;align-items:center;gap:8px}
+  .cat::after{content:'';flex:1;height:0.5px;background:var(--color-border-tertiary)}
+  .qa{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:8px;overflow:hidden}
+  .qh{display:flex;justify-content:space-between;align-items:flex-start;padding:.8rem 1rem;cursor:pointer;background:var(--color-background-secondary);user-select:none;gap:10px}
+  .qh:hover{background:var(--color-background-tertiary)}
+  .ql{display:flex;align-items:flex-start;gap:9px;flex:1}
+  .qn{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:1px}
+  .qt{font-size:13.5px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+  .qb{padding:1rem;background:var(--color-background-primary);display:none}
+  .qb.open{display:block}
+  .ar{font-size:11px;color:var(--color-text-secondary);transition:transform .2s;flex-shrink:0;margin-top:3px}
+  .ar.open{transform:rotate(180deg)}
+  .ctx{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin:0 0 9px}
+  .ctx strong{font-weight:500;color:var(--color-text-primary)}
+  .say{border-left:3px solid #1D9E75;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E1F5EE;padding:.7rem 1rem;font-size:13px;color:#085041;line-height:1.7;margin-top:9px}
+  .sl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#0F6E56;margin-bottom:4px}
+  .trap{border-left:3px solid #EF9F27;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#FAEEDA;padding:.65rem 1rem;margin-top:9px;font-size:12.5px;color:#633806;line-height:1.6}
+  .tl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#854F0B;margin-bottom:3px}
+  .tip{border-left:3px solid #378ADD;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E6F1FB;padding:.65rem 1rem;margin-top:9px;font-size:12.5px;color:#0C447C;line-height:1.6}
+  .tipl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#185FA5;margin-bottom:3px}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+  .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0}
+  .card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.65rem .85rem;border:0.5px solid var(--color-border-tertiary)}
+  .cl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+  .cv2{font-size:13px;font-weight:500}
+  .cs{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.5}
+  .row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .row:last-child{border-bottom:none}
+  .rk{font-size:12px;color:var(--color-text-secondary);width:140px;flex-shrink:0}
+  .rv{font-size:13px;color:var(--color-text-primary);line-height:1.5}
+  .fml{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.4rem .85rem;font-family:var(--font-mono);font-size:12px;color:var(--color-text-primary);margin:4px 0;line-height:1.6}
+  .btns{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .btns button{font-size:12px;padding:4px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer}
+  .btns button:hover{background:var(--color-background-secondary)}
+  .matrix{display:grid;grid-template-columns:90px 1fr 1fr;gap:0;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);overflow:hidden;margin:8px 0;font-size:12px;text-align:center}
+  .mh{background:var(--color-background-secondary);padding:6px 8px;font-weight:500;color:var(--color-text-secondary)}
+  .mc{padding:8px;line-height:1.4}
+</style>
+
+<p class="ptitle">Machine learning — complete interview guide</p>
+<p class="psub">Core concepts, evaluation metrics, and algorithm intuition. Tap any question to open.</p>
+
+<div class="cat">Core ML concepts</div>
+
+<div class="qa" id="q0">
+  <div class="qh" onclick="t('q0')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q1</span><span class="qt">What is machine learning and how is it different from traditional programming?</span></div><span class="ar" id="aq0">▼</span></div>
+  <div class="qb open" id="bq0">
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Traditional programming</div><div class="cv2" style="color:#3C3489">Rules → Output</div><div class="cs">You write explicit rules. Input + rules = output. e.g. IF email contains "free money" THEN spam.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Machine learning</div><div class="cv2" style="color:#085041">Data → Rules</div><div class="cs">You provide data + outputs. Algorithm learns the rules itself. e.g. show 10,000 spam emails, it learns the pattern.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Machine learning is a way of getting computers to learn patterns from data rather than following explicit rules. In traditional programming you write the logic — input plus rules gives output. In ML you flip it — you give input and output and the algorithm figures out the rules. The more data it sees, the better it gets. It's especially useful when the rules are too complex to write manually, like recognising faces or detecting fraud."</div>
+    <div class="tip"><div class="tipl">Bonus line</div>"Traditional programming: rules + data → output. ML: data + output → rules."</div>
+  </div>
+</div>
+
+<div class="qa" id="q1">
+  <div class="qh" onclick="t('q1')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q2</span><span class="qt">What are the three types of ML? Supervised, unsupervised, reinforcement.</span></div><span class="ar" id="aq1">▼</span></div>
+  <div class="qb" id="bq1">
+    <div class="g3">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Supervised</div><div class="cv2" style="color:#3C3489">Labelled data</div><div class="cs">Every training example has an answer (label). Model learns to predict labels. e.g. house price, spam detection, image classification.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Unsupervised</div><div class="cv2" style="color:#085041">No labels</div><div class="cs">No correct answers. Model finds hidden structure on its own. e.g. customer segmentation, anomaly detection, topic modelling.</div></div>
+      <div class="card" style="border-top:2px solid #EF9F27"><div class="cl">Reinforcement</div><div class="cv2" style="color:#633806">Reward & penalty</div><div class="cs">Agent learns by trial and error — actions get rewards or penalties. e.g. game AI, robotics, self-driving.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Supervised learning trains on labelled examples — every row has a correct answer — and learns to predict that answer on new data. Unsupervised learning finds hidden patterns without any labels, like grouping customers by behaviour. Reinforcement learning trains an agent through trial and error — it takes actions, receives rewards or penalties, and gradually learns the best strategy. In data science roles, supervised learning is most common day-to-day."</div>
+  </div>
+</div>
+
+<div class="qa" id="q2">
+  <div class="qh" onclick="t('q2')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q3</span><span class="qt">What is the difference between regression and classification?</span></div><span class="ar" id="aq2">▼</span></div>
+  <div class="qb" id="bq2">
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Regression</div><div class="cv2" style="color:#3C3489">Predicts a number</div><div class="cs">Output is a continuous value. e.g. house price, temperature, stock price, customer lifetime value. Use MAE, RMSE, R² to evaluate.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Classification</div><div class="cv2" style="color:#085041">Predicts a category</div><div class="cs">Output is a class label. Binary (yes/no) or multiclass (cat/dog/bird). e.g. spam, fraud, disease. Use accuracy, F1, AUC-ROC.</div></div>
+    </div>
+    <div class="row" style="margin-top:8px"><span class="rk">Binary classification</span><span class="rv">Two possible classes. e.g. fraud / not fraud, spam / not spam.</span></div>
+    <div class="row"><span class="rk">Multiclass</span><span class="rv">More than two classes. e.g. classify image as cat, dog, or bird.</span></div>
+    <div class="row"><span class="rk">Multi-label</span><span class="rv">Each sample can belong to multiple classes at once. e.g. a movie can be both action AND comedy.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Regression predicts a continuous number — the exact value matters. Classification predicts which category something belongs to. The question to ask is: am I predicting a number or a label? Predicting salary is regression. Predicting whether someone will churn is classification. They use different loss functions, different evaluation metrics, and different output layers in neural networks."</div>
+    <div class="trap"><div class="tl">Logistic regression trap</div>Despite the name, logistic regression is a CLASSIFICATION algorithm, not regression. It predicts the probability of a class. This catches many candidates off guard.</div>
+  </div>
+</div>
+
+<div class="qa" id="q3">
+  <div class="qh" onclick="t('q3')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q4</span><span class="qt">What is overfitting and underfitting? How do you detect and fix them?</span></div><span class="ar" id="aq3">▼</span></div>
+  <div class="qb" id="bq3">
+    <div class="g3">
+      <div class="card" style="border-top:2px solid #E24B4A"><div class="cl">Overfitting</div><div class="cv2" style="color:#A32D2D">Memorised the noise</div><div class="cs">Train accuracy high, validation accuracy low. Model too complex — memorised training data including noise.</div></div>
+      <div class="card" style="border-top:2px solid #EF9F27"><div class="cl">Underfitting</div><div class="cv2" style="color:#633806">Too simple to learn</div><div class="cs">Both train and validation accuracy low. Model too simple to capture the real pattern in the data.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Good fit</div><div class="cv2" style="color:#085041">Generalises well</div><div class="cs">Train and validation accuracy both high and close to each other. Learns the signal without memorising noise.</div></div>
+    </div>
+    <div class="row" style="margin-top:8px"><span class="rk">Fix overfitting</span><span class="rv">Get more data. Regularisation (L1/L2). Dropout (neural nets). Cross-validation. Reduce model complexity. Early stopping.</span></div>
+    <div class="row"><span class="rk">Fix underfitting</span><span class="rv">Use more complex model. Add more features. Train longer. Reduce regularisation strength. Better feature engineering.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Overfitting is when the model memorises training data — including the noise — so it fails on new data. I detect it by comparing training vs validation accuracy — a big gap means overfitting. I fix it by adding regularisation, getting more training data, using dropout, or reducing model complexity. Underfitting means the model is too simple — both training and validation accuracy are low. The fix is a more complex model or better features."</div>
+  </div>
+</div>
+
+<div class="qa" id="q4">
+  <div class="qh" onclick="t('q4')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q5</span><span class="qt">What is the bias-variance tradeoff?</span></div><span class="ar" id="aq4">▼</span></div>
+  <div class="qb" id="bq4">
+    <div class="g2">
+      <div class="card"><div class="cl">Bias</div><div class="cv2">Error from wrong assumptions</div><div class="cs">High bias = model too simple, systematically misses the pattern. Leads to underfitting. e.g. linear model on non-linear data.</div></div>
+      <div class="card"><div class="cl">Variance</div><div class="cv2">Error from sensitivity</div><div class="cs">High variance = model too sensitive to training data, changes a lot with small data changes. Leads to overfitting.</div></div>
+    </div>
+    <div class="fml">Total error = Bias² + Variance + Irreducible noise</div>
+    <div class="row" style="margin-top:8px"><span class="rk">High bias model</span><span class="rv">Linear regression, Naive Bayes. Simple, stable but may underfit.</span></div>
+    <div class="row"><span class="rk">High variance model</span><span class="rv">Deep decision tree, KNN with k=1. Flexible but overfits easily.</span></div>
+    <div class="row"><span class="rk">Balanced</span><span class="rv">Random Forest, XGBoost, tuned neural net. Best of both worlds.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Bias is systematic error from the model being too simple — it consistently misses the real pattern. Variance is how much the model's predictions change when trained on different data — high variance means it's overfitting. Reducing bias usually increases variance and vice versa — that's the tradeoff. A simple model like linear regression has high bias but low variance. A deep unpruned tree has low bias but high variance. The goal is finding the sweet spot that minimises total error."</div>
+    <div class="tip"><div class="tipl">Analogy</div>Bias = always aim left of the target. Variance = random scatter all over the target. You want low bias AND low variance — hitting the bullseye consistently.</div>
+  </div>
+</div>
+
+<div class="qa" id="q5">
+  <div class="qh" onclick="t('q5')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q6</span><span class="qt">What is the difference between a parameter and a hyperparameter?</span></div><span class="ar" id="aq5">▼</span></div>
+  <div class="qb" id="bq5">
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Parameter</div><div class="cv2" style="color:#3C3489">Learned from data</div><div class="cs">Internal values the model learns during training. e.g. weights in a neural network, coefficients in linear regression. You don't set these manually.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Hyperparameter</div><div class="cv2" style="color:#085041">Set before training</div><div class="cs">Configuration values YOU set before training starts. e.g. learning rate, number of trees, max depth, regularisation strength, k in KNN.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Parameters are the internal values a model learns from data during training — like the weights in a neural network or the slope in linear regression. Hyperparameters are settings you configure before training begins — like the learning rate, number of trees in a forest, or depth of a tree. You tune hyperparameters through techniques like grid search or random search using a validation set."</div>
+  </div>
+</div>
+
+<div class="qa" id="q6">
+  <div class="qh" onclick="t('q6')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q7</span><span class="qt">What is cross-validation and why do we need it?</span></div><span class="ar" id="aq6">▼</span></div>
+  <div class="qb" id="bq6">
+    <p class="ctx">Evaluating model performance on data it has never seen during training.</p>
+    <div class="row"><span class="rk">K-fold CV</span><span class="rv">Split data into k equal folds. Train on k-1, test on 1, rotate k times. Average the k scores. Most common — use k=5 or k=10.</span></div>
+    <div class="row"><span class="rk">Stratified k-fold</span><span class="rv">Same as k-fold but each fold preserves class distribution. Essential for imbalanced classification.</span></div>
+    <div class="row"><span class="rk">Leave-one-out</span><span class="rv">Each single sample is the test set once. Exhaustive, very slow. Only for tiny datasets.</span></div>
+    <div class="row"><span class="rk">Time series split</span><span class="rv">Always train on past, test on future. Never shuffle. Prevents data leakage from future into past.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Cross-validation gives a reliable estimate of how well a model generalises to unseen data. In k-fold, I split data into k parts and rotate which part is the test set — every sample gets tested exactly once. A single train-test split can be lucky or unlucky depending on which data ended up in each set. Cross-validation averages across k splits, giving a much more stable estimate. I always use stratified k-fold for classification to maintain class distribution in each fold."</div>
+  </div>
+</div>
+
+<div class="qa" id="q7">
+  <div class="qh" onclick="t('q7')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q8</span><span class="qt">What is feature engineering and feature selection? Why do they matter?</span></div><span class="ar" id="aq7">▼</span></div>
+  <div class="qb" id="bq7">
+    <div class="g2">
+      <div class="card"><div class="cl">Feature engineering</div><div class="cv2">Creating better features</div><div class="cs">Using domain knowledge to transform or create new input features. e.g. extracting day_of_week from a timestamp, creating interaction terms, log-transforming skewed features.</div></div>
+      <div class="card"><div class="cl">Feature selection</div><div class="cv2">Choosing the best features</div><div class="cs">Removing irrelevant or redundant features. Reduces overfitting, speeds up training, improves interpretability. e.g. correlation filter, Lasso, feature importance.</div></div>
+    </div>
+    <div class="row" style="margin-top:8px"><span class="rk">Filter methods</span><span class="rv">Select features based on statistical scores (correlation, chi-square) before training. Fast but ignores feature interactions.</span></div>
+    <div class="row"><span class="rk">Wrapper methods</span><span class="rv">Try different subsets and evaluate model performance. Recursive Feature Elimination (RFE). Slow but accurate.</span></div>
+    <div class="row"><span class="rk">Embedded methods</span><span class="rv">Selection happens during training. Lasso sets irrelevant weights to zero. Tree feature importance. Most efficient.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Feature engineering is creating or transforming input features using domain knowledge — it often matters more than the choice of algorithm. For example, extracting hour-of-day and is_weekend from a timestamp can be far more predictive than the raw timestamp. Feature selection removes irrelevant or redundant features to reduce overfitting and improve model speed. My preferred approach is embedded selection using tree feature importance or Lasso regularisation — selection happens during training without an extra step."</div>
+  </div>
+</div>
+
+<div class="cat">Model evaluation metrics</div>
+
+<div class="qa" id="q8">
+  <div class="qh" onclick="t('q8')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q9</span><span class="qt">What is a confusion matrix and what metrics come from it?</span></div><span class="ar" id="aq8">▼</span></div>
+  <div class="qb" id="bq8">
+    <div class="matrix">
+      <div class="mh"></div><div class="mh">Predicted positive</div><div class="mh">Predicted negative</div>
+      <div class="mh">Actual positive</div>
+      <div class="mc" style="background:#E1F5EE;color:#085041"><strong>TP</strong><br><span style="font-size:11px">True positive<br>Correct alarm</span></div>
+      <div class="mc" style="background:#FAEEDA;color:#633806"><strong>FN</strong><br><span style="font-size:11px">False negative<br>Missed it</span></div>
+      <div class="mh">Actual negative</div>
+      <div class="mc" style="background:#FAEEDA;color:#633806"><strong>FP</strong><br><span style="font-size:11px">False positive<br>False alarm</span></div>
+      <div class="mc" style="background:#E1F5EE;color:#085041"><strong>TN</strong><br><span style="font-size:11px">True negative<br>Correct rejection</span></div>
+    </div>
+    <div class="fml">Accuracy  = (TP + TN) / (TP + TN + FP + FN)</div>
+    <div class="fml">Precision = TP / (TP + FP)   — of predicted positives, how many were right?</div>
+    <div class="fml">Recall    = TP / (TP + FN)   — of actual positives, how many did we catch?</div>
+    <div class="fml">F1        = 2 × (Precision × Recall) / (Precision + Recall)</div>
+    <div class="say"><div class="sl">Say this</div>"A confusion matrix breaks predictions into four cells — true positives, true negatives, false positives, and false negatives. From this we derive accuracy, precision, recall, and F1. Accuracy is misleading on imbalanced data — a model that always predicts 'not fraud' on 99% non-fraud data gets 99% accuracy but catches zero fraud. Precision measures how reliable our positive predictions are. Recall measures how many real positives we found. F1 balances both."</div>
+  </div>
+</div>
+
+<div class="qa" id="q9">
+  <div class="qh" onclick="t('q9')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q10</span><span class="qt">When do you use precision vs recall? Which is more important?</span></div><span class="ar" id="aq9">▼</span></div>
+  <div class="qb" id="bq9">
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Precision — minimise false positives</div><div class="cv2" style="color:#3C3489">Use when FP is costly</div><div class="cs">Spam filter — a false positive flags a real email as spam. Annoying, erodes user trust. Better to miss some spam than delete real emails.</div></div>
+      <div class="card" style="border-top:2px solid #E24B4A"><div class="cl">Recall — minimise false negatives</div><div class="cv2" style="color:#A32D2D">Use when FN is costly</div><div class="cs">Cancer screening — a false negative misses a real cancer case. Missing a diagnosis can be fatal. Better to over-alert than miss real cases.</div></div>
+    </div>
+    <div class="row" style="margin-top:8px"><span class="rk">Use F1</span><span class="rv">When you need balance between precision and recall — imbalanced classification, fraud detection.</span></div>
+    <div class="row"><span class="rk">Use precision</span><span class="rv">Spam filters, recommendation systems, ad targeting. False positives are annoying or wasteful.</span></div>
+    <div class="row"><span class="rk">Use recall</span><span class="rv">Medical diagnosis, safety systems, fraud detection (catch all fraud). Missing a case is dangerous.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Which matters more depends on the cost of each type of error. Precision is critical when false positives are costly — like a spam filter where wrongly blocking a real email damages trust. Recall is critical when false negatives are costly — like cancer screening where missing a real case could be fatal. When both matter and the dataset is imbalanced, F1 score is the go-to metric as it's the harmonic mean of both."</div>
+    <div class="trap"><div class="tl">Don't say "accuracy is the best metric"</div>This is the most common wrong answer. Accuracy fails on imbalanced datasets. Always discuss the business cost of false positives vs false negatives first.</div>
+  </div>
+</div>
+
+<div class="qa" id="q10">
+  <div class="qh" onclick="t('q10')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q11</span><span class="qt">What is AUC-ROC? How do you interpret it?</span></div><span class="ar" id="aq10">▼</span></div>
+  <div class="qb" id="bq10">
+    <p class="ctx">ROC = Receiver Operating Characteristic. AUC = Area Under the Curve. Measures model's ability to discriminate between classes across all thresholds.</p>
+    <div class="row"><span class="rk">X-axis (FPR)</span><span class="rv">False positive rate = FP / (FP + TN). How many negatives are wrongly classified as positive.</span></div>
+    <div class="row"><span class="rk">Y-axis (TPR)</span><span class="rv">True positive rate = Recall = TP / (TP + FN). How many positives are correctly found.</span></div>
+    <div class="row"><span class="rk">AUC = 1.0</span><span class="rv">Perfect model. Classifies everything correctly.</span></div>
+    <div class="row"><span class="rk">AUC = 0.5</span><span class="rv">Random guessing. Diagonal line. Model has no discrimination power.</span></div>
+    <div class="row"><span class="rk">AUC = 0.7–0.8</span><span class="rv">Acceptable. AUC > 0.8 = good. AUC > 0.9 = excellent.</span></div>
+    <div class="say"><div class="sl">Say this</div>"The ROC curve plots true positive rate against false positive rate at every possible classification threshold. AUC — area under this curve — summarises performance in one number. An AUC of 0.85 means if you randomly pick one positive and one negative sample, the model ranks the positive higher 85% of the time. AUC is great for comparing models on imbalanced data because it's threshold-independent — you evaluate performance across all possible thresholds at once."</div>
+    <div class="tip"><div class="tipl">AUC vs F1</div>Use AUC when comparing models or when the threshold hasn't been decided yet. Use F1 when you have a specific threshold and care about the specific precision-recall balance at that point.</div>
+  </div>
+</div>
+
+<div class="qa" id="q11">
+  <div class="qh" onclick="t('q11')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q12</span><span class="qt">What are regression metrics — MAE, MSE, RMSE, R²?</span></div><span class="ar" id="aq11">▼</span></div>
+  <div class="qb" id="bq11">
+    <div class="fml">MAE  = (1/n) × Σ|actual − predicted|      — mean absolute error</div>
+    <div class="fml">MSE  = (1/n) × Σ(actual − predicted)²     — mean squared error</div>
+    <div class="fml">RMSE = √MSE                                 — root mean squared error</div>
+    <div class="fml">R²   = 1 − (SS_res / SS_tot)              — coefficient of determination</div>
+    <div class="row" style="margin-top:8px"><span class="rk">MAE</span><span class="rv">Average absolute error. Robust to outliers. Easy to interpret — same units as the target. e.g. average prediction is off by £3,500.</span></div>
+    <div class="row"><span class="rk">MSE</span><span class="rv">Squares errors — penalises large errors heavily. Not in original units. Sensitive to outliers. Used in loss functions.</span></div>
+    <div class="row"><span class="rk">RMSE</span><span class="rv">Square root of MSE — back to original units. Still penalises large errors. Most commonly reported metric.</span></div>
+    <div class="row"><span class="rk">R²</span><span class="rv">Proportion of variance explained. R²=1 is perfect. R²=0 means model is as good as predicting the mean. Can be negative (worse than mean).</span></div>
+    <div class="say"><div class="sl">Say this</div>"For regression I use MAE when I want an easily interpretable average error in the original units — it treats all errors equally. RMSE is my default when large errors are especially bad — the squaring penalises them more, and the final units are the same as the target. R-squared tells me what proportion of variance my model explains — 0.85 means the model explains 85% of variance in the target. R-squared is useful for relative comparison but doesn't tell you the absolute magnitude of errors."</div>
+    <div class="trap"><div class="tl">R² trap</div>High R² doesn't always mean a good model — it can be inflated by adding irrelevant features. Use Adjusted R² when comparing models with different numbers of features — it penalises unnecessary features.</div>
+  </div>
+</div>
+
+<div class="qa" id="q12">
+  <div class="qh" onclick="t('q12')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q13</span><span class="qt">How do you handle imbalanced datasets?</span></div><span class="ar" id="aq12">▼</span></div>
+  <div class="qb" id="bq12">
+    <p class="ctx">When one class dominates — like 99% legitimate transactions and 1% fraud.</p>
+    <div class="row"><span class="rk">Better metric</span><span class="rv">First — stop using accuracy. Use F1, precision-recall curve, AUC-ROC, or Matthews Correlation Coefficient.</span></div>
+    <div class="row"><span class="rk">Class weights</span><span class="rv">Tell the model to penalise mistakes on the minority class more. class_weight='balanced' in sklearn. Simplest fix.</span></div>
+    <div class="row"><span class="rk">Oversampling</span><span class="rv">Duplicate or synthetically generate minority class rows. SMOTE creates synthetic samples by interpolating between existing minority examples.</span></div>
+    <div class="row"><span class="rk">Undersampling</span><span class="rv">Reduce majority class. Fast but risks losing information. Use when dataset is very large.</span></div>
+    <div class="row"><span class="rk">Threshold tuning</span><span class="rv">Adjust classification threshold from 0.5 to a lower value to flag more positives — trades precision for recall.</span></div>
+    <div class="say"><div class="sl">Say this</div>"First I switch from accuracy to F1 or AUC-ROC — accuracy is meaningless on imbalanced data. Then my first practical fix is class weights — most sklearn models have class_weight='balanced' which is free and effective. If that's not enough I use SMOTE to generate synthetic minority class examples. I also tune the decision threshold — if catching fraud is critical I lower the threshold to 0.3 so more cases get flagged, accepting some extra false alarms."</div>
+  </div>
+</div>
+
+<div class="qa" id="q13">
+  <div class="qh" onclick="t('q13')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q14</span><span class="qt">What is the difference between validation set and test set?</span></div><span class="ar" id="aq13">▼</span></div>
+  <div class="qb" id="bq13">
+    <div class="g3">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Training set</div><div class="cv2" style="color:#3C3489">Learn from</div><div class="cs">Model sees this data during training. Learns parameters from it. Typically 60–80% of data.</div></div>
+      <div class="card" style="border-top:2px solid #EF9F27"><div class="cl">Validation set</div><div class="cv2" style="color:#633806">Tune on</div><div class="cs">Used during development to tune hyperparameters and select the best model. Model indirectly "sees" this. Typically 10–20%.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Test set</div><div class="cv2" style="color:#085041">Final report card</div><div class="cs">Touched only ONCE at the very end. Gives honest estimate of real-world performance. Never used for any decisions. Typically 10–20%.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Training data is what the model learns from. The validation set is used during development — you tune hyperparameters and compare models using validation performance, which means the model indirectly learns from it too. The test set is sacred — it's touched once at the very end to get an honest estimate of real-world performance. If you use the test set to make any decisions, it becomes another validation set and your final performance estimate will be optimistic."</div>
+    <div class="trap"><div class="tl">Data leakage warning</div>Never fit scalers, encoders, or imputers on the full dataset before splitting. Fit only on training data, then transform validation and test. Otherwise test set statistics contaminate training.</div>
+  </div>
+</div>
+
+<div class="cat">Algorithm intuition</div>
+
+<div class="qa" id="q14">
+  <div class="qh" onclick="t('q14')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q15</span><span class="qt">Explain linear regression — how does it work?</span></div><span class="ar" id="aq14">▼</span></div>
+  <div class="qb" id="bq14">
+    <div class="fml">y = w₁x₁ + w₂x₂ + ... + wₙxₙ + b</div>
+    <div class="fml">Loss = MSE = (1/n) Σ(actual − predicted)²  → minimised by gradient descent</div>
+    <div class="row" style="margin-top:8px"><span class="rk">Intuition</span><span class="rv">Fits the best straight line through data that minimises the sum of squared distances from each point to the line.</span></div>
+    <div class="row"><span class="rk">Coefficients</span><span class="rv">Each weight shows how much the target changes for a 1-unit increase in that feature, holding all others constant.</span></div>
+    <div class="row"><span class="rk">Assumptions</span><span class="rv">Linear relationship. Residuals normally distributed. Homoscedasticity (constant variance). No multicollinearity. Independent observations.</span></div>
+    <div class="row"><span class="rk">Sensitive to</span><span class="rv">Outliers (they pull the line). Multicollinearity (unstable coefficients). Feature scale (use standardisation).</span></div>
+    <div class="say"><div class="sl">Say this</div>"Linear regression finds the best-fit line through data by minimising the mean squared error — the sum of squared vertical distances from each point to the line. It learns a weight for each feature — a coefficient of 3.5 on 'bedrooms' means each extra bedroom adds £3,500 to the predicted price, holding everything else equal. It's fast and interpretable but assumes a linear relationship and is sensitive to outliers."</div>
+  </div>
+</div>
+
+<div class="qa" id="q15">
+  <div class="qh" onclick="t('q15')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q16</span><span class="qt">Explain logistic regression — how does it work?</span></div><span class="ar" id="aq15">▼</span></div>
+  <div class="qb" id="bq15">
+    <div class="fml">P(y=1) = sigmoid(w·x + b) = 1 / (1 + e^(-z))</div>
+    <div class="fml">Loss = Binary cross-entropy = -[y·log(p) + (1−y)·log(1−p)]</div>
+    <div class="row" style="margin-top:8px"><span class="rk">Intuition</span><span class="rv">Takes a linear combination of features, passes through sigmoid function to squash to 0–1. Outputs a probability. Threshold (usually 0.5) converts to class label.</span></div>
+    <div class="row"><span class="rk">Sigmoid</span><span class="rv">S-shaped curve. Maps any number to 0–1. Values near 0 = class 0, near 1 = class 1, near 0.5 = uncertain.</span></div>
+    <div class="row"><span class="rk">Output</span><span class="rv">A probability — not a hard label. You choose the threshold. Lowering threshold = higher recall, lower precision.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Logistic regression takes a linear combination of features — just like linear regression — but passes the result through a sigmoid function that squashes output to between 0 and 1. This gives a probability of belonging to the positive class. A threshold — typically 0.5 — converts that probability to a class label. It's a classification algorithm despite the name, it's interpretable, fast to train, and is an excellent baseline before trying complex models."</div>
+  </div>
+</div>
+
+<div class="qa" id="q16">
+  <div class="qh" onclick="t('q16')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q17</span><span class="qt">Explain decision trees — how do they work?</span></div><span class="ar" id="aq16">▼</span></div>
+  <div class="qb" id="bq16">
+    <div class="row"><span class="rk">Intuition</span><span class="rv">Flowchart of yes/no questions. Each node splits data based on the feature+threshold that best separates classes. Repeats until leaves are pure.</span></div>
+    <div class="row"><span class="rk">Split criterion</span><span class="rv">Gini impurity or entropy (classification). MSE reduction (regression). Picks the split that creates the purest child nodes.</span></div>
+    <div class="row"><span class="rk">Gini impurity</span><span class="rv">Measures how often a randomly picked element would be wrongly classified. 0 = pure node (all one class).</span></div>
+    <div class="row"><span class="rk">Pros</span><span class="rv">Highly interpretable. No feature scaling needed. Handles mixed data types. Captures non-linear relationships.</span></div>
+    <div class="row"><span class="rk">Cons</span><span class="rv">Prone to overfitting — a fully grown tree memorises training data. Unstable — small data changes cause very different trees.</span></div>
+    <div class="say"><div class="sl">Say this</div>"A decision tree works like a series of yes/no questions — at each node it picks the feature and threshold that best splits the data into purer groups, measured by Gini impurity or entropy. It keeps splitting until it reaches leaves that are pure or a stopping condition is met. Decision trees are very easy to interpret — you can visualise the exact rules — but they overfit easily. That's why in practice we use ensembles like Random Forest or XGBoost which combine many trees."</div>
+  </div>
+</div>
+
+<div class="qa" id="q17">
+  <div class="qh" onclick="t('q17')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q18</span><span class="qt">Explain Random Forest — what makes it better than a single tree?</span></div><span class="ar" id="aq17">▼</span></div>
+  <div class="qb" id="bq17">
+    <div class="row"><span class="rk">Idea</span><span class="rv">Build hundreds of different decision trees. Each tree votes on the answer. Final prediction = majority vote (classification) or average (regression).</span></div>
+    <div class="row"><span class="rk">Bagging</span><span class="rv">Each tree trains on a random sample of rows (with replacement). Different data = different trees.</span></div>
+    <div class="row"><span class="rk">Feature randomness</span><span class="rv">Each split considers only a random subset of features (usually √n features). Forces trees to be different from each other.</span></div>
+    <div class="row"><span class="rk">Why it works</span><span class="rv">Individual trees overfit, but in different ways. Their errors cancel out when averaged. Reduces variance without increasing bias much.</span></div>
+    <div class="row"><span class="rk">Feature importance</span><span class="rv">Measures how much each feature reduces impurity across all trees. Free by-product — great for feature selection.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Random Forest builds hundreds of decision trees, each trained on a different random sample of rows and each split choosing from a random subset of features. This double randomness ensures the trees are uncorrelated — they make different errors. When you average their predictions, the errors cancel out. A single decision tree overfits badly but Random Forest's averaging reduces variance significantly without much bias increase. It's also robust to outliers, handles missing values, and gives feature importance for free."</div>
+  </div>
+</div>
+
+<div class="qa" id="q18">
+  <div class="qh" onclick="t('q18')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q19</span><span class="qt">What is gradient boosting and how does XGBoost work?</span></div><span class="ar" id="aq18">▼</span></div>
+  <div class="qb" id="bq18">
+    <div class="row"><span class="rk">Core idea</span><span class="rv">Build trees SEQUENTIALLY. Each new tree specifically fixes the errors of all previous trees. Ensemble of weak learners becomes a strong model.</span></div>
+    <div class="row"><span class="rk">Residuals</span><span class="rv">Each tree trains on the residuals (errors) of the combined previous model — not the original target.</span></div>
+    <div class="row"><span class="rk">Learning rate</span><span class="rv">Each tree's contribution is scaled by a learning rate. Small learning rate + more trees = better generalisation but slower.</span></div>
+    <div class="row"><span class="rk">XGBoost extras</span><span class="rv">Regularisation (L1/L2) built in. Handles missing values natively. Parallel processing. Column and row subsampling. Much faster than vanilla gradient boost.</span></div>
+    <div class="g2" style="margin-top:8px">
+      <div class="card"><div class="cl">Bagging (Random Forest)</div><div class="cv2">Parallel trees</div><div class="cs">All trees built independently. Reduces variance. Less prone to overfitting.</div></div>
+      <div class="card"><div class="cl">Boosting (XGBoost)</div><div class="cv2">Sequential trees</div><div class="cs">Each tree fixes previous errors. Reduces bias. Can overfit — needs careful tuning of trees and learning rate.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Gradient boosting builds trees sequentially — each new tree trains on the errors of all previous trees combined. Start with a simple prediction, compute residuals, build a tree to predict residuals, update the model, repeat. XGBoost improves on this with built-in L1/L2 regularisation, native handling of missing values, and parallel computation. It's the go-to algorithm for tabular data — it consistently wins Kaggle competitions because it reduces both bias and variance when tuned correctly."</div>
+  </div>
+</div>
+
+<div class="qa" id="q19">
+  <div class="qh" onclick="t('q19')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q20</span><span class="qt">Explain K-Nearest Neighbours (KNN) — intuition and limitations.</span></div><span class="ar" id="aq19">▼</span></div>
+  <div class="qb" id="bq19">
+    <div class="row"><span class="rk">Intuition</span><span class="rv">To classify a new point, find the k closest training points (neighbours). For classification — majority vote. For regression — average of k neighbours.</span></div>
+    <div class="row"><span class="rk">k = 1</span><span class="rv">Very sensitive — memorises training data. High variance. Overfits.</span></div>
+    <div class="row"><span class="rk">k = large</span><span class="rv">Too smooth — boundary becomes blurry. High bias. Underfits.</span></div>
+    <div class="row"><span class="rk">Distance metric</span><span class="rv">Euclidean distance is default. Features must be scaled — KNN is very sensitive to feature scale. Always standardise first.</span></div>
+    <div class="row"><span class="rk">Limitations</span><span class="rv">Slow at prediction — compares to every training point. Fails in high dimensions (curse of dimensionality). No interpretability.</span></div>
+    <div class="say"><div class="sl">Say this</div>"KNN is a lazy learner — it stores all training data and at prediction time finds the k closest neighbours and takes a majority vote. The key tuning decision is k — small k is noisy and overfits, large k is too smooth and underfits. You must standardise features before KNN because it's distance-based — a feature in thousands of pounds would dominate one measured in single digits. KNN is slow at prediction on large datasets and struggles in high dimensions where distances become meaningless."</div>
+  </div>
+</div>
+
+<div class="qa" id="q20">
+  <div class="qh" onclick="t('q20')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q21</span><span class="qt">Explain Support Vector Machines (SVM) — intuition.</span></div><span class="ar" id="aq20">▼</span></div>
+  <div class="qb" id="bq20">
+    <div class="row"><span class="rk">Intuition</span><span class="rv">Finds the hyperplane that maximises the margin between two classes. The points closest to the boundary are support vectors — the rest don't matter.</span></div>
+    <div class="row"><span class="rk">Margin</span><span class="rv">The gap between the decision boundary and the nearest points of each class. Maximising margin improves generalisation.</span></div>
+    <div class="row"><span class="rk">Kernel trick</span><span class="rv">Maps data to higher dimensions to find a separating hyperplane that doesn't exist in the original space. RBF kernel is the most popular — handles non-linear boundaries.</span></div>
+    <div class="row"><span class="rk">C parameter</span><span class="rv">Controls the trade-off between maximising margin and minimising misclassifications. High C = hard margin, may overfit. Low C = soft margin, more regularised.</span></div>
+    <div class="say"><div class="sl">Say this</div>"SVM finds the decision boundary that maximises the margin between classes — the widest street between two neighbourhoods. Only the data points nearest to the boundary — the support vectors — define it, which makes SVM robust to outliers far from the boundary. The kernel trick transforms data into higher dimensions to separate non-linearly separable classes. SVM works well with high-dimensional data and small datasets but is slow to train on large data and sensitive to feature scaling."</div>
+  </div>
+</div>
+
+<div class="qa" id="q21">
+  <div class="qh" onclick="t('q21')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q22</span><span class="qt">Explain K-Means clustering — how it works and its limitations.</span></div><span class="ar" id="aq21">▼</span></div>
+  <div class="qb" id="bq21">
+    <div class="row"><span class="rk">Algorithm</span><span class="rv">1. Randomly initialise k centroids. 2. Assign each point to nearest centroid. 3. Recalculate centroid as mean of assigned points. 4. Repeat until centroids stop moving.</span></div>
+    <div class="row"><span class="rk">Choose k</span><span class="rv">Elbow method — plot inertia vs k, pick where the curve bends. Silhouette score — measures how similar a point is to its own cluster vs other clusters.</span></div>
+    <div class="row"><span class="rk">Limitations</span><span class="rv">Must specify k in advance. Sensitive to outliers — they pull centroids. Assumes spherical clusters of equal size. Different initial centroids give different results (use k-means++).</span></div>
+    <div class="say"><div class="sl">Say this</div>"K-means randomly places k centroids, assigns each point to the nearest one, then moves each centroid to the mean of its assigned points — and repeats until stable. It's simple and fast but has key limitations: you must choose k in advance, it's sensitive to outliers since centroids are means, and it assumes clusters are spherical and roughly equal in size. To choose k I use the elbow method — plotting inertia against k and looking for where improvement slows down."</div>
+  </div>
+</div>
+
+<div class="qa" id="q22">
+  <div class="qh" onclick="t('q22')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q23</span><span class="qt">Explain Naive Bayes — why is it "naive"?</span></div><span class="ar" id="aq22">▼</span></div>
+  <div class="qb" id="bq22">
+    <div class="fml">P(class | features) ∝ P(class) × P(f1|class) × P(f2|class) × ... × P(fn|class)</div>
+    <div class="row" style="margin-top:8px"><span class="rk">Naive assumption</span><span class="rv">Assumes all features are completely independent of each other given the class. In reality features are usually correlated — hence "naive."</span></div>
+    <div class="row"><span class="rk">Despite naivety</span><span class="rv">Works surprisingly well for text classification (spam, sentiment) where the independence assumption is approximately true for word frequencies.</span></div>
+    <div class="row"><span class="rk">Pros</span><span class="rv">Very fast. Works well with small data. Handles high dimensions well. Great for text (bag of words).</span></div>
+    <div class="row"><span class="rk">Cons</span><span class="rv">Independence assumption is almost always violated. Bad probability estimates. Struggles if features are highly correlated.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Naive Bayes applies Bayes' theorem with the naive assumption that all features are independent of each other given the class. It's naive because real-world features almost never are truly independent — a word appearing in an email is correlated with what other words appear. Despite this unrealistic assumption it works surprisingly well for text classification because word frequencies are approximately independent, and it's extremely fast to train and predict."</div>
+  </div>
+</div>
+
+<div class="qa" id="q23">
+  <div class="qh" onclick="t('q23')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q24</span><span class="qt">What is PCA and when do you use it?</span></div><span class="ar" id="aq23">▼</span></div>
+  <div class="qb" id="bq23">
+    <div class="row"><span class="rk">Intuition</span><span class="rv">Finds the directions (principal components) of maximum variance in the data. Projects data onto fewer dimensions while keeping most information.</span></div>
+    <div class="row"><span class="rk">How it works</span><span class="rv">Computes eigenvectors of the covariance matrix. PC1 captures most variance, PC2 second most (perpendicular to PC1), and so on.</span></div>
+    <div class="row"><span class="rk">Use for</span><span class="rv">Dimensionality reduction. Visualising high-dimensional data in 2D/3D. Removing multicollinearity. Speeding up training.</span></div>
+    <div class="row"><span class="rk">Downside</span><span class="rv">Components are linear combinations of original features — interpretability is lost. Must standardise first — PCA is scale-sensitive.</span></div>
+    <div class="say"><div class="sl">Say this</div>"PCA finds the directions of maximum variance in high-dimensional data and projects it onto fewer dimensions — called principal components — while retaining as much variance as possible. It's used for dimensionality reduction when features are many and correlated, for visualising clusters in 2D, and for removing multicollinearity before linear models. A key rule: always standardise features before PCA, because it's sensitive to scale — a feature measured in thousands would dominate one measured in single digits."</div>
+  </div>
+</div>
+
+<div class="qa" id="q24">
+  <div class="qh" onclick="t('q24')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q25</span><span class="qt">What is regularisation? L1 vs L2 — intuition and difference.</span></div><span class="ar" id="aq24">▼</span></div>
+  <div class="qb" id="bq24">
+    <div class="fml">L1 (Lasso):  Loss + λ Σ|w|     → sets some weights exactly to zero (sparse model)</div>
+    <div class="fml">L2 (Ridge):  Loss + λ Σw²     → shrinks all weights toward zero, none exactly zero</div>
+    <div class="fml">Elastic Net: Loss + λ₁Σ|w| + λ₂Σw²  → combines both</div>
+    <div class="row" style="margin-top:8px"><span class="rk">L1 — Lasso</span><span class="rv">Diamond constraint shape. Corners hit the axes — drives some weights to exactly zero. Performs feature selection automatically. Use when many features are irrelevant.</span></div>
+    <div class="row"><span class="rk">L2 — Ridge</span><span class="rv">Circular constraint shape. Distributes weight reduction evenly — no weights go to zero. Better when all features matter. Default choice for most linear models.</span></div>
+    <div class="row"><span class="rk">λ (lambda)</span><span class="rv">Regularisation strength. Higher λ = more penalty = simpler model. Tuned via cross-validation.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Regularisation adds a penalty to the loss function for large weights, which prevents overfitting by keeping the model simpler. L1 — Lasso — penalises the absolute value of weights and drives some all the way to zero, effectively doing feature selection. L2 — Ridge — penalises squared weights and shrinks all weights evenly but never to zero. I use L1 when I suspect many features are irrelevant and want automatic selection. I use L2 as the default when all features are potentially useful."</div>
+  </div>
+</div>
+
+<div class="qa" id="q25">
+  <div class="qh" onclick="t('q25')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q26</span><span class="qt">What is gradient descent? Batch, stochastic, mini-batch?</span></div><span class="ar" id="aq25">▼</span></div>
+  <div class="qb" id="bq25">
+    <div class="row"><span class="rk">Intuition</span><span class="rv">Iteratively adjusts model weights in the direction that reduces the loss. Like walking downhill blindfolded — follow the slope until you reach the bottom.</span></div>
+    <div class="fml">weight = weight − learning_rate × gradient_of_loss</div>
+    <div class="row" style="margin-top:8px"><span class="rk">Batch GD</span><span class="rv">Computes gradient on the FULL dataset per step. Stable but very slow on large data. Memory-intensive.</span></div>
+    <div class="row"><span class="rk">Stochastic (SGD)</span><span class="rv">Computes gradient on ONE random sample per step. Very fast, noisy. Can escape local minima. Used in large-scale ML.</span></div>
+    <div class="row"><span class="rk">Mini-batch GD</span><span class="rv">Computes gradient on a small batch (32–256 samples). Best of both — fast and stable. Standard in deep learning.</span></div>
+    <div class="row"><span class="rk">Learning rate</span><span class="rv">Too high = overshoots minimum, diverges. Too low = very slow convergence. Use learning rate schedulers or Adam optimiser.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Gradient descent minimises the loss function by repeatedly moving weights in the direction of steepest descent — the negative gradient. Batch gradient descent is stable but slow because it uses the full dataset per update. Stochastic uses one sample — fast and noisy. Mini-batch is the practical standard — uses 32 to 256 samples per update, balancing speed and stability. The learning rate controls step size — too large and you overshoot, too small and training takes forever."</div>
+  </div>
+</div>
+
+<div class="qa" id="q26">
+  <div class="qh" onclick="t('q26')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q27</span><span class="qt">What is the curse of dimensionality?</span></div><span class="ar" id="aq26">▼</span></div>
+  <div class="qb" id="bq26">
+    <p class="ctx">As the number of features grows, the data becomes increasingly <strong>sparse</strong> and models become harder to train.</p>
+    <div class="row"><span class="rk">The problem</span><span class="rv">In high dimensions, all data points become approximately equidistant from each other. Distance-based algorithms like KNN break down — neighbours are no longer meaningful.</span></div>
+    <div class="row"><span class="rk">Sparsity</span><span class="rv">To cover a 10-dimensional space as densely as 1D, you need 10^10 times more data. You almost never have enough data in high dimensions.</span></div>
+    <div class="row"><span class="rk">Solutions</span><span class="rv">Feature selection — remove irrelevant features. PCA — project to fewer dimensions. Regularisation — penalise complexity. Collect more data.</span></div>
+    <div class="say"><div class="sl">Say this</div>"The curse of dimensionality means that as you add more features, the data becomes exponentially sparser — points are far apart from each other in every direction. This breaks distance-based algorithms like KNN because all distances converge to similar values, making nearest neighbours meaningless. It also leads to overfitting because a complex model has too many parameters relative to available data points. The cure is dimensionality reduction — PCA, feature selection, or regularisation."</div>
+    <div class="tip"><div class="tipl">Analogy</div>10 points cover a line well. In 2D you need 100. In 3D you need 1,000. In 100 dimensions you'd need 10¹⁰⁰ — impossible to collect.</div>
+  </div>
+</div>
+
+<div class="qa" id="q27">
+  <div class="qh" onclick="t('q27')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q28</span><span class="qt">How do you choose the right algorithm for a problem?</span></div><span class="ar" id="aq27">▼</span></div>
+  <div class="qb" id="bq27">
+    <div class="row"><span class="rk">Problem type</span><span class="rv">Classification → logistic regression, trees, SVM, neural net. Regression → linear regression, trees, SVR. Clustering → K-means, DBSCAN. Dimensionality → PCA.</span></div>
+    <div class="row"><span class="rk">Dataset size</span><span class="rv">Small → simpler models (logistic, SVM, Naive Bayes). Large → gradient boosting, neural networks.</span></div>
+    <div class="row"><span class="rk">Interpretability</span><span class="rv">Need to explain? → linear regression, logistic regression, decision tree. Don't need to explain? → XGBoost, neural net.</span></div>
+    <div class="row"><span class="rk">Speed needed</span><span class="rv">Fast training → Naive Bayes, linear models. Accuracy priority → XGBoost, neural nets. Fast prediction → linear models, decision tree.</span></div>
+    <div class="row"><span class="rk">Data type</span><span class="rv">Tabular → XGBoost, Random Forest. Images → CNN. Text → transformers, Naive Bayes. Time series → LSTM, ARIMA.</span></div>
+    <div class="say"><div class="sl">Say this</div>"I always start simple — a logistic regression or decision tree as a baseline. If performance is insufficient, I move to Random Forest or XGBoost for tabular data. My thought process is: what type of problem is it, how much data do I have, do I need interpretability, and how much compute is available? For tabular data XGBoost is almost always the best starting point after the baseline. For images I go straight to CNNs, for text to transformers."</div>
+  </div>
+</div>
+
+<div class="qa" id="q28">
+  <div class="qh" onclick="t('q28')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q29</span><span class="qt">What is data leakage and why is it dangerous?</span></div><span class="ar" id="aq28">▼</span></div>
+  <div class="qb" id="bq28">
+    <p class="ctx">Data leakage is when information from outside the training data leaks into the model — causing <strong>artificially high performance that disappears in production</strong>.</p>
+    <div class="row"><span class="rk">Target leakage</span><span class="rv">Feature that is itself derived from the target. e.g. using "claim_amount" to predict whether an insurance claim was fraudulent — claim_amount is 0 for non-fraud.</span></div>
+    <div class="row"><span class="rk">Train-test leakage</span><span class="rv">Fitting preprocessing (scaler, imputer, encoder) on the full dataset before splitting. Test set statistics contaminate training.</span></div>
+    <div class="row"><span class="rk">Time leakage</span><span class="rv">Using future information to predict the past. e.g. using tomorrow's data to predict today's stock price.</span></div>
+    <div class="row"><span class="rk">How to detect</span><span class="rv">Suspiciously high accuracy. Feature importance dominated by one unexpected feature. Performance drops sharply in production.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Data leakage happens when information that wouldn't be available at prediction time is used during training. It causes the model to look great on paper but fail completely in production. Target leakage is the most dangerous — a feature that's derived from or directly related to the target. Train-test leakage happens when you fit a scaler or encoder on the full dataset — always fit only on training data, then apply to test. Leakage is often spotted when validation accuracy seems too good to be true."</div>
+  </div>
+</div>
+
+<div class="qa" id="q29">
+  <div class="qh" onclick="t('q29')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q30</span><span class="qt">What is ensemble learning? Bagging vs boosting vs stacking.</span></div><span class="ar" id="aq29">▼</span></div>
+  <div class="qb" id="bq29">
+    <p class="ctx">Combining multiple models to produce a better prediction than any single model alone.</p>
+    <div class="row"><span class="rk">Bagging</span><span class="rv">Train models in parallel on random subsets (bootstrap samples). Average predictions. Reduces variance. e.g. Random Forest.</span></div>
+    <div class="row"><span class="rk">Boosting</span><span class="rv">Train models sequentially, each fixing errors of the previous. Reduces bias. Can overfit. e.g. XGBoost, LightGBM, AdaBoost.</span></div>
+    <div class="row"><span class="rk">Stacking</span><span class="rv">Train multiple diverse base models. Use their predictions as features for a meta-model (blender). Most powerful — used heavily in competitions.</span></div>
+    <div class="row"><span class="rk">Voting</span><span class="rv">Simple ensemble — take majority vote (classification) or average (regression) of multiple different model predictions. Easy, often surprisingly effective.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Ensemble learning combines multiple models to outperform any individual model. Bagging trains models in parallel on different data samples and averages — Random Forest is the classic example. Boosting builds models sequentially, each one fixing previous errors — XGBoost is the state of the art here. Stacking trains base models and feeds their predictions into a meta-model — it's the most powerful technique and is common in Kaggle competition winners. The intuition behind all ensembles is that diverse models make different errors, and combining them averages out the mistakes."</div>
+  </div>
+</div>
+
+<div class="btns" style="margin-top:4px">
+  <button onclick="sendPrompt('Give me ML interview questions specifically about neural networks and deep learning with simple answers')">Neural network Q&A ↗</button>
+  <button onclick="sendPrompt('Give me common ML coding interview questions in Python with solutions using sklearn')">ML Python code ↗</button>
+  <button onclick="sendPrompt('What are the most common ML system design interview questions and how to answer them?')">ML system design ↗</button>
+</div>
+
+<script>
+function t(id){
+  const b=document.getElementById('b'+id),a=document.getElementById('a'+id);
+  const o=b.classList.contains('open');
+  b.classList.toggle('open',!o);a.classList.toggle('open',!o);
+}
+</script>

@@ -1,0 +1,556 @@
+
+<h2 class="sr-only">Complete SQL interview Q&A guide covering basics, joins, subqueries, window functions, indexes, normalization, ACID properties, and common interview traps.</h2>
+<style>
+  *{box-sizing:border-box}
+  .ptitle{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 3px}
+  .psub{font-size:13px;color:var(--color-text-secondary);margin:0 0 1rem}
+  .cat{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-secondary);margin:1.4rem 0 .5rem;padding:0 2px;display:flex;align-items:center;gap:8px}
+  .cat::after{content:'';flex:1;height:0.5px;background:var(--color-border-tertiary)}
+  .qa{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:8px;overflow:hidden}
+  .qh{display:flex;justify-content:space-between;align-items:flex-start;padding:.8rem 1rem;cursor:pointer;background:var(--color-background-secondary);user-select:none;gap:10px}
+  .qh:hover{background:var(--color-background-tertiary)}
+  .ql{display:flex;align-items:flex-start;gap:9px;flex:1}
+  .qn{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:1px}
+  .qt{font-size:13.5px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+  .qb{padding:1rem;background:var(--color-background-primary);display:none}
+  .qb.open{display:block}
+  .ar{font-size:11px;color:var(--color-text-secondary);transition:transform .2s;flex-shrink:0;margin-top:3px}
+  .ar.open{transform:rotate(180deg)}
+  .ctx{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin:0 0 9px}
+  .ctx strong{font-weight:500;color:var(--color-text-primary)}
+  .say{border-left:3px solid #1D9E75;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E1F5EE;padding:.7rem 1rem;font-size:13px;color:#085041;line-height:1.7;margin-top:9px}
+  .sl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#0F6E56;margin-bottom:4px}
+  .trap{border-left:3px solid #EF9F27;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#FAEEDA;padding:.65rem 1rem;margin-top:9px;font-size:12.5px;color:#633806;line-height:1.6}
+  .tl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#854F0B;margin-bottom:3px}
+  .tip{border-left:3px solid #378ADD;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E6F1FB;padding:.65rem 1rem;margin-top:9px;font-size:12.5px;color:#0C447C;line-height:1.6}
+  .tipl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#185FA5;margin-bottom:3px}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+  .card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.65rem .85rem;border:0.5px solid var(--color-border-tertiary)}
+  .cl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+  .cv2{font-size:13px;font-weight:500}
+  .cs{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.5}
+  .row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .row:last-child{border-bottom:none}
+  .rk{font-size:12px;color:var(--color-text-secondary);width:130px;flex-shrink:0}
+  .rv{font-size:13px;color:var(--color-text-primary);line-height:1.5}
+  .code{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.5rem .85rem;font-family:var(--font-mono);font-size:12px;color:var(--color-text-primary);margin:5px 0;line-height:1.6}
+  .btns{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .btns button{font-size:12px;padding:4px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer}
+  .btns button:hover{background:var(--color-background-secondary)}
+</style>
+
+<p class="ptitle">SQL — complete interview guide</p>
+<p class="psub">30 questions across all SQL topics. Tap any question to open.</p>
+
+<div class="cat">Basics</div>
+
+<div class="qa" id="q0">
+  <div class="qh" onclick="t('q0')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q1</span><span class="qt">What is SQL and what are DDL, DML, DCL, TCL?</span></div><span class="ar" id="aq0">▼</span></div>
+  <div class="qb open" id="bq0">
+    <div class="g2">
+      <div class="card"><div class="cl">DDL — Data Definition Language</div><div class="cv2" style="color:#3C3489">Defines structure</div><div class="cs">CREATE, ALTER, DROP, TRUNCATE. Changes the schema/structure of tables.</div></div>
+      <div class="card"><div class="cl">DML — Data Manipulation Language</div><div class="cv2" style="color:#085041">Manipulates data</div><div class="cs">SELECT, INSERT, UPDATE, DELETE. Works with the data inside tables.</div></div>
+      <div class="card"><div class="cl">DCL — Data Control Language</div><div class="cv2" style="color:#633806">Controls access</div><div class="cs">GRANT, REVOKE. Manages user permissions on database objects.</div></div>
+      <div class="card"><div class="cl">TCL — Transaction Control Language</div><div class="cv2" style="color:#0C447C">Manages transactions</div><div class="cs">COMMIT, ROLLBACK, SAVEPOINT. Controls transaction flow.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"SQL is a language for managing and querying relational databases. It has four sublanguages — DDL for defining structure like creating and altering tables, DML for working with data through select, insert, update and delete, DCL for managing permissions, and TCL for controlling transactions with commit and rollback."</div>
+  </div>
+</div>
+
+<div class="qa" id="q1">
+  <div class="qh" onclick="t('q1')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q2</span><span class="qt">What is the order of execution in a SQL query?</span></div><span class="ar" id="aq1">▼</span></div>
+  <div class="qb" id="bq1">
+    <p class="ctx">SQL does <strong>not</strong> execute in the order you write it. This is one of the most tested SQL fundamentals.</p>
+    <div class="row"><span class="rk" style="width:30px;font-weight:500;color:#534AB7">1.</span><span class="rv">FROM / JOIN — get the data and combine tables</span></div>
+    <div class="row"><span class="rk" style="width:30px;font-weight:500;color:#534AB7">2.</span><span class="rv">WHERE — filter rows</span></div>
+    <div class="row"><span class="rk" style="width:30px;font-weight:500;color:#534AB7">3.</span><span class="rv">GROUP BY — group the filtered rows</span></div>
+    <div class="row"><span class="rk" style="width:30px;font-weight:500;color:#534AB7">4.</span><span class="rv">HAVING — filter the groups</span></div>
+    <div class="row"><span class="rk" style="width:30px;font-weight:500;color:#534AB7">5.</span><span class="rv">SELECT — choose which columns to return</span></div>
+    <div class="row"><span class="rk" style="width:30px;font-weight:500;color:#534AB7">6.</span><span class="rv">DISTINCT — remove duplicates</span></div>
+    <div class="row"><span class="rk" style="width:30px;font-weight:500;color:#534AB7">7.</span><span class="rv">ORDER BY — sort the results</span></div>
+    <div class="row"><span class="rk" style="width:30px;font-weight:500;color:#534AB7">8.</span><span class="rv">LIMIT / OFFSET — restrict number of rows returned</span></div>
+    <div class="say"><div class="sl">Say this</div>"SQL doesn't execute in the written order. It starts with FROM to get the data, then WHERE to filter rows, then GROUP BY to group them, then HAVING to filter groups, then SELECT to pick columns, then ORDER BY to sort, and finally LIMIT. This is why you can't use a SELECT alias in a WHERE clause — WHERE runs before SELECT."</div>
+    <div class="trap"><div class="tl">Classic trap</div>You cannot reference a SELECT alias in WHERE. e.g. SELECT salary * 1.1 AS new_salary WHERE new_salary > 50000 — this fails because WHERE runs before SELECT. Use a subquery or CTE instead.</div>
+  </div>
+</div>
+
+<div class="qa" id="q2">
+  <div class="qh" onclick="t('q2')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q3</span><span class="qt">What are the different types of keys in SQL?</span></div><span class="ar" id="aq2">▼</span></div>
+  <div class="qb" id="bq2">
+    <div class="row"><span class="rk">Primary key</span><span class="rv">Uniquely identifies each row. Cannot be NULL. Only one per table. e.g. user_id.</span></div>
+    <div class="row"><span class="rk">Foreign key</span><span class="rv">Links one table to the primary key of another. Enforces referential integrity. Can be NULL.</span></div>
+    <div class="row"><span class="rk">Unique key</span><span class="rv">Ensures all values in a column are unique. Unlike primary key, allows one NULL and can have multiple per table.</span></div>
+    <div class="row"><span class="rk">Composite key</span><span class="rv">Primary key made of two or more columns together. Used when no single column is unique enough on its own.</span></div>
+    <div class="row"><span class="rk">Candidate key</span><span class="rv">Any column that could be the primary key — unique and not null. The chosen one becomes the primary key, others are alternate keys.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Primary key uniquely identifies every row and cannot be null — there is exactly one per table. Foreign key creates a link between tables and enforces referential integrity. Unique key also enforces uniqueness but allows one null and multiple unique keys per table. A composite key uses two or more columns together as the primary key."</div>
+  </div>
+</div>
+
+<div class="qa" id="q3">
+  <div class="qh" onclick="t('q3')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q4</span><span class="qt">What is the difference between WHERE and HAVING?</span></div><span class="ar" id="aq3">▼</span></div>
+  <div class="qb" id="bq3">
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">WHERE</div><div class="cv2" style="color:#3C3489">Filters rows</div><div class="cs">Runs BEFORE GROUP BY. Filters individual rows. Cannot use aggregate functions like SUM, COUNT.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">HAVING</div><div class="cv2" style="color:#085041">Filters groups</div><div class="cs">Runs AFTER GROUP BY. Filters groups created by GROUP BY. Can use aggregate functions.</div></div>
+    </div>
+    <div class="code">SELECT department, COUNT(*) AS emp_count
+FROM employees
+WHERE salary > 30000         -- filters rows first
+GROUP BY department
+HAVING COUNT(*) > 5          -- then filters groups</div>
+    <div class="say"><div class="sl">Say this</div>"WHERE filters rows before grouping — it cannot use aggregate functions. HAVING filters groups after GROUP BY — it can use aggregates like COUNT or SUM. Simple rule: if you need to filter on an aggregate result, use HAVING. For everything else, use WHERE."</div>
+    <div class="trap"><div class="tl">Common mistake</div>Writing HAVING without GROUP BY. HAVING is almost always paired with GROUP BY. Without it, the whole table is treated as one group.</div>
+  </div>
+</div>
+
+<div class="qa" id="q4">
+  <div class="qh" onclick="t('q4')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q5</span><span class="qt">What is the difference between DELETE, TRUNCATE, and DROP?</span></div><span class="ar" id="aq4">▼</span></div>
+  <div class="qb" id="bq4">
+    <div class="g3">
+      <div class="card" style="border-top:2px solid #E24B4A"><div class="cl">DELETE</div><div class="cv2" style="color:#A32D2D">Removes rows</div><div class="cs">DML. Removes specific rows using WHERE. Can be rolled back. Slow — logs each row. Table structure stays.</div></div>
+      <div class="card" style="border-top:2px solid #EF9F27"><div class="cl">TRUNCATE</div><div class="cv2" style="color:#633806">Clears all rows</div><div class="cs">DDL. Removes ALL rows. Cannot use WHERE. Faster than DELETE. Usually cannot be rolled back. Resets auto-increment.</div></div>
+      <div class="card" style="border-top:2px solid #A32D2D"><div class="cl">DROP</div><div class="cv2" style="color:#791F1F">Removes table</div><div class="cs">DDL. Removes the entire table including structure, data, and indexes. Cannot be rolled back. Gone completely.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"DELETE removes specific rows using a WHERE clause and can be rolled back — it's DML. TRUNCATE removes all rows at once, is faster because it doesn't log individual rows, but cannot be rolled back in most databases — it's DDL. DROP removes the entire table including its structure permanently. Think of it as: DELETE = erase some content, TRUNCATE = erase all content, DROP = destroy the book entirely."</div>
+  </div>
+</div>
+
+<div class="qa" id="q5">
+  <div class="qh" onclick="t('q5')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q6</span><span class="qt">What is the difference between UNION and UNION ALL?</span></div><span class="ar" id="aq5">▼</span></div>
+  <div class="qb" id="bq5">
+    <div class="g2">
+      <div class="card"><div class="cl">UNION</div><div class="cv2">Removes duplicates</div><div class="cs">Combines results of two queries and removes duplicate rows. Slower due to deduplication step.</div></div>
+      <div class="card"><div class="cl">UNION ALL</div><div class="cv2">Keeps duplicates</div><div class="cs">Combines results and keeps ALL rows including duplicates. Faster. Use when duplicates are acceptable or impossible.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Both combine results from two SELECT statements — the columns and data types must match. UNION removes duplicate rows but is slower because it performs a deduplication step. UNION ALL keeps all rows including duplicates and is faster. I always use UNION ALL by default unless I specifically need deduplication, because it avoids unnecessary performance cost."</div>
+    <div class="trap"><div class="tl">Watch out</div>Both queries in a UNION must have the same number of columns and compatible data types. Column names in the result come from the first SELECT.</div>
+  </div>
+</div>
+
+<div class="cat">Joins</div>
+
+<div class="qa" id="q6">
+  <div class="qh" onclick="t('q6')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q7</span><span class="qt">What are the types of JOINs? Explain each.</span></div><span class="ar" id="aq6">▼</span></div>
+  <div class="qb" id="bq6">
+    <div class="row"><span class="rk">INNER JOIN</span><span class="rv">Returns only rows where there is a match in BOTH tables. Most common. Unmatched rows from either table are excluded.</span></div>
+    <div class="row"><span class="rk">LEFT JOIN</span><span class="rv">Returns ALL rows from the left table, and matched rows from the right. Unmatched right rows become NULL. Most used after INNER.</span></div>
+    <div class="row"><span class="rk">RIGHT JOIN</span><span class="rv">Returns ALL rows from the right table, matched rows from the left. Unmatched left rows become NULL. Rarely used — can always rewrite as LEFT JOIN.</span></div>
+    <div class="row"><span class="rk">FULL OUTER JOIN</span><span class="rv">Returns ALL rows from both tables. NULLs fill in where no match exists. Use to find all records with or without a match.</span></div>
+    <div class="row"><span class="rk">CROSS JOIN</span><span class="rv">Returns cartesian product — every row in table A combined with every row in table B. No ON clause. n × m rows. Rarely used intentionally.</span></div>
+    <div class="row"><span class="rk">SELF JOIN</span><span class="rv">A table joined to itself using aliases. Used for hierarchical data — e.g. finding employee and their manager from the same table.</span></div>
+    <div class="code">-- SELF JOIN example: employee and their manager
+SELECT e.name AS employee, m.name AS manager
+FROM employees e
+JOIN employees m ON e.manager_id = m.employee_id</div>
+    <div class="say"><div class="sl">Say this</div>"INNER JOIN returns rows with a match in both tables. LEFT JOIN returns all rows from the left table regardless of a match — unmatched right columns are NULL. FULL OUTER JOIN returns everything from both tables with NULLs where no match exists. CROSS JOIN produces every combination of rows from both tables. SELF JOIN joins a table to itself — useful for hierarchical structures like an employee-manager relationship in one table."</div>
+  </div>
+</div>
+
+<div class="qa" id="q7">
+  <div class="qh" onclick="t('q7')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q8</span><span class="qt">What is the difference between INNER JOIN and LEFT JOIN?</span></div><span class="ar" id="aq7">▼</span></div>
+  <div class="qb" id="bq7">
+    <p class="ctx">This is the most asked join question — know a concrete example.</p>
+    <div class="code">-- Customers table: 100 customers
+-- Orders table: 70 customers have orders
+
+SELECT c.name, o.order_id
+FROM customers c
+INNER JOIN orders o ON c.id = o.customer_id
+-- Returns 70 rows (only matched customers)
+
+SELECT c.name, o.order_id
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+-- Returns 100 rows (all customers, NULL for those with no order)</div>
+    <div class="say"><div class="sl">Say this</div>"INNER JOIN only returns customers who have placed an order — 70 rows. LEFT JOIN returns all 100 customers — those without an order get a NULL in the order columns. Use LEFT JOIN when you want to keep all records from the main table regardless of whether a match exists. This is how you find customers who have never ordered — add WHERE o.order_id IS NULL."</div>
+    <div class="tip"><div class="tipl">Finding non-matching rows</div>LEFT JOIN + WHERE right_table.id IS NULL is the classic way to find rows in table A that have NO match in table B — e.g. customers who never ordered, users who never logged in.</div>
+  </div>
+</div>
+
+<div class="cat">Aggregate functions and GROUP BY</div>
+
+<div class="qa" id="q8">
+  <div class="qh" onclick="t('q8')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q9</span><span class="qt">What are aggregate functions?</span></div><span class="ar" id="aq8">▼</span></div>
+  <div class="qb" id="bq8">
+    <div class="row"><span class="rk">COUNT(*)</span><span class="rv">Counts all rows including NULLs. COUNT(column) counts only non-NULL values.</span></div>
+    <div class="row"><span class="rk">SUM(col)</span><span class="rv">Sum of all non-NULL values in a column.</span></div>
+    <div class="row"><span class="rk">AVG(col)</span><span class="rv">Average of non-NULL values. Ignores NULLs — can be misleading.</span></div>
+    <div class="row"><span class="rk">MAX(col)</span><span class="rv">Highest value. Works on numbers, dates, and strings.</span></div>
+    <div class="row"><span class="rk">MIN(col)</span><span class="rv">Lowest value.</span></div>
+    <div class="code">SELECT department,
+  COUNT(*) AS total,
+  AVG(salary) AS avg_salary,
+  MAX(salary) AS highest
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 3</div>
+    <div class="say"><div class="sl">Say this</div>"Aggregate functions compute a single result from multiple rows. COUNT(*) counts all rows including NULLs — COUNT(column) counts only non-null values in that column, which is an important distinction. AVG ignores NULLs, which means if 10 out of 100 values are NULL, it averages the remaining 90 — the denominator is 90, not 100."</div>
+    <div class="trap"><div class="tl">COUNT(*) vs COUNT(column)</div>COUNT(*) = 100 rows total. COUNT(salary) = 90 if 10 salaries are NULL. This difference matters and interviewers test it.</div>
+  </div>
+</div>
+
+<div class="cat">Subqueries and CTEs</div>
+
+<div class="qa" id="q9">
+  <div class="qh" onclick="t('q9')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q10</span><span class="qt">What is a subquery? What are its types?</span></div><span class="ar" id="aq9">▼</span></div>
+  <div class="qb" id="bq9">
+    <p class="ctx">A query nested inside another query.</p>
+    <div class="row"><span class="rk">Scalar</span><span class="rv">Returns exactly one value. Used in SELECT or WHERE. e.g. WHERE salary > (SELECT AVG(salary) FROM employees)</span></div>
+    <div class="row"><span class="rk">Row</span><span class="rv">Returns one row with multiple columns. Used with row comparison operators.</span></div>
+    <div class="row"><span class="rk">Table / derived</span><span class="rv">Returns multiple rows and columns. Used in FROM clause as a temporary table.</span></div>
+    <div class="row"><span class="rk">Correlated</span><span class="rv">References the outer query — re-runs for every row of the outer query. Powerful but slow.</span></div>
+    <div class="code">-- Scalar subquery: employees earning above average
+SELECT name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees)
+
+-- Correlated subquery: employees who earn more than their department avg
+SELECT name, salary, department
+FROM employees e1
+WHERE salary > (
+  SELECT AVG(salary) FROM employees e2
+  WHERE e2.department = e1.department  -- references outer query
+)</div>
+    <div class="say"><div class="sl">Say this</div>"A subquery is a SELECT nested inside another SQL statement. Scalar subqueries return one value and can go in WHERE or SELECT. Table subqueries return a full result set and sit in the FROM clause as a derived table. Correlated subqueries reference the outer query and re-execute for every outer row — they're flexible but can be slow on large datasets, where a JOIN or CTE is usually more efficient."</div>
+  </div>
+</div>
+
+<div class="qa" id="q10">
+  <div class="qh" onclick="t('q10')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q11</span><span class="qt">What is a CTE and how is it different from a subquery?</span></div><span class="ar" id="aq10">▼</span></div>
+  <div class="qb" id="bq10">
+    <p class="ctx">CTE = Common Table Expression. A named temporary result set defined before the main query using WITH.</p>
+    <div class="code">-- CTE version
+WITH dept_avg AS (
+  SELECT department, AVG(salary) AS avg_sal
+  FROM employees
+  GROUP BY department
+)
+SELECT e.name, e.salary, d.avg_sal
+FROM employees e
+JOIN dept_avg d ON e.department = d.department
+WHERE e.salary > d.avg_sal</div>
+    <div class="g2">
+      <div class="card"><div class="cl">CTE</div><div class="cv2">Named, readable</div><div class="cs">Named and reusable within the same query. Much more readable. Can be recursive. Defined with WITH at the top.</div></div>
+      <div class="card"><div class="cl">Subquery</div><div class="cv2">Inline, nested</div><div class="cs">Anonymous and inline. Harder to read when nested deeply. Cannot be reused in the same query. No WITH clause.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"A CTE uses the WITH keyword to define a named temporary result set before the main query. Compared to subqueries, CTEs are much more readable — especially for complex logic — and can be referenced multiple times in the same query. I prefer CTEs over subqueries for anything more than a simple one-liner because they make the logic easy to follow and debug step by step."</div>
+  </div>
+</div>
+
+<div class="qa" id="q11">
+  <div class="qh" onclick="t('q11')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q12</span><span class="qt">What is a recursive CTE?</span></div><span class="ar" id="aq11">▼</span></div>
+  <div class="qb" id="bq11">
+    <p class="ctx">A CTE that <strong>references itself</strong> — used for hierarchical data like org charts, file systems, or category trees.</p>
+    <div class="code">-- Find all employees under a manager (hierarchy)
+WITH RECURSIVE org_chart AS (
+  SELECT id, name, manager_id, 1 AS level
+  FROM employees WHERE manager_id IS NULL  -- anchor: top of tree
+
+  UNION ALL
+
+  SELECT e.id, e.name, e.manager_id, oc.level + 1
+  FROM employees e
+  JOIN org_chart oc ON e.manager_id = oc.id  -- recursive part
+)
+SELECT * FROM org_chart ORDER BY level</div>
+    <div class="say"><div class="sl">Say this</div>"A recursive CTE references itself to traverse hierarchical data. It has two parts — an anchor member that starts the recursion (like the root of a tree), and a recursive member that joins back to the CTE itself to go one level deeper each iteration. It's the standard way to query tree structures like org charts, product categories, or bill of materials in SQL."</div>
+  </div>
+</div>
+
+<div class="cat">Window functions</div>
+
+<div class="qa" id="q12">
+  <div class="qh" onclick="t('q12')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q13</span><span class="qt">What are window functions? How are they different from GROUP BY?</span></div><span class="ar" id="aq12">▼</span></div>
+  <div class="qb" id="bq12">
+    <p class="ctx">Window functions perform calculations <strong>across a set of rows related to the current row</strong> — without collapsing rows like GROUP BY does.</p>
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #E24B4A"><div class="cl">GROUP BY</div><div class="cv2" style="color:#A32D2D">Collapses rows</div><div class="cs">Reduces multiple rows into one per group. You lose access to individual rows after grouping.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Window function</div><div class="cv2" style="color:#085041">Keeps all rows</div><div class="cs">Calculates across a window of rows but every original row stays in the result. The OVER() clause defines the window.</div></div>
+    </div>
+    <div class="code">-- Show each employee, their salary, AND their department average
+SELECT name, department, salary,
+  AVG(salary) OVER (PARTITION BY department) AS dept_avg,
+  salary - AVG(salary) OVER (PARTITION BY department) AS diff_from_avg
+FROM employees</div>
+    <div class="say"><div class="sl">Say this</div>"Window functions perform calculations across related rows without collapsing the result like GROUP BY does. The OVER() clause defines the window — PARTITION BY divides rows into groups like GROUP BY, and ORDER BY within OVER determines the order for running calculations. The key advantage is that every original row remains in the output, so you can compare each row to its group's aggregate in one query."</div>
+  </div>
+</div>
+
+<div class="qa" id="q13">
+  <div class="qh" onclick="t('q13')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q14</span><span class="qt">ROW_NUMBER vs RANK vs DENSE_RANK — what is the difference?</span></div><span class="ar" id="aq13">▼</span></div>
+  <div class="qb" id="bq13">
+    <div class="code">-- Salaries: 100, 90, 90, 80
+-- ROW_NUMBER:  1,  2,  3,  4  (always unique, no ties)
+-- RANK:        1,  2,  2,  4  (ties get same rank, next rank skips)
+-- DENSE_RANK:  1,  2,  2,  3  (ties get same rank, next rank does NOT skip)</div>
+    <div class="row"><span class="rk">ROW_NUMBER</span><span class="rv">Always unique sequential number. Ties broken arbitrarily. Use when you need exactly one row per rank.</span></div>
+    <div class="row"><span class="rk">RANK</span><span class="rv">Ties get the same number. Next rank skips (gaps). Like real sports rankings — two 2nd places means no 3rd.</span></div>
+    <div class="row"><span class="rk">DENSE_RANK</span><span class="rv">Ties get same number. Next rank does NOT skip. No gaps. Use when you want consecutive ranks.</span></div>
+    <div class="say"><div class="sl">Say this</div>"All three assign a rank to rows. ROW_NUMBER always gives a unique sequential number — ties are broken arbitrarily. RANK gives tied rows the same number but then skips — two second-place ties means no third place. DENSE_RANK also gives ties the same number but never skips ranks. I use ROW_NUMBER when I need unique rows like deduplication, DENSE_RANK when I want clean consecutive rankings."</div>
+    <div class="tip"><div class="tipl">Most common use case</div>ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) = 1 — this gets the most recent order per customer. Classic deduplication pattern.</div>
+  </div>
+</div>
+
+<div class="qa" id="q14">
+  <div class="qh" onclick="t('q14')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q15</span><span class="qt">What are LAG and LEAD functions?</span></div><span class="ar" id="aq14">▼</span></div>
+  <div class="qb" id="bq14">
+    <p class="ctx">Access values from <strong>previous or next rows</strong> without a self join.</p>
+    <div class="code">SELECT month, revenue,
+  LAG(revenue) OVER (ORDER BY month) AS prev_month_revenue,
+  LEAD(revenue) OVER (ORDER BY month) AS next_month_revenue,
+  revenue - LAG(revenue) OVER (ORDER BY month) AS month_over_month_change
+FROM monthly_sales</div>
+    <div class="row"><span class="rk">LAG(col, n)</span><span class="rv">Value from n rows BEFORE the current row. Default n=1. Returns NULL for first row.</span></div>
+    <div class="row"><span class="rk">LEAD(col, n)</span><span class="rv">Value from n rows AFTER the current row. Default n=1. Returns NULL for last row.</span></div>
+    <div class="say"><div class="sl">Say this</div>"LAG and LEAD access values from previous or following rows in the result set. LAG looks back, LEAD looks forward. They're perfect for calculating period-over-period changes — like month-over-month revenue growth — without needing a self join. The first row's LAG is NULL since there's no previous row."</div>
+  </div>
+</div>
+
+<div class="qa" id="q15">
+  <div class="qh" onclick="t('q15')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q16</span><span class="qt">What is PARTITION BY and how is it different from GROUP BY?</span></div><span class="ar" id="aq15">▼</span></div>
+  <div class="qb" id="bq15">
+    <div class="g2">
+      <div class="card"><div class="cl">PARTITION BY</div><div class="cv2">Window function only</div><div class="cs">Divides rows into groups for window function calculation. All original rows are kept in output. Used inside OVER().</div></div>
+      <div class="card"><div class="cl">GROUP BY</div><div class="cv2">Collapses to one row</div><div class="cs">Reduces all rows in a group to a single summary row. Individual row data is gone after grouping.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"PARTITION BY is used inside window functions with OVER() to divide rows into groups for the calculation — but unlike GROUP BY, all rows remain visible in the result. GROUP BY collapses each group into one row. If I want the average salary per department AND see each individual employee's row, I use PARTITION BY. If I only want one summary row per department, I use GROUP BY."</div>
+  </div>
+</div>
+
+<div class="cat">NULL handling</div>
+
+<div class="qa" id="q16">
+  <div class="qh" onclick="t('q16')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q17</span><span class="qt">How does SQL handle NULL values?</span></div><span class="ar" id="aq16">▼</span></div>
+  <div class="qb" id="bq16">
+    <p class="ctx">NULL means <strong>unknown or missing</strong> — not zero, not empty string. NULL behaves differently from any other value.</p>
+    <div class="row"><span class="rk">NULL = NULL</span><span class="rv">FALSE. NULL is not equal to NULL. Use IS NULL or IS NOT NULL — never = NULL.</span></div>
+    <div class="row"><span class="rk">Arithmetic</span><span class="rv">Any operation with NULL returns NULL. 5 + NULL = NULL.</span></div>
+    <div class="row"><span class="rk">Aggregates</span><span class="rv">COUNT(*) includes NULLs. COUNT(col), SUM, AVG all IGNORE NULLs.</span></div>
+    <div class="row"><span class="rk">COALESCE</span><span class="rv">Returns first non-NULL value. COALESCE(col, 0) replaces NULL with 0.</span></div>
+    <div class="row"><span class="rk">NULLIF</span><span class="rv">Returns NULL if two values are equal. NULLIF(col, 0) returns NULL when col = 0 — avoids divide by zero.</span></div>
+    <div class="code">SELECT COALESCE(salary, 0) AS salary       -- NULL becomes 0
+SELECT NULLIF(sales, 0)                    -- 0 becomes NULL (avoid div/0)
+SELECT 100.0 / NULLIF(total, 0) AS rate   -- safe division</div>
+    <div class="say"><div class="sl">Say this</div>"NULL means unknown in SQL — not zero or empty. The critical thing is NULL does not equal NULL, so you must use IS NULL instead of = NULL. Any arithmetic with NULL returns NULL. COALESCE is my go-to for replacing NULLs with a default value, and NULLIF is useful for safe division — converting zeros to NULL prevents divide-by-zero errors."</div>
+    <div class="trap"><div class="tl">Classic trap</div>WHERE col != 5 does NOT return rows where col is NULL. NULL comparisons always return UNKNOWN, which is treated as FALSE. You must add OR col IS NULL explicitly.</div>
+  </div>
+</div>
+
+<div class="cat">Indexes</div>
+
+<div class="qa" id="q17">
+  <div class="qh" onclick="t('q17')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q18</span><span class="qt">What is an index? When should you use it?</span></div><span class="ar" id="aq17">▼</span></div>
+  <div class="qb" id="bq17">
+    <p class="ctx">An index is a <strong>data structure that speeds up data retrieval</strong> — like an index in a book that lets you jump to the right page.</p>
+    <div class="row"><span class="rk">Without index</span><span class="rv">Full table scan — database reads every row. O(n). Slow on large tables.</span></div>
+    <div class="row"><span class="rk">With index</span><span class="rv">B-tree lookup — jumps directly to matching rows. O(log n). Much faster for reads.</span></div>
+    <div class="row"><span class="rk">Use index on</span><span class="rv">Columns used in WHERE, JOIN, ORDER BY, GROUP BY. High-cardinality columns (many unique values). Primary and foreign keys.</span></div>
+    <div class="row"><span class="rk">Don't index</span><span class="rv">Low-cardinality columns like boolean flags. Small tables. Columns rarely used in queries.</span></div>
+    <div class="g2">
+      <div class="card"><div class="cl">Pros</div><div class="cs">Dramatically faster SELECT and JOIN queries. Essential for large tables.</div></div>
+      <div class="card"><div class="cl">Cons</div><div class="cs">Slows down INSERT, UPDATE, DELETE — index must be updated. Takes extra storage space.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"An index is a data structure — usually a B-tree — that allows the database to find rows without scanning the entire table. It's like a book index: instead of reading every page, you jump to the right location. Indexes speed up reads but slow down writes because the index must be maintained on every insert, update, or delete. I add indexes on columns frequently used in WHERE, JOIN, and ORDER BY clauses, and on foreign keys."</div>
+  </div>
+</div>
+
+<div class="qa" id="q18">
+  <div class="qh" onclick="t('q18')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q19</span><span class="qt">What are the types of indexes?</span></div><span class="ar" id="aq18">▼</span></div>
+  <div class="qb" id="bq18">
+    <div class="row"><span class="rk">Clustered</span><span class="rv">Physically reorders the table rows to match the index. Only ONE per table. Primary key is usually clustered by default.</span></div>
+    <div class="row"><span class="rk">Non-clustered</span><span class="rv">Separate structure with pointers back to the actual rows. Multiple allowed per table. Most common type.</span></div>
+    <div class="row"><span class="rk">Composite</span><span class="rv">Index on multiple columns. Column order matters — most selective column first. Useful for multi-column WHERE/JOIN.</span></div>
+    <div class="row"><span class="rk">Unique index</span><span class="rv">Enforces uniqueness on a column. Created automatically by UNIQUE constraint.</span></div>
+    <div class="row"><span class="rk">Full-text</span><span class="rv">For searching within text fields. Used with MATCH...AGAINST or CONTAINS. Standard B-tree doesn't work for text search.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Clustered indexes physically sort the table data — there can only be one per table and it's typically the primary key. Non-clustered indexes are separate structures that point back to the table rows — you can have many per table. Composite indexes cover multiple columns and are powerful for queries that filter on those columns together — but column order matters, with the most selective column first."</div>
+  </div>
+</div>
+
+<div class="cat">Normalisation</div>
+
+<div class="qa" id="q19">
+  <div class="qh" onclick="t('q19')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q20</span><span class="qt">What is normalisation? Explain 1NF, 2NF, 3NF.</span></div><span class="ar" id="aq19">▼</span></div>
+  <div class="qb" id="bq19">
+    <p class="ctx">Normalisation is the process of <strong>organising a database to reduce redundancy and improve data integrity</strong>.</p>
+    <div class="row"><span class="rk">1NF</span><span class="rv">Each cell has only ONE value (no lists). Each row is unique (has a primary key). No repeating column groups. e.g. phone1, phone2, phone3 columns → separate phone table.</span></div>
+    <div class="row"><span class="rk">2NF</span><span class="rv">Must be 1NF PLUS every non-key column depends on the WHOLE primary key — not just part of it. Only relevant when composite primary key exists.</span></div>
+    <div class="row"><span class="rk">3NF</span><span class="rv">Must be 2NF PLUS no transitive dependencies — non-key columns should depend only on the primary key, not on other non-key columns. e.g. storing employee's zip code AND city — city depends on zip, not on employee_id.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Normalisation reduces data redundancy and prevents anomalies. First Normal Form requires atomic values — no lists in cells — and unique rows. Second Normal Form requires every non-key column to depend on the entire primary key, not just part of it. Third Normal Form removes transitive dependencies — non-key columns must depend only on the primary key, not on other non-key columns. In practice, 3NF is the standard target for most OLTP databases."</div>
+    <div class="tip"><div class="tipl">Denormalisation</div>Sometimes we intentionally denormalise — combine tables or add redundancy — for read performance in analytical/reporting databases (data warehouses). It's a deliberate trade-off: faster reads, more storage, harder to update.</div>
+  </div>
+</div>
+
+<div class="cat">ACID properties</div>
+
+<div class="qa" id="q20">
+  <div class="qh" onclick="t('q20')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q21</span><span class="qt">What are ACID properties?</span></div><span class="ar" id="aq20">▼</span></div>
+  <div class="qb" id="bq20">
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">A — Atomicity</div><div class="cv2" style="color:#3C3489">All or nothing</div><div class="cs">A transaction either completes fully or not at all. If any step fails, the whole transaction rolls back. No partial updates.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">C — Consistency</div><div class="cv2" style="color:#085041">Valid state always</div><div class="cs">A transaction takes the database from one valid state to another. All rules and constraints are respected.</div></div>
+      <div class="card" style="border-top:2px solid #EF9F27"><div class="cl">I — Isolation</div><div class="cv2" style="color:#633806">Transactions independent</div><div class="cs">Concurrent transactions don't interfere with each other. Each transaction sees a consistent snapshot.</div></div>
+      <div class="card" style="border-top:2px solid #E24B4A"><div class="cl">D — Durability</div><div class="cv2" style="color:#A32D2D">Committed = permanent</div><div class="cs">Once committed, changes are permanent — even if the system crashes immediately after.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"ACID stands for Atomicity, Consistency, Isolation, Durability. Atomicity means a transaction is all-or-nothing — a bank transfer either debits one account and credits another completely, or neither happens. Consistency means the database always moves from one valid state to another. Isolation means concurrent transactions don't see each other's uncommitted changes. Durability means committed data survives system crashes — it's written to disk permanently."</div>
+    <div class="tip"><div class="tipl">Classic example</div>Bank transfer: debit £100 from account A, credit £100 to account B. Atomicity ensures you can't debit without crediting — if the credit fails, the debit is rolled back automatically.</div>
+  </div>
+</div>
+
+<div class="cat">Views, stored procedures and performance</div>
+
+<div class="qa" id="q21">
+  <div class="qh" onclick="t('q21')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q22</span><span class="qt">What is a view? What is the difference between a view and a table?</span></div><span class="ar" id="aq21">▼</span></div>
+  <div class="qb" id="bq21">
+    <p class="ctx">A view is a <strong>saved SELECT query</strong> — it looks like a table but stores no data itself.</p>
+    <div class="code">CREATE VIEW active_customers AS
+SELECT id, name, email
+FROM customers
+WHERE status = 'active'
+
+-- Now use it like a table
+SELECT * FROM active_customers WHERE city = 'London'</div>
+    <div class="row"><span class="rk">View</span><span class="rv">Virtual table. Stores only the SQL query, not data. Data is always current — fetched fresh on each query.</span></div>
+    <div class="row"><span class="rk">Materialised view</span><span class="rv">Stores the actual query result as a physical snapshot. Must be refreshed. Faster to query, but data may be stale.</span></div>
+    <div class="row"><span class="rk">Table</span><span class="rv">Physically stores data. You own the data. INSERT/UPDATE/DELETE work directly on it.</span></div>
+    <div class="say"><div class="sl">Say this</div>"A view is a virtual table based on a saved SQL query — it stores the query definition, not the data. Every time you query a view, it runs the underlying SQL fresh. Views simplify complex queries, enforce security by exposing only certain columns, and create a consistent interface. A materialised view stores the actual result on disk for performance — but the data can be stale until refreshed."</div>
+  </div>
+</div>
+
+<div class="qa" id="q22">
+  <div class="qh" onclick="t('q22')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q23</span><span class="qt">What is a stored procedure vs a function?</span></div><span class="ar" id="aq22">▼</span></div>
+  <div class="qb" id="bq22">
+    <div class="g2">
+      <div class="card"><div class="cl">Stored procedure</div><div class="cv2">Executes logic</div><div class="cs">Can perform DML (INSERT/UPDATE/DELETE). Returns zero or many results. Called with EXEC/CALL. Can have side effects.</div></div>
+      <div class="card"><div class="cl">Function</div><div class="cv2">Returns a value</div><div class="cs">Must return a single value or table. Can be used inside SELECT. No side effects (in pure functions). Cannot do DML in most DBs.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Stored procedures are precompiled blocks of SQL logic stored on the database server — they can contain DML statements, conditionals, and loops, and are called with EXEC or CALL. Functions must return a value and can be embedded in SQL expressions — like SELECT my_function(col) FROM table. The key practical difference: functions can be used inside a query, stored procedures cannot."</div>
+  </div>
+</div>
+
+<div class="cat">Query optimisation</div>
+
+<div class="qa" id="q23">
+  <div class="qh" onclick="t('q23')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q24</span><span class="qt">How do you optimise a slow SQL query?</span></div><span class="ar" id="aq23">▼</span></div>
+  <div class="qb" id="bq23">
+    <div class="row"><span class="rk">1. EXPLAIN plan</span><span class="rv">Run EXPLAIN or EXPLAIN ANALYZE first. Shows which operations are slow — full table scans are the red flag.</span></div>
+    <div class="row"><span class="rk">2. Add indexes</span><span class="rv">Index columns in WHERE, JOIN, ORDER BY. Dramatically reduces scan time on large tables.</span></div>
+    <div class="row"><span class="rk">3. Avoid SELECT *</span><span class="rv">Only fetch columns you need. Reduces I/O and network overhead.</span></div>
+    <div class="row"><span class="rk">4. Filter early</span><span class="rv">Put the most restrictive WHERE conditions first. Reduce rows as early as possible in the pipeline.</span></div>
+    <div class="row"><span class="rk">5. Avoid functions in WHERE</span><span class="rv">WHERE YEAR(date_col) = 2024 prevents index use. Use WHERE date_col BETWEEN '2024-01-01' AND '2024-12-31' instead.</span></div>
+    <div class="row"><span class="rk">6. Replace correlated subqueries</span><span class="rv">Rewrite as JOINs or CTEs — correlated subqueries re-run for every row.</span></div>
+    <div class="row"><span class="rk">7. Use LIMIT</span><span class="rv">Don't return millions of rows when you only need a sample.</span></div>
+    <div class="say"><div class="sl">Say this</div>"My first step is always EXPLAIN ANALYZE to see the query execution plan and identify bottlenecks — full table scans on large tables are the main culprit. Then I check whether the right indexes exist on JOIN and WHERE columns. I also avoid wrapping indexed columns in functions, which breaks index usage. And I replace correlated subqueries with JOINs or CTEs since correlated subqueries re-execute for every row."</div>
+  </div>
+</div>
+
+<div class="cat">Common interview problems</div>
+
+<div class="qa" id="q24">
+  <div class="qh" onclick="t('q24')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q25</span><span class="qt">Find the second highest salary.</span></div><span class="ar" id="aq24">▼</span></div>
+  <div class="qb" id="bq24">
+    <div class="code">-- Method 1: DENSE_RANK (best approach)
+SELECT salary FROM (
+  SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+  FROM employees
+) ranked WHERE rnk = 2
+
+-- Method 2: Subquery
+SELECT MAX(salary) FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees)
+
+-- Method 3: OFFSET (simple but fragile)
+SELECT DISTINCT salary FROM employees
+ORDER BY salary DESC LIMIT 1 OFFSET 1</div>
+    <div class="say"><div class="sl">Say this</div>"I prefer the DENSE_RANK approach because it handles ties correctly and generalises to Nth highest salary just by changing the rank number. The subquery method works for second highest but gets messy for third or fourth. I'd avoid OFFSET in production as it can behave unexpectedly with ties."</div>
+  </div>
+</div>
+
+<div class="qa" id="q25">
+  <div class="qh" onclick="t('q25')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q26</span><span class="qt">Find duplicate rows in a table.</span></div><span class="ar" id="aq25">▼</span></div>
+  <div class="qb" id="bq25">
+    <div class="code">-- Find duplicates: rows where same email appears more than once
+SELECT email, COUNT(*) AS count
+FROM users
+GROUP BY email
+HAVING COUNT(*) > 1
+
+-- Delete duplicates, keep one (using ROW_NUMBER)
+WITH duplicates AS (
+  SELECT id, ROW_NUMBER() OVER (PARTITION BY email ORDER BY id) AS rn
+  FROM users
+)
+DELETE FROM users WHERE id IN (
+  SELECT id FROM duplicates WHERE rn > 1
+)</div>
+    <div class="say"><div class="sl">Say this</div>"To find duplicates I GROUP BY the columns that define uniqueness and use HAVING COUNT greater than 1. To remove duplicates while keeping one copy, I use ROW_NUMBER() OVER PARTITION BY the duplicate columns — rows with row number greater than 1 are the duplicates to delete."</div>
+  </div>
+</div>
+
+<div class="qa" id="q26">
+  <div class="qh" onclick="t('q26')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q27</span><span class="qt">Find employees who earn more than their manager.</span></div><span class="ar" id="aq26">▼</span></div>
+  <div class="qb" id="bq26">
+    <div class="code">-- Self join: join employees table to itself
+SELECT e.name AS employee, e.salary AS emp_salary,
+       m.name AS manager, m.salary AS mgr_salary
+FROM employees e
+JOIN employees m ON e.manager_id = m.id
+WHERE e.salary > m.salary</div>
+    <div class="say"><div class="sl">Say this</div>"This is a classic self join — joining the employees table to itself using aliases. One instance represents the employee, the other represents their manager linked by manager_id. Then I just filter where the employee's salary is greater than their manager's salary."</div>
+  </div>
+</div>
+
+<div class="qa" id="q27">
+  <div class="qh" onclick="t('q27')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q28</span><span class="qt">Running total / cumulative sum.</span></div><span class="ar" id="aq27">▼</span></div>
+  <div class="qb" id="bq27">
+    <div class="code">-- Running total of sales by date
+SELECT date, amount,
+  SUM(amount) OVER (ORDER BY date) AS running_total,
+  SUM(amount) OVER (PARTITION BY month ORDER BY date) AS monthly_running_total
+FROM sales</div>
+    <div class="say"><div class="sl">Say this</div>"A running total uses SUM as a window function with ORDER BY inside OVER(). Without PARTITION BY it's a cumulative sum across the whole dataset. Adding PARTITION BY month resets the running total for each month. This is much cleaner than a self join approach."</div>
+  </div>
+</div>
+
+<div class="qa" id="q28">
+  <div class="qh" onclick="t('q28')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q29</span><span class="qt">What is the difference between IN, EXISTS, and ANY?</span></div><span class="ar" id="aq28">▼</span></div>
+  <div class="qb" id="bq28">
+    <div class="row"><span class="rk">IN</span><span class="rv">Checks if a value matches any value in a list or subquery result. Evaluates subquery fully first. Good for small lists.</span></div>
+    <div class="row"><span class="rk">EXISTS</span><span class="rv">Checks if a subquery returns ANY rows. Stops as soon as one match is found. Faster than IN for large subqueries.</span></div>
+    <div class="row"><span class="rk">ANY / ALL</span><span class="rv">Compares a value to any (or all) values in a subquery. salary > ANY(subquery) means greater than at least one value.</span></div>
+    <div class="code">-- IN: matches from a list
+SELECT * FROM orders WHERE customer_id IN (1, 2, 3)
+
+-- EXISTS: faster for large subqueries
+SELECT * FROM customers c
+WHERE EXISTS (
+  SELECT 1 FROM orders o WHERE o.customer_id = c.id
+)</div>
+    <div class="say"><div class="sl">Say this</div>"IN evaluates the full subquery result and checks membership — it's simple but loads all results into memory. EXISTS stops as soon as it finds the first match, making it faster for large datasets. As a rule of thumb, use IN for small fixed lists, and EXISTS for correlated subqueries on large tables."</div>
+  </div>
+</div>
+
+<div class="qa" id="q29">
+  <div class="qh" onclick="t('q29')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q30</span><span class="qt">What is the difference between a clustered and non-clustered index?</span></div><span class="ar" id="aq29">▼</span></div>
+  <div class="qb" id="bq29">
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Clustered index</div><div class="cv2" style="color:#3C3489">Physical sort order</div><div class="cs">The table rows are physically stored in the index order. Only ONE per table. Very fast for range queries. Usually the primary key.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Non-clustered index</div><div class="cv2" style="color:#085041">Separate structure</div><div class="cs">A separate lookup structure pointing back to table rows. Many allowed per table. Slightly slower than clustered but still far faster than full scan.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"A clustered index physically reorders how the rows are stored on disk — the data IS the index. Because there's only one physical storage order, a table can only have one clustered index. A non-clustered index is a separate structure with pointers back to the actual rows — like a book's index pointing to page numbers. You can have many non-clustered indexes. Range queries are fastest with clustered indexes because the data is physically adjacent on disk."</div>
+  </div>
+</div>
+
+<div class="btns" style="margin-top:4px">
+  <button onclick="sendPrompt('Give me advanced SQL interview questions on query optimisation, execution plans and performance tuning')">Advanced SQL performance ↗</button>
+  <button onclick="sendPrompt('Give me SQL coding problems that are commonly asked in data science interviews with solutions')">SQL coding challenges ↗</button>
+  <button onclick="sendPrompt('Explain SQL transactions, COMMIT, ROLLBACK and isolation levels with examples')">Transactions deep dive ↗</button>
+</div>
+
+<script>
+function t(id){
+  const b=document.getElementById('b'+id),a=document.getElementById('a'+id);
+  const o=b.classList.contains('open');
+  b.classList.toggle('open',!o);a.classList.toggle('open',!o);
+}
+</script>

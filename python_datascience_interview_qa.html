@@ -1,0 +1,627 @@
+
+<h2 class="sr-only">Python for data science interview Q&A covering numpy, pandas, matplotlib, sklearn, data cleaning, and common coding patterns.</h2>
+<style>
+  *{box-sizing:border-box}
+  .ptitle{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 3px}
+  .psub{font-size:13px;color:var(--color-text-secondary);margin:0 0 1rem}
+  .cat{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-secondary);margin:1.4rem 0 .5rem;padding:0 2px;display:flex;align-items:center;gap:8px}
+  .cat::after{content:'';flex:1;height:0.5px;background:var(--color-border-tertiary)}
+  .qa{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:8px;overflow:hidden}
+  .qh{display:flex;justify-content:space-between;align-items:flex-start;padding:.8rem 1rem;cursor:pointer;background:var(--color-background-secondary);user-select:none;gap:10px}
+  .qh:hover{background:var(--color-background-tertiary)}
+  .ql{display:flex;align-items:flex-start;gap:9px;flex:1}
+  .qn{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:1px}
+  .qt{font-size:13.5px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+  .qb{padding:1rem;background:var(--color-background-primary);display:none}
+  .qb.open{display:block}
+  .ar{font-size:11px;color:var(--color-text-secondary);transition:transform .2s;flex-shrink:0;margin-top:3px}
+  .ar.open{transform:rotate(180deg)}
+  .ctx{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin:0 0 9px}
+  .ctx strong{font-weight:500;color:var(--color-text-primary)}
+  .say{border-left:3px solid #1D9E75;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E1F5EE;padding:.7rem 1rem;font-size:13px;color:#085041;line-height:1.7;margin-top:9px}
+  .sl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#0F6E56;margin-bottom:4px}
+  .trap{border-left:3px solid #EF9F27;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#FAEEDA;padding:.65rem 1rem;margin-top:9px;font-size:12.5px;color:#633806;line-height:1.6}
+  .tl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#854F0B;margin-bottom:3px}
+  .tip{border-left:3px solid #378ADD;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E6F1FB;padding:.65rem 1rem;margin-top:9px;font-size:12.5px;color:#0C447C;line-height:1.6}
+  .tipl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#185FA5;margin-bottom:3px}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+  .card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.65rem .85rem;border:0.5px solid var(--color-border-tertiary)}
+  .cl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+  .cv2{font-size:13px;font-weight:500}
+  .cs{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.5}
+  .row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .row:last-child{border-bottom:none}
+  .rk{font-size:12px;color:var(--color-text-secondary);width:150px;flex-shrink:0}
+  .rv{font-size:13px;color:var(--color-text-primary);line-height:1.5}
+  .code{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.6rem .9rem;font-family:var(--font-mono);font-size:12px;color:var(--color-text-primary);margin:6px 0;line-height:1.7;white-space:pre}
+  .btns{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .btns button{font-size:12px;padding:4px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer}
+  .btns button:hover{background:var(--color-background-secondary)}
+</style>
+
+<p class="ptitle">Python for data science — interview Q&A</p>
+<p class="psub">NumPy · Pandas · Matplotlib · Sklearn · Cleaning · Coding patterns. All on one page.</p>
+
+<div class="cat">Python basics for data science</div>
+
+<div class="qa" id="q0">
+  <div class="qh" onclick="t('q0')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q1</span><span class="qt">What Python libraries does every data scientist need to know?</span></div><span class="ar" id="aq0">▼</span></div>
+  <div class="qb open" id="bq0">
+    <div class="g3">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Data manipulation</div><div class="cv2" style="color:#3C3489">NumPy + Pandas</div><div class="cs">NumPy for arrays and maths. Pandas for tabular data — DataFrames. 80% of your daily work.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Visualisation</div><div class="cv2" style="color:#085041">Matplotlib + Seaborn</div><div class="cs">Matplotlib for full control. Seaborn for beautiful statistical plots with less code.</div></div>
+      <div class="card" style="border-top:2px solid #EF9F27"><div class="cl">Machine learning</div><div class="cv2" style="color:#633806">Sklearn + XGBoost</div><div class="cs">Scikit-learn for everything — preprocessing, models, evaluation. XGBoost for best performance on tabular data.</div></div>
+    </div>
+    <div class="row" style="margin-top:8px"><span class="rk">scipy</span><span class="rv">Statistical tests — t-test, chi-square, ANOVA, distributions.</span></div>
+    <div class="row"><span class="rk">statsmodels</span><span class="rv">Detailed statistical modelling — linear regression with p-values, confidence intervals, OLS.</span></div>
+    <div class="row"><span class="rk">plotly</span><span class="rv">Interactive charts for dashboards and presentations.</span></div>
+    <div class="say"><div class="sl">Say this</div>"The core stack is NumPy and Pandas for data manipulation, Matplotlib and Seaborn for visualisation, and Scikit-learn for ML. NumPy gives you fast array operations. Pandas gives you DataFrames for tabular data. Scikit-learn has a consistent API across all algorithms — fit, predict, transform — which makes switching models easy. XGBoost is my go-to for tabular ML problems."</div>
+  </div>
+</div>
+
+<div class="qa" id="q1">
+  <div class="qh" onclick="t('q1')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q2</span><span class="qt">What is the difference between a list and a NumPy array?</span></div><span class="ar" id="aq1">▼</span></div>
+  <div class="qb" id="bq1">
+    <div class="g2">
+      <div class="card"><div class="cl">Python list</div><div class="cv2">Flexible, slow</div><div class="cs">Can hold mixed types. Dynamic size. Slow for maths — loops element by element.</div></div>
+      <div class="card"><div class="cl">NumPy array</div><div class="cv2">Typed, fast</div><div class="cs">Fixed type (homogeneous). Fixed size. Vectorised operations — 10–100x faster. Supports broadcasting.</div></div>
+    </div>
+    <div class="code"># List — slow, iterates element by element
+lst = [1, 2, 3, 4]
+result = [x * 2 for x in lst]     # need a loop
+
+# NumPy array — fast, vectorised
+arr = np.array([1, 2, 3, 4])
+result = arr * 2                   # no loop needed — broadcasts
+
+# Speed difference example
+import numpy as np
+arr = np.arange(1_000_000)         # 100x faster than list equivalent</div>
+    <div class="say"><div class="sl">Say this</div>"Python lists can hold any mix of types and are flexible, but they're slow for numerical computation because operations iterate element by element. NumPy arrays are typed — all elements are the same dtype — and stored in contiguous memory, which allows vectorised operations that are 10 to 100 times faster. Broadcasting lets you apply operations across arrays of different shapes without loops. In data science you almost always use NumPy arrays over lists for any numerical work."</div>
+  </div>
+</div>
+
+<div class="qa" id="q2">
+  <div class="qh" onclick="t('q2')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q3</span><span class="qt">What is broadcasting in NumPy?</span></div><span class="ar" id="aq2">▼</span></div>
+  <div class="qb" id="bq2">
+    <p class="ctx">Broadcasting lets NumPy perform operations on arrays of <strong>different shapes</strong> without copying data.</p>
+    <div class="code"># Without broadcasting — would need to repeat
+arr = np.array([[1,2,3],[4,5,6]])   # shape (2,3)
+scalar = 10
+result = arr + scalar               # adds 10 to every element — shape (2,3)
+
+# Row-wise operation
+row = np.array([1, 2, 3])           # shape (3,)
+result = arr + row                  # adds [1,2,3] to EACH row — broadcasts
+# [[2,4,6], [5,7,9]]</div>
+    <div class="say"><div class="sl">Say this</div>"Broadcasting is NumPy's way of performing operations on arrays with different shapes by implicitly expanding the smaller array to match the larger one — without actually copying memory. For example, adding a shape (3,) array to a shape (2,3) array broadcasts the row across both rows. It makes code clean and fast — no explicit loops or manual repetition needed."</div>
+  </div>
+</div>
+
+<div class="cat">Pandas</div>
+
+<div class="qa" id="q3">
+  <div class="qh" onclick="t('q3')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q4</span><span class="qt">What are the most important Pandas functions every DS must know?</span></div><span class="ar" id="aq3">▼</span></div>
+  <div class="qb" id="bq3">
+    <div class="code"># First look at data
+df.shape           # (rows, cols)
+df.dtypes          # data types per column
+df.info()          # shape + dtypes + non-null counts
+df.describe()      # stats: mean, std, min, max, percentiles
+df.head(10)        # first 10 rows
+df.nunique()       # unique values per column
+df.value_counts()  # frequency count of a column</div>
+    <div class="code"># Selection
+df['col']                        # single column → Series
+df[['col1','col2']]              # multiple columns → DataFrame
+df.loc[0:5, 'col']               # label-based: rows 0-5, column 'col'
+df.iloc[0:5, 0:3]                # position-based: rows 0-5, cols 0-3
+df[df['age'] > 30]               # filter rows by condition
+df[(df['age']>30) & (df['city']=='London')]  # multiple conditions</div>
+    <div class="code"># Modifying
+df['new_col'] = df['a'] + df['b']          # add column
+df.drop('col', axis=1, inplace=True)       # drop column
+df.rename(columns={'old':'new'}, inplace=True)
+df.sort_values('salary', ascending=False)
+df.groupby('department')['salary'].mean()  # group and aggregate</div>
+    <div class="say"><div class="sl">Say this</div>"My EDA always starts with shape, dtypes, info, and describe to understand the data. For selection I use loc for label-based access and iloc for position-based. Filtering uses boolean conditions directly on the DataFrame. Groupby is one of the most used operations — groupby + aggregate gives a summary by category. These are the operations you use daily and should be second nature."</div>
+    <div class="trap"><div class="tl">loc vs iloc</div>df.loc[0:5] includes row 5 (label-based, inclusive). df.iloc[0:5] excludes row 5 (position-based, exclusive like Python slicing). This catches many people.</div>
+  </div>
+</div>
+
+<div class="qa" id="q4">
+  <div class="qh" onclick="t('q4')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q5</span><span class="qt">How do you handle missing values in Pandas?</span></div><span class="ar" id="aq4">▼</span></div>
+  <div class="qb" id="bq4">
+    <div class="code"># Detect missing values
+df.isnull().sum()              # count NaN per column
+df.isnull().sum() / len(df)    # % missing per column
+df.isnull().any(axis=1)        # rows with any missing value</div>
+    <div class="code"># Drop missing
+df.dropna()                    # drop rows with ANY NaN
+df.dropna(subset=['salary'])   # drop rows where salary is NaN
+df.dropna(thresh=5)            # keep rows with at least 5 non-NaN</div>
+    <div class="code"># Fill missing
+df['age'].fillna(df['age'].mean())         # fill with mean
+df['city'].fillna(df['city'].mode()[0])    # fill with mode (categorical)
+df['salary'].fillna(method='ffill')        # forward fill (time series)
+df.fillna(0)                               # fill all NaN with 0</div>
+    <div class="code"># Best practice: sklearn imputer (fits on train, transforms test)
+from sklearn.impute import SimpleImputer
+imp = SimpleImputer(strategy='mean')
+X_train = imp.fit_transform(X_train)
+X_test  = imp.transform(X_test)   # NOT fit_transform — avoids leakage</div>
+    <div class="say"><div class="sl">Say this</div>"First I check the extent of missing data with isnull().sum() — the strategy depends on how much is missing and why. Small amount with no pattern — impute with mean for numerical, mode for categorical. Large amount (over 40–50%) — consider dropping the column. Time series — forward fill. In production I always use sklearn's SimpleImputer which I fit on training data only and then transform both train and test separately — to avoid data leakage."</div>
+  </div>
+</div>
+
+<div class="qa" id="q5">
+  <div class="qh" onclick="t('q5')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q6</span><span class="qt">What is groupby? Explain with examples.</span></div><span class="ar" id="aq5">▼</span></div>
+  <div class="qb" id="bq5">
+    <div class="code"># Basic groupby — split → apply → combine
+df.groupby('department')['salary'].mean()
+df.groupby('department')['salary'].agg(['mean','median','count','std'])
+
+# Multiple groupby keys
+df.groupby(['department','gender'])['salary'].mean()
+
+# Custom aggregation with agg
+df.groupby('department').agg(
+    avg_salary=('salary','mean'),
+    total_employees=('id','count'),
+    max_salary=('salary','max')
+)
+
+# Apply a custom function
+df.groupby('dept')['salary'].apply(lambda x: x.max() - x.min())</div>
+    <div class="say"><div class="sl">Say this</div>"Groupby follows a split-apply-combine pattern — split the DataFrame into groups by a key, apply an aggregation or function to each group, then combine the results. It's one of the most-used Pandas operations. The agg method lets you apply multiple named aggregations at once — much cleaner than chaining. For custom logic I pass a lambda to apply. GroupBy + transform is useful when you want to add group-level stats back to the original DataFrame without collapsing rows."</div>
+  </div>
+</div>
+
+<div class="qa" id="q6">
+  <div class="qh" onclick="t('q6')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q7</span><span class="qt">What is the difference between apply, map, and applymap?</span></div><span class="ar" id="aq6">▼</span></div>
+  <div class="qb" id="bq6">
+    <div class="row"><span class="rk">map()</span><span class="rv">Series only. Element-wise operation or substitution using a dict or function. Fast. e.g. df['gender'].map({'M':0,'F':1})</span></div>
+    <div class="row"><span class="rk">apply()</span><span class="rv">Series or DataFrame. Applies a function along axis (rows or columns). Flexible — handles complex custom logic.</span></div>
+    <div class="row"><span class="rk">applymap()</span><span class="rv">DataFrame only. Element-wise on every single cell. Renamed to map() in Pandas 2.1+.</span></div>
+    <div class="code"># map — element-wise on a Series
+df['gender'] = df['gender'].map({'M': 0, 'F': 1})
+
+# apply — row/column-wise on DataFrame
+df['full_name'] = df.apply(lambda row: row['first']+' '+row['last'], axis=1)
+
+# apply on a Series for custom transform
+df['salary'] = df['salary'].apply(lambda x: x * 1.1 if x < 50000 else x)</div>
+    <div class="say"><div class="sl">Say this</div>"map works on a single Series element by element — great for encoding categories. apply works on a Series or DataFrame and can go row-wise or column-wise — use it for custom logic that can't be done with vectorised operations. applymap works on every individual cell of a DataFrame. In practice I prefer vectorised operations over apply wherever possible since apply loops under the hood and is slow on large DataFrames."</div>
+  </div>
+</div>
+
+<div class="qa" id="q7">
+  <div class="qh" onclick="t('q7')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q8</span><span class="qt">How do you merge and join DataFrames in Pandas?</span></div><span class="ar" id="aq7">▼</span></div>
+  <div class="qb" id="bq7">
+    <div class="code"># merge — like SQL JOIN
+pd.merge(df1, df2, on='id', how='inner')    # inner join
+pd.merge(df1, df2, on='id', how='left')     # left join
+pd.merge(df1, df2, left_on='id', right_on='customer_id', how='left')
+
+# join — joins on index
+df1.join(df2, how='left')
+
+# concat — stack DataFrames
+pd.concat([df1, df2], axis=0)   # stack rows (same columns)
+pd.concat([df1, df2], axis=1)   # stack columns (same rows)</div>
+    <div class="say"><div class="sl">Say this</div>"Pandas merge is the equivalent of SQL JOIN — it combines DataFrames on a shared key column. I use merge most of the time since it's explicit about which columns to join on and supports all join types. join is similar but joins on the index. concat is for stacking — axis=0 stacks rows vertically like UNION ALL, axis=1 stacks columns side by side. After any merge I always check the shape to confirm I got the expected number of rows — unexpected row counts signal duplicate keys or wrong join type."</div>
+    <div class="trap"><div class="tl">Row explosion trap</div>If the join key has duplicates in both tables, merge creates a cartesian product of those rows. Always check df.shape before and after merge to catch unexpected row explosions.</div>
+  </div>
+</div>
+
+<div class="cat">Data cleaning</div>
+
+<div class="qa" id="q8">
+  <div class="qh" onclick="t('q8')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q9</span><span class="qt">How do you detect and remove duplicates?</span></div><span class="ar" id="aq8">▼</span></div>
+  <div class="qb" id="bq8">
+    <div class="code"># Detect
+df.duplicated().sum()                         # count duplicate rows
+df.duplicated(subset=['email']).sum()         # duplicates on specific col
+df[df.duplicated(subset=['email'], keep=False)]  # show ALL duplicate rows
+
+# Remove
+df.drop_duplicates(inplace=True)              # remove all full duplicates
+df.drop_duplicates(subset=['email'], keep='first')   # keep first occurrence
+df.drop_duplicates(subset=['email'], keep='last')    # keep most recent</div>
+    <div class="say"><div class="sl">Say this</div>"I check for duplicates early in EDA using duplicated().sum(). The key decision is what defines a duplicate — full row duplicates vs duplicates on a subset of columns like email or user_id. keep='first' retains the first occurrence and drops the rest. In event-log data I often want keep='last' to keep the most recent record per user. After dropping I always verify the shape reduced as expected."</div>
+  </div>
+</div>
+
+<div class="qa" id="q9">
+  <div class="qh" onclick="t('q9')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q10</span><span class="qt">How do you detect and handle outliers in Python?</span></div><span class="ar" id="aq9">▼</span></div>
+  <div class="qb" id="bq9">
+    <div class="code"># IQR method
+Q1 = df['salary'].quantile(0.25)
+Q3 = df['salary'].quantile(0.75)
+IQR = Q3 - Q1
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+
+outliers = df[(df['salary'] < lower) | (df['salary'] > upper)]
+df_clean = df[(df['salary'] >= lower) & (df['salary'] <= upper)]
+
+# Z-score method
+from scipy import stats
+z_scores = np.abs(stats.zscore(df['salary']))
+df_clean = df[z_scores < 3]
+
+# Winsorize (cap instead of remove)
+df['salary'] = df['salary'].clip(lower=lower, upper=upper)</div>
+    <div class="say"><div class="sl">Say this</div>"I detect outliers using the IQR method — values outside Q1 minus 1.5 times IQR or Q3 plus 1.5 times IQR. For normally distributed data I use Z-scores with threshold 3. But before removing I always investigate — is it a data entry error or a genuine extreme value? If it's genuine I use clip to cap it at the fence value rather than deleting the row, preserving the observation while reducing its distortion."</div>
+  </div>
+</div>
+
+<div class="qa" id="q10">
+  <div class="qh" onclick="t('q10')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q11</span><span class="qt">How do you encode categorical variables?</span></div><span class="ar" id="aq10">▼</span></div>
+  <div class="qb" id="bq10">
+    <div class="code"># Label encoding — ordinal categories
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['grade'] = le.fit_transform(df['grade'])   # A→0, B→1, C→2
+
+# Ordinal encoding (preserves meaningful order)
+from sklearn.preprocessing import OrdinalEncoder
+oe = OrdinalEncoder(categories=[['Low','Medium','High']])
+df[['level']] = oe.fit_transform(df[['level']])
+
+# One-hot encoding — nominal categories
+pd.get_dummies(df, columns=['city'], drop_first=True)
+# OR sklearn
+from sklearn.preprocessing import OneHotEncoder
+ohe = OneHotEncoder(sparse=False, drop='first')
+
+# Target encoding — high cardinality columns
+# Replace category with mean of target for that category
+df['city_encoded'] = df.groupby('city')['salary'].transform('mean')</div>
+    <div class="say"><div class="sl">Say this</div>"Encoding choice depends on the type of categorical variable. For ordinal data with a meaningful order — like Low, Medium, High — I use OrdinalEncoder to preserve that order. For nominal data with no order I use one-hot encoding — drop_first=True removes one column to avoid multicollinearity. For high-cardinality columns like city with hundreds of values, one-hot creates too many columns so I use target encoding — replacing each category with the mean of the target for that category."</div>
+    <div class="trap"><div class="tl">Target encoding leakage</div>Always compute target encoding means on training data only. If you compute on the full dataset the test set's target values leak into the encoding. Use sklearn's TargetEncoder in cross-validation to handle this safely.</div>
+  </div>
+</div>
+
+<div class="qa" id="q11">
+  <div class="qh" onclick="t('q11')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q12</span><span class="qt">How do you scale features — normalisation vs standardisation in Python?</span></div><span class="ar" id="aq11">▼</span></div>
+  <div class="qb" id="bq11">
+    <div class="code"># StandardScaler — zero mean, unit variance (standardisation)
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)   # fit + transform
+X_test_scaled  = scaler.transform(X_test)         # transform only — no fit!
+
+# MinMaxScaler — scales to [0,1] (normalisation)
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled  = scaler.transform(X_test)
+
+# RobustScaler — uses median and IQR, robust to outliers
+from sklearn.preprocessing import RobustScaler
+scaler = RobustScaler()</div>
+    <div class="say"><div class="sl">Say this</div>"StandardScaler is my default — it standardises features to mean zero and standard deviation one. MinMaxScaler normalises to 0–1 but is sensitive to outliers. RobustScaler uses median and IQR instead of mean and std — so it's much less affected by extreme values. The most critical rule: always fit the scaler on training data only, then call transform on both train and test. Calling fit_transform on test data is a data leakage mistake."</div>
+  </div>
+</div>
+
+<div class="cat">EDA with Python</div>
+
+<div class="qa" id="q12">
+  <div class="qh" onclick="t('q12')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q13</span><span class="qt">What is your EDA process in Python? Walk me through it.</span></div><span class="ar" id="aq12">▼</span></div>
+  <div class="qb" id="bq12">
+    <div class="code"># Step 1 — understand the data
+df.shape
+df.dtypes
+df.info()
+df.describe()
+df.head()
+
+# Step 2 — missing values
+df.isnull().sum()
+df.isnull().mean() * 100   # % missing
+
+# Step 3 — univariate: distributions
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+for col in df.select_dtypes('number').columns:
+    fig, (ax1, ax2) = plt.subplots(1, 2)
+    df[col].hist(ax=ax1)
+    df.boxplot(column=col, ax=ax2)
+
+# Step 4 — categorical frequency
+for col in df.select_dtypes('object').columns:
+    print(df[col].value_counts())
+
+# Step 5 — bivariate: correlation
+df.corr()
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
+
+# Step 6 — target relationship
+sns.boxplot(x='churn', y='age', data=df)     # cat target vs num feature
+sns.scatterplot(x='income', y='spend', data=df)</div>
+    <div class="say"><div class="sl">Say this</div>"My EDA follows a consistent six-step process. First shape, dtypes, info, describe to understand size and types. Second, check missing values. Third, univariate distributions for numerical columns — histogram and box plot. Fourth, value counts for categorical columns. Fifth, a correlation heatmap for all numerical features. Sixth, bivariate plots between each feature and the target. I document findings as I go — what needs cleaning, what needs encoding, what needs transformation."</div>
+  </div>
+</div>
+
+<div class="qa" id="q13">
+  <div class="qh" onclick="t('q13')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q14</span><span class="qt">Matplotlib vs Seaborn — when to use each?</span></div><span class="ar" id="aq13">▼</span></div>
+  <div class="qb" id="bq13">
+    <div class="g2">
+      <div class="card"><div class="cl">Matplotlib</div><div class="cv2">Full control</div><div class="cs">Low-level. Verbose but precise. Best for customised, publication-ready charts or when you need exact control over every element.</div></div>
+      <div class="card"><div class="cl">Seaborn</div><div class="cv2">Statistical plots fast</div><div class="cs">High-level wrapper on matplotlib. Less code, better defaults. Built for statistical visualisation — heatmaps, violin, pair plots.</div></div>
+    </div>
+    <div class="code"># Seaborn — cleaner for EDA
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm')  # correlation matrix
+sns.pairplot(df, hue='target')                        # all pairwise scatter
+sns.boxplot(x='category', y='value', data=df)        # group comparison
+sns.histplot(df['age'], kde=True)                     # distribution + curve
+sns.countplot(x='city', data=df)                     # categorical counts</div>
+    <div class="say"><div class="sl">Say this</div>"I use Seaborn for EDA because it produces beautiful statistical plots with minimal code and works directly with DataFrames. A heatmap, pairplot, or violin plot in Seaborn is one line. When I need precise customisation — exact font sizes, specific subplot layouts, saving at a specific DPI — I drop down to Matplotlib. In practice I often use both: Seaborn for the main plot, Matplotlib for the final formatting."</div>
+  </div>
+</div>
+
+<div class="cat">Sklearn pipeline and ML workflow</div>
+
+<div class="qa" id="q14">
+  <div class="qh" onclick="t('q14')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q15</span><span class="qt">What is a sklearn Pipeline and why should you use it?</span></div><span class="ar" id="aq14">▼</span></div>
+  <div class="qb" id="bq14">
+    <div class="code">from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.ensemble import RandomForestClassifier
+
+# Build pipeline: impute → scale → model
+pipe = Pipeline([
+    ('imputer', SimpleImputer(strategy='mean')),
+    ('scaler',  StandardScaler()),
+    ('model',   RandomForestClassifier(n_estimators=100))
+])
+
+# Fit and predict — preprocessing applied automatically
+pipe.fit(X_train, y_train)
+pipe.predict(X_test)
+
+# Works perfectly with cross-validation — no leakage
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(pipe, X, y, cv=5)   # scaler fitted per fold</div>
+    <div class="say"><div class="sl">Say this</div>"A sklearn Pipeline chains preprocessing steps and a model into a single object. The huge advantage is it prevents data leakage during cross-validation — without a pipeline, if you scale the full dataset before cross-validation, test fold statistics leak into training. With a pipeline, sklearn refits the scaler on each training fold and transforms the validation fold separately. It also makes deployment clean — you deploy one pipeline object that handles everything from raw data to prediction."</div>
+  </div>
+</div>
+
+<div class="qa" id="q15">
+  <div class="qh" onclick="t('q15')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q16</span><span class="qt">How do you train and evaluate a model in sklearn?</span></div><span class="ar" id="aq15">▼</span></div>
+  <div class="qb" id="bq15">
+    <div class="code">from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import (classification_report, confusion_matrix,
+                              accuracy_score, roc_auc_score)
+
+# Split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y)
+
+# Train
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Predict
+y_pred  = model.predict(X_test)           # class labels
+y_proba = model.predict_proba(X_test)[:,1]  # probability of class 1
+
+# Evaluate
+print(classification_report(y_test, y_pred))  # precision, recall, F1
+print(confusion_matrix(y_test, y_pred))
+print('AUC:', roc_auc_score(y_test, y_proba))</div>
+    <div class="say"><div class="sl">Say this</div>"I always use stratify=y in train_test_split to maintain class distribution in both splits — especially important for imbalanced data. classification_report gives precision, recall, and F1 for all classes in one view. I always get both predict and predict_proba — labels for classification_report, probabilities for AUC-ROC. random_state=42 ensures reproducibility."</div>
+  </div>
+</div>
+
+<div class="qa" id="q16">
+  <div class="qh" onclick="t('q16')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q17</span><span class="qt">How do you tune hyperparameters — GridSearchCV vs RandomizedSearchCV?</span></div><span class="ar" id="aq16">▼</span></div>
+  <div class="qb" id="bq16">
+    <div class="code">from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from sklearn.ensemble import RandomForestClassifier
+
+# GridSearchCV — tries every combination
+param_grid = {
+    'n_estimators': [100, 200, 300],
+    'max_depth': [5, 10, None],
+    'min_samples_split': [2, 5]
+}
+grid = GridSearchCV(RandomForestClassifier(), param_grid,
+                    cv=5, scoring='f1', n_jobs=-1)
+grid.fit(X_train, y_train)
+print(grid.best_params_)
+print(grid.best_score_)
+
+# RandomizedSearchCV — samples n random combinations
+from scipy.stats import randint
+param_dist = {
+    'n_estimators': randint(100, 500),
+    'max_depth': [5, 10, 20, None]
+}
+rand = RandomizedSearchCV(RandomForestClassifier(), param_dist,
+                          n_iter=20, cv=5, scoring='f1', n_jobs=-1)
+rand.fit(X_train, y_train)</div>
+    <div class="say"><div class="sl">Say this</div>"GridSearchCV exhaustively tries every combination of hyperparameters — reliable but exponentially slow as parameters increase. RandomizedSearchCV samples n random combinations — much faster and often finds near-optimal parameters in a fraction of the time. I start with RandomizedSearchCV with a broad search space, then narrow down with GridSearchCV around the best region. Both use cross-validation internally, so n_jobs=-1 parallelises across all CPU cores."</div>
+  </div>
+</div>
+
+<div class="cat">Common Python coding interview questions</div>
+
+<div class="qa" id="q17">
+  <div class="qh" onclick="t('q17')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q18</span><span class="qt">How do you find top N values per group in Pandas?</span></div><span class="ar" id="aq17">▼</span></div>
+  <div class="qb" id="bq17">
+    <div class="code"># Top 3 earners per department
+df.groupby('department')['salary'].nlargest(3)
+
+# OR using rank
+df['rank'] = df.groupby('department')['salary']\
+               .rank(method='dense', ascending=False)
+df[df['rank'] <= 3]
+
+# Most common method for interview — sort + groupby head
+df.sort_values('salary', ascending=False)\
+  .groupby('department').head(3)</div>
+    <div class="say"><div class="sl">Say this</div>"To get top N per group I sort by the value column descending, then use groupby + head(N) — it returns the first N rows of each group after sorting. For more control I use rank() within each group which also handles ties. nlargest() is cleanest for simple cases. In SQL this is the classic ROW_NUMBER() OVER PARTITION BY pattern."</div>
+  </div>
+</div>
+
+<div class="qa" id="q18">
+  <div class="qh" onclick="t('q18')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q19</span><span class="qt">How do you compute a rolling average / moving window in Pandas?</span></div><span class="ar" id="aq18">▼</span></div>
+  <div class="qb" id="bq18">
+    <div class="code"># Rolling mean — 7-day moving average
+df['sales_7day_avg'] = df['sales'].rolling(window=7).mean()
+
+# Rolling with min_periods (handles start of series)
+df['sales_7day_avg'] = df['sales'].rolling(window=7, min_periods=1).mean()
+
+# Expanding window — cumulative mean
+df['cumulative_avg'] = df['sales'].expanding().mean()
+
+# Grouped rolling — rolling per group
+df['dept_7day'] = df.groupby('department')['sales']\
+                    .transform(lambda x: x.rolling(7).mean())</div>
+    <div class="say"><div class="sl">Say this</div>"Rolling functions in Pandas apply a function over a sliding window of rows. rolling(7).mean() gives a 7-period moving average — the first 6 values are NaN by default since there aren't enough preceding rows. Setting min_periods=1 starts computing from the first row using however many values are available. For time series analysis rolling averages are essential for smoothing noise and identifying trends."</div>
+  </div>
+</div>
+
+<div class="qa" id="q19">
+  <div class="qh" onclick="t('q19')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q20</span><span class="qt">How do you pivot and melt DataFrames?</span></div><span class="ar" id="aq19">▼</span></div>
+  <div class="qb" id="bq19">
+    <div class="code"># pivot_table — wide format summary (like Excel pivot)
+pd.pivot_table(df,
+    values='sales',
+    index='region',
+    columns='product',
+    aggfunc='sum',
+    fill_value=0)
+
+# melt — wide to long format (opposite of pivot)
+pd.melt(df,
+    id_vars=['region'],          # columns to keep as-is
+    value_vars=['q1','q2','q3'], # columns to melt into rows
+    var_name='quarter',
+    value_name='sales')</div>
+    <div class="say"><div class="sl">Say this</div>"pivot_table converts long format data to wide format — like an Excel pivot — grouping by an index and spreading another column as headers. melt does the reverse, converting wide format to long — turning multiple column headers into rows. Long format is what most ML models and visualisation libraries expect. Wide format is easier for humans to read. Reshaping between the two is a very common data wrangling task."</div>
+  </div>
+</div>
+
+<div class="qa" id="q20">
+  <div class="qh" onclick="t('q20')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q21</span><span class="qt">How do you work with datetime data in Pandas?</span></div><span class="ar" id="aq20">▼</span></div>
+  <div class="qb" id="bq20">
+    <div class="code"># Parse to datetime
+df['date'] = pd.to_datetime(df['date'])
+
+# Extract components
+df['year']       = df['date'].dt.year
+df['month']      = df['date'].dt.month
+df['day']        = df['date'].dt.day
+df['day_of_week']= df['date'].dt.dayofweek  # 0=Monday
+df['is_weekend'] = df['date'].dt.dayofweek >= 5
+df['hour']       = df['date'].dt.hour
+df['quarter']    = df['date'].dt.quarter
+
+# Time differences
+df['days_since'] = (pd.Timestamp.now() - df['date']).dt.days
+
+# Resample — aggregate by time period
+df.set_index('date').resample('M')['sales'].sum()  # monthly total
+df.set_index('date').resample('W')['sales'].mean() # weekly average</div>
+    <div class="say"><div class="sl">Say this</div>"The first step with any date column is pd.to_datetime to convert strings to proper datetime. Then I extract the most predictive time components — year, month, day_of_week, is_weekend, hour — these are typically far more useful as features than the raw timestamp. Resample is essential for time series — it lets you aggregate data to any time period in one line. dt.dayofweek returns 0 for Monday through 6 for Sunday."</div>
+  </div>
+</div>
+
+<div class="qa" id="q21">
+  <div class="qh" onclick="t('q21')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q22</span><span class="qt">How do you write efficient Python / Pandas code? Common performance tips.</span></div><span class="ar" id="aq21">▼</span></div>
+  <div class="qb" id="bq21">
+    <div class="row"><span class="rk">Vectorise first</span><span class="rv">Always prefer vectorised Pandas/NumPy operations over Python loops. 10–100x faster.</span></div>
+    <div class="row"><span class="rk">Avoid apply loops</span><span class="rv">df.apply is a Python loop under the hood. Replace with vectorised operations or numpy where possible.</span></div>
+    <div class="row"><span class="rk">Use correct dtypes</span><span class="rv">Store categories as category dtype not object. Use int32 not int64 where possible. Reduces memory by 50–90%.</span></div>
+    <div class="row"><span class="rk">Boolean indexing</span><span class="rv">df[mask] is faster than df.loc[mask] in most cases for simple filters.</span></div>
+    <div class="row"><span class="rk">Read in chunks</span><span class="rv">pd.read_csv(..., chunksize=10000) for files larger than memory.</span></div>
+    <div class="code"># Bad — Python loop
+for i, row in df.iterrows():
+    df.loc[i,'tax'] = row['salary'] * 0.2
+
+# Good — vectorised
+df['tax'] = df['salary'] * 0.2
+
+# Save memory with category dtype
+df['city'] = df['city'].astype('category')  # can save 80% memory</div>
+    <div class="say"><div class="sl">Say this</div>"The biggest performance win in Pandas is avoiding loops — iterrows is extremely slow on large DataFrames. Replace any loop with a vectorised operation — it's both faster and more readable. For memory I convert high-cardinality string columns to category dtype which can reduce memory usage by 80–90%. For very large files that don't fit in memory I read in chunks with chunksize and process each chunk separately."</div>
+  </div>
+</div>
+
+<div class="qa" id="q22">
+  <div class="qh" onclick="t('q22')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q23</span><span class="qt">How do you build a full ML pipeline from raw data to prediction?</span></div><span class="ar" id="aq22">▼</span></div>
+  <div class="qb" id="bq22">
+    <div class="code">import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+
+# 1. Load and split FIRST
+df = pd.read_csv('data.csv')
+X = df.drop('target', axis=1)
+y = df['target']
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42)
+
+# 2. Define column groups
+num_cols = X.select_dtypes('number').columns.tolist()
+cat_cols = X.select_dtypes('object').columns.tolist()
+
+# 3. Build preprocessor
+num_pipe = Pipeline([
+    ('imputer', SimpleImputer(strategy='mean')),
+    ('scaler', StandardScaler())
+])
+cat_pipe = Pipeline([
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('encoder', OneHotEncoder(handle_unknown='ignore', drop='first'))
+])
+preprocessor = ColumnTransformer([
+    ('num', num_pipe, num_cols),
+    ('cat', cat_pipe, cat_cols)
+])
+
+# 4. Full pipeline
+full_pipe = Pipeline([
+    ('preprocessor', preprocessor),
+    ('model', RandomForestClassifier(n_estimators=100, random_state=42))
+])
+
+# 5. Cross-validate
+cv_scores = cross_val_score(full_pipe, X_train, y_train, cv=5, scoring='f1')
+print(f'CV F1: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}')
+
+# 6. Final evaluation on test set
+full_pipe.fit(X_train, y_train)
+y_pred = full_pipe.predict(X_test)
+print(classification_report(y_test, y_pred))</div>
+    <div class="say"><div class="sl">Say this</div>"This is the production-ready ML workflow. I always split before any preprocessing to avoid leakage. I use ColumnTransformer to apply different pipelines to numerical and categorical columns simultaneously. The full pipeline wraps preprocessing and the model — so cross-validation refits preprocessing on each fold correctly. The test set is only touched once at the very end for the final evaluation number."</div>
+  </div>
+</div>
+
+<div class="btns" style="margin-top:4px">
+  <button onclick="sendPrompt('Give me Python interview questions specifically about list comprehensions, generators, decorators and OOP concepts for data science')">Python core concepts ↗</button>
+  <button onclick="sendPrompt('Give me 10 common pandas coding challenges asked in data science interviews with solutions')">Pandas coding challenges ↗</button>
+  <button onclick="sendPrompt('How do you work with large datasets in Python that dont fit in memory — Dask, chunking, and memory optimization')">Big data in Python ↗</button>
+</div>
+
+<script>
+function t(id){
+  const b=document.getElementById('b'+id),a=document.getElementById('a'+id);
+  const o=b.classList.contains('open');
+  b.classList.toggle('open',!o);a.classList.toggle('open',!o);
+}
+</script>
