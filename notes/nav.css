@@ -1,0 +1,72 @@
+/* ===== Shared sidebar navigation for all notes pages ===== */
+
+#site-nav{
+  position:fixed;
+  top:14px;
+  left:14px;
+  width:172px;
+  max-height:calc(100vh - 28px);
+  overflow-y:auto;
+  background:var(--color-background-secondary);
+  border:0.5px solid var(--color-border-tertiary);
+  border-radius:var(--border-radius-lg, 10px);
+  padding:10px;
+  z-index:998;
+  box-shadow:0 2px 8px rgba(0,0,0,.10);
+  font-size:12px;
+}
+#site-nav .nav-title{
+  font-size:10px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--color-text-secondary);
+  margin:2px 6px 8px;
+}
+#site-nav a{
+  display:block;
+  padding:6px 8px;
+  border-radius:6px;
+  color:var(--color-text-primary);
+  text-decoration:none;
+  line-height:1.35;
+  margin-bottom:2px;
+}
+#site-nav a:hover{
+  background:var(--color-background-tertiary);
+}
+#site-nav a.active{
+  background:var(--color-background-tertiary);
+  font-weight:600;
+  box-shadow:inset 2px 0 0 #378ADD;
+}
+
+/* Hamburger toggle, only shown on narrow screens */
+#nav-toggle{
+  display:none;
+  position:fixed;
+  top:14px;
+  left:14px;
+  z-index:999;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:0.5px solid var(--color-border-tertiary);
+  background:var(--color-background-secondary);
+  color:var(--color-text-primary);
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+/* On narrow screens, hide sidebar by default; show as overlay via toggle */
+@media (max-width: 1000px){
+  #site-nav{
+    display:none;
+    top:56px;
+    box-shadow:0 4px 16px rgba(0,0,0,.18);
+  }
+  #site-nav.open{ display:block; }
+  #nav-toggle{ display:block; }
+  body{ padding-top:64px; }
+}
