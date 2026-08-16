@@ -1,1 +1,1 @@
-* hello
+* [Statistics notes here](https://rehandbit.github.io/Data-Science/statistics-notes.html$0)
