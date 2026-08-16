@@ -1,3 +1,8 @@
+### Zip function in python
+||zip function|
+|-|-----------|
+||Zip() function is a built in utility that aggregates elements from two or more iterables into a single iterator of tuples.|
+
 ### Deep copy vs Shallow Copy
 
 |Deep Copy|Shallow Copy|
