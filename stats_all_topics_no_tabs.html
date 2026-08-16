@@ -1,0 +1,338 @@
+
+<h2 class="sr-only">Complete statistics interview guide — all topics on one page: types of data, correlation, normality, normalisation, sampling, resampling, and analysis types.</h2>
+<style>
+  *{box-sizing:border-box}
+  .ptitle{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 3px}
+  .psub{font-size:13px;color:var(--color-text-secondary);margin:0 0 1rem}
+  .cat{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-secondary);margin:1.4rem 0 .5rem;padding:0 2px;display:flex;align-items:center;gap:8px}
+  .cat::after{content:'';flex:1;height:0.5px;background:var(--color-border-tertiary)}
+  .qa{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:8px;overflow:hidden}
+  .qh{display:flex;justify-content:space-between;align-items:flex-start;padding:.8rem 1rem;cursor:pointer;background:var(--color-background-secondary);user-select:none;gap:10px}
+  .qh:hover{background:var(--color-background-tertiary)}
+  .ql{display:flex;align-items:flex-start;gap:9px;flex:1}
+  .qn{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:1px}
+  .qt{font-size:13.5px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+  .qb{padding:1rem;background:var(--color-background-primary);display:none}
+  .qb.open{display:block}
+  .ar{font-size:11px;color:var(--color-text-secondary);transition:transform .2s;flex-shrink:0;margin-top:3px}
+  .ar.open{transform:rotate(180deg)}
+  .ctx{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin:0 0 9px}
+  .ctx strong{font-weight:500;color:var(--color-text-primary)}
+  .say{border-left:3px solid #1D9E75;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E1F5EE;padding:.7rem 1rem;font-size:13px;color:#085041;line-height:1.7;margin-top:9px}
+  .sl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#0F6E56;margin-bottom:4px}
+  .trap{border-left:3px solid #EF9F27;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#FAEEDA;padding:.65rem 1rem;margin-top:9px;font-size:12.5px;color:#633806;line-height:1.6}
+  .tl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#854F0B;margin-bottom:3px}
+  .tip{border-left:3px solid #378ADD;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:#E6F1FB;padding:.65rem 1rem;margin-top:9px;font-size:12.5px;color:#0C447C;line-height:1.6}
+  .tipl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#185FA5;margin-bottom:3px}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+  .card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.65rem .85rem;border:0.5px solid var(--color-border-tertiary)}
+  .cl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+  .cv2{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+  .cs{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.5}
+  .fml{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.4rem .85rem;font-family:var(--font-mono);font-size:12.5px;color:var(--color-text-primary);margin:4px 0}
+  .row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .row:last-child{border-bottom:none}
+  .rk{font-size:12px;color:var(--color-text-secondary);width:130px;flex-shrink:0}
+  .rv{font-size:13px;color:var(--color-text-primary);line-height:1.5}
+  .tree-box{font-size:12.5px;padding:3px 10px;border-radius:20px;line-height:1.5;display:inline-block;margin:2px 0}
+  .indent{margin-left:20px;border-left:1px solid var(--color-border-tertiary);padding-left:10px}
+  .btns{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .btns button{font-size:12px;padding:4px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer}
+  .btns button:hover{background:var(--color-background-secondary)}
+</style>
+
+<p class="ptitle">Statistics — complete interview guide</p>
+<p class="psub">All topics on one page. Tap any question to open.</p>
+
+<!-- ─── TYPES OF DATA ─── -->
+<div class="cat">Types of data</div>
+
+<div class="qa" id="q0">
+  <div class="qh" onclick="tog('q0')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q1</span><span class="qt">What are the types of data? Full tree with subcategories.</span></div><span class="ar" id="aq0">▼</span></div>
+  <div class="qb open" id="bq0">
+    <div style="margin:4px 0 10px">
+      <div><span class="tree-box" style="background:#EEEDFE;color:#3C3489;font-weight:500">All Data</span></div>
+      <div class="indent">
+        <div><span class="tree-box" style="background:#E6F1FB;color:#0C447C;font-weight:500">Qualitative (Categorical) — describes labels or groups</span></div>
+        <div class="indent">
+          <div><span class="tree-box" style="background:#E6F1FB;color:#185FA5">Nominal — no natural order. e.g. colour, gender, country, blood type</span></div>
+          <div><span class="tree-box" style="background:#E6F1FB;color:#185FA5">Ordinal — has order, but gaps between ranks are unequal. e.g. star ratings 1–5, grades A/B/C, survey: agree/neutral/disagree</span></div>
+        </div>
+        <div style="margin-top:6px"><span class="tree-box" style="background:#E1F5EE;color:#085041;font-weight:500">Quantitative (Numerical) — measured in numbers</span></div>
+        <div class="indent">
+          <div><span class="tree-box" style="background:#E1F5EE;color:#0F6E56">Discrete — countable whole numbers. e.g. number of children, number of clicks, number of cars</span></div>
+          <div><span class="tree-box" style="background:#E1F5EE;color:#0F6E56">Continuous — any value in a range (infinite possibilities)</span></div>
+          <div class="indent">
+            <div><span class="tree-box" style="background:#EAF3DE;color:#3B6D11">Interval — equal gaps, but NO true zero. e.g. temperature in °C, IQ, calendar year (0°C ≠ no temperature)</span></div>
+            <div><span class="tree-box" style="background:#EAF3DE;color:#3B6D11">Ratio — equal gaps + TRUE zero. e.g. height, weight, income, age (£0 = no money)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Data splits into qualitative and quantitative. Qualitative describes categories — nominal has no order like country names, ordinal has order but unequal gaps like star ratings. Quantitative is numerical — discrete is countable like number of purchases, continuous can be any value. Continuous further splits into interval, which has equal gaps but no true zero like Celsius temperature, and ratio which has a true zero like income or height."</div>
+    <div class="trap"><div class="tl">Classic trap question</div>"Is temperature interval or ratio?" — Celsius and Fahrenheit are interval (0° doesn't mean 'no heat'). Kelvin is ratio (0K = absolute zero = true zero). Get this right and you'll impress.</div>
+  </div>
+</div>
+
+<div class="qa" id="q1">
+  <div class="qh" onclick="tog('q1')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q2</span><span class="qt">Why does data type matter — what changes based on it?</span></div><span class="ar" id="aq1">▼</span></div>
+  <div class="qb" id="bq1">
+    <div class="row"><span class="rk">Nominal</span><span class="rv">Only mode for central tendency. Chi-square test. One-hot encoding in ML. Bar charts / pie charts.</span></div>
+    <div class="row"><span class="rk">Ordinal</span><span class="rv">Median not mean. Spearman not Pearson correlation. Label encoding preserving order.</span></div>
+    <div class="row"><span class="rk">Interval / Ratio</span><span class="rv">Mean, std dev, Pearson correlation. All parametric tests. Histogram, box plot.</span></div>
+    <div class="row"><span class="rk">Discrete</span><span class="rv">Count data — use Poisson distribution. Bar chart, not histogram.</span></div>
+    <div class="row"><span class="rk">Continuous</span><span class="rv">Histogram, box plot, density plot. Normal distribution may apply.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Data type dictates everything downstream — which summary statistics are valid, which charts to use, which statistical tests to run, and which ML preprocessing is needed. Using mean on ordinal data or Pearson on categorical data gives meaningless results. Data type identification is always my first step."</div>
+  </div>
+</div>
+
+<!-- ─── CORRELATION ─── -->
+<div class="cat">Correlation</div>
+
+<div class="qa" id="q2">
+  <div class="qh" onclick="tog('q2')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q3</span><span class="qt">What is correlation? How do you interpret it?</span></div><span class="ar" id="aq2">▼</span></div>
+  <div class="qb" id="bq2">
+    <p class="ctx">Measures <strong>strength and direction of linear relationship</strong> between two variables. Range: −1 to +1.</p>
+    <div class="row"><span class="rk">+1</span><span class="rv">Perfect positive — as one increases, other always increases proportionally.</span></div>
+    <div class="row"><span class="rk">0</span><span class="rv">No linear relationship. (Note: could still have a non-linear relationship.)</span></div>
+    <div class="row"><span class="rk">−1</span><span class="rv">Perfect negative — as one increases, other always decreases.</span></div>
+    <div class="row"><span class="rk">0.7 to 1</span><span class="rv">Strong. 0.4–0.7 = moderate. 0–0.4 = weak.</span></div>
+    <div class="fml" style="margin-top:8px">Pearson r = Σ[(x−x̄)(y−ȳ)] / [n × σx × σy]</div>
+    <div class="say"><div class="sl">Say this</div>"Correlation measures how two variables move together — its value ranges from −1 to +1. +1 means perfect positive relationship, −1 means perfect negative, 0 means no linear relationship. Pearson is the standard formula for two continuous normal variables."</div>
+    <div class="trap"><div class="tl">Always say this — interviewers expect it</div>"Correlation does not imply causation." Ice cream sales and drowning rates are correlated — both are caused by hot weather (confounding variable). A spurious correlation without a causal mechanism is meaningless.</div>
+  </div>
+</div>
+
+<div class="qa" id="q3">
+  <div class="qh" onclick="tog('q3')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q4</span><span class="qt">Pearson vs Spearman vs Kendall — when to use each?</span></div><span class="ar" id="aq3">▼</span></div>
+  <div class="qb" id="bq3">
+    <div class="g3">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Pearson</div><div class="cv2" style="color:#3C3489">Linear + Normal</div><div class="cs">Both continuous, normally distributed, linear relationship. Most powerful when assumptions hold.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Spearman</div><div class="cv2" style="color:#085041">Rank-based</div><div class="cs">Ordinal data, skewed, or non-linear monotonic relationship. Converts values to ranks first.</div></div>
+      <div class="card" style="border-top:2px solid #EF9F27"><div class="cl">Kendall</div><div class="cv2" style="color:#633806">Small samples</div><div class="cs">Better for very small samples or data with many tied values. Less common in practice.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Pearson is the default for two continuous normally distributed variables with a linear relationship. If the data is ordinal, skewed, or the relationship is monotonic but not strictly linear, I use Spearman — it ranks the values first and then correlates the ranks. Kendall suits small samples with many ties."</div>
+  </div>
+</div>
+
+<div class="qa" id="q4">
+  <div class="qh" onclick="tog('q4')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q5</span><span class="qt">What is multicollinearity and why is it a problem?</span></div><span class="ar" id="aq4">▼</span></div>
+  <div class="qb" id="bq4">
+    <p class="ctx">When two or more <strong>predictor features are highly correlated with each other</strong>.</p>
+    <div class="row"><span class="rk">Why it's bad</span><span class="rv">Makes individual coefficients in linear models unstable and hard to interpret. Small data changes cause large coefficient swings.</span></div>
+    <div class="row"><span class="rk">How to detect</span><span class="rv">VIF (Variance Inflation Factor). VIF > 5 = concerning, VIF > 10 = serious problem.</span></div>
+    <div class="row"><span class="rk">How to fix</span><span class="rv">Remove one of the correlated features. Use PCA to combine them. Apply Ridge (L2) regression which handles it well.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Multicollinearity is when two or more predictor variables are highly correlated with each other — not just with the target. For example, having both 'height in cm' and 'height in inches' in a model. It makes it impossible to isolate each variable's individual effect. I detect it using VIF scores and fix it by dropping one of the correlated variables or using Ridge regression."</div>
+  </div>
+</div>
+
+<div class="qa" id="q5">
+  <div class="qh" onclick="tog('q5')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q6</span><span class="qt">What is covariance? How is it different from correlation?</span></div><span class="ar" id="aq5">▼</span></div>
+  <div class="qb" id="bq5">
+    <div class="fml">Covariance  = Σ[(x−x̄)(y−ȳ)] / n   (has units, unbounded)</div>
+    <div class="fml">Correlation = Covariance / (σx × σy)  (unitless, bounded −1 to +1)</div>
+    <div class="say"><div class="sl">Say this</div>"Covariance measures the direction of the relationship between two variables — positive means they move together, negative means they move opposite. But covariance is in the original units of the data, so the magnitude is hard to interpret. Correlation standardises covariance by dividing by both standard deviations, giving a unitless value between −1 and +1 that's easy to compare across different variable pairs. Correlation is just standardised covariance."</div>
+  </div>
+</div>
+
+<!-- ─── NORMALITY ─── -->
+<div class="cat">Assumption of normality</div>
+
+<div class="qa" id="q6">
+  <div class="qh" onclick="tog('q6')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q7</span><span class="qt">What is the assumption of normality?</span></div><span class="ar" id="aq6">▼</span></div>
+  <div class="qb" id="bq6">
+    <p class="ctx">Many statistical tests assume data — or model residuals — follow a <strong>bell-curve (normal) distribution</strong>.</p>
+    <div class="row"><span class="rk">Assumes normality</span><span class="rv">t-test, ANOVA, linear regression (residuals), Pearson correlation, z-test.</span></div>
+    <div class="row"><span class="rk">Do NOT require it</span><span class="rv">Mann-Whitney, Kruskal-Wallis, Spearman, chi-square, tree-based ML models.</span></div>
+    <div class="say"><div class="sl">Say this</div>"The normality assumption means the data or the model's residuals follow a normal bell-curve distribution. Tests like t-tests and ANOVA rely on this — if violated, their p-values and confidence intervals may be inaccurate. For linear regression specifically, it's the residuals that need to be normal, not the raw data — that's a common confusion."</div>
+    <div class="trap"><div class="tl">Key nuance interviewers love</div>In linear regression, you check residuals for normality — NOT the target variable. Many candidates get this wrong.</div>
+  </div>
+</div>
+
+<div class="qa" id="q7">
+  <div class="qh" onclick="tog('q7')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q8</span><span class="qt">How do you test for normality?</span></div><span class="ar" id="aq7">▼</span></div>
+  <div class="qb" id="bq7">
+    <div class="row"><span class="rk">Histogram</span><span class="rv">Quick visual. Does it look bell-shaped? Good first check.</span></div>
+    <div class="row"><span class="rk">Q-Q plot</span><span class="rv">Plots data quantiles against a theoretical normal. Points on the diagonal line = normal. Best visual method.</span></div>
+    <div class="row"><span class="rk">Shapiro-Wilk test</span><span class="rv">Statistical test. H₀: data is normal. p > 0.05 = approximately normal. Best for small samples (n &lt; 50).</span></div>
+    <div class="row"><span class="rk">Kolmogorov-Smirnov</span><span class="rv">Similar but better for large samples. Compares empirical vs theoretical distribution.</span></div>
+    <div class="say"><div class="sl">Say this</div>"I start with a Q-Q plot — if points fall on the diagonal the data is approximately normal. For a formal test I use Shapiro-Wilk for small samples. However, with very large datasets even tiny, irrelevant deviations appear significant, so I rely more on the Q-Q plot than the p-value."</div>
+  </div>
+</div>
+
+<div class="qa" id="q8">
+  <div class="qh" onclick="tog('q8')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q9</span><span class="qt">What do you do if data is not normal?</span></div><span class="ar" id="aq8">▼</span></div>
+  <div class="qb" id="bq8">
+    <div class="row"><span class="rk">Transform</span><span class="rv">Log, sqrt, or Box-Cox transform makes right-skewed data more symmetric.</span></div>
+    <div class="row"><span class="rk">Non-parametric test</span><span class="rv">Mann-Whitney instead of t-test. Kruskal-Wallis instead of ANOVA. Spearman instead of Pearson.</span></div>
+    <div class="row"><span class="rk">Use CLT</span><span class="rv">With n > 30, Central Limit Theorem guarantees the sampling distribution of the mean is approximately normal regardless of the raw data.</span></div>
+    <div class="say"><div class="sl">Say this</div>"If data violates normality I have three options: transform it using log or sqrt to make it more symmetric, switch to a non-parametric equivalent test that doesn't require normality, or rely on the Central Limit Theorem — with large enough samples the mean is approximately normal regardless of the underlying distribution."</div>
+  </div>
+</div>
+
+<!-- ─── NORMALISATION ─── -->
+<div class="cat">Normalisation and standardisation</div>
+
+<div class="qa" id="q9">
+  <div class="qh" onclick="tog('q9')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q10</span><span class="qt">What is the difference between normalisation and standardisation?</span></div><span class="ar" id="aq9">▼</span></div>
+  <div class="qb" id="bq9">
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Normalisation — Min-Max</div><div class="cv2" style="color:#3C3489">Scales to [0, 1]</div><div class="cs">Subtracts min, divides by range. Bounded output. Sensitive to outliers — one extreme value compresses everything else.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Standardisation — Z-score</div><div class="cv2" style="color:#085041">Mean=0, Std dev=1</div><div class="cs">Subtracts mean, divides by std dev. No fixed range. Robust to outliers. Keeps distribution shape.</div></div>
+    </div>
+    <div class="fml">Normalisation:    x_new = (x − min) / (max − min)</div>
+    <div class="fml">Standardisation:  x_new = (x − mean) / std_dev</div>
+    <div class="say"><div class="sl">Say this</div>"Normalisation rescales to 0–1 using min-max. Standardisation rescales to mean 0 and std dev 1. The key difference is outlier sensitivity — one extreme value in normalisation squashes all other values into a tiny range. Standardisation is more robust and is the safer default for most ML algorithms."</div>
+    <div class="trap"><div class="tl">Data leakage trap — always mention this</div>Always fit the scaler on training data only, then apply to test data. Fitting on the full dataset leaks test set statistics into training — a very common mistake.</div>
+  </div>
+</div>
+
+<div class="qa" id="q10">
+  <div class="qh" onclick="tog('q10')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q11</span><span class="qt">When to use which? And when is neither needed?</span></div><span class="ar" id="aq10">▼</span></div>
+  <div class="qb" id="bq10">
+    <div class="row"><span class="rk">Use standardisation</span><span class="rv">Linear/logistic regression, SVM, KNN, PCA, neural networks. Default choice when no specific reason to bound.</span></div>
+    <div class="row"><span class="rk">Use normalisation</span><span class="rv">Neural networks processing image data (pixels 0–255 → 0–1). When bounded range is explicitly needed.</span></div>
+    <div class="row"><span class="rk">Neither needed</span><span class="rv">Decision trees, Random Forest, XGBoost, LightGBM. Tree-based models split on thresholds — scale doesn't matter.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Standardisation is my default for most algorithms — especially distance-based ones like KNN and SVM where scale directly affects results. Normalisation suits bounded inputs like image pixels going into a neural network. Tree-based models like Random Forest and XGBoost are scale-invariant — they don't need either."</div>
+  </div>
+</div>
+
+<!-- ─── SAMPLING ─── -->
+<div class="cat">Sampling</div>
+
+<div class="qa" id="q11">
+  <div class="qh" onclick="tog('q11')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q12</span><span class="qt">What is sampling and what are its types?</span></div><span class="ar" id="aq11">▼</span></div>
+  <div class="qb" id="bq11">
+    <p class="ctx">Selecting a <strong>subset of a population</strong> to draw conclusions about the whole.</p>
+    <div style="margin:6px 0 4px;font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em">Probability sampling — every member has a known chance</div>
+    <div class="row"><span class="rk">Simple random</span><span class="rv">Every member equally likely. Most unbiased. e.g. random number generator picks 500 from 50,000.</span></div>
+    <div class="row"><span class="rk">Stratified</span><span class="rv">Divide into subgroups (strata), randomly sample from each. Best when subgroups matter. e.g. equal samples from each age group.</span></div>
+    <div class="row"><span class="rk">Systematic</span><span class="rv">Pick every Nth member. e.g. every 10th customer from a list. Simple but can introduce pattern bias.</span></div>
+    <div class="row"><span class="rk">Cluster</span><span class="rv">Divide into clusters, randomly pick whole clusters. Cost-effective for geographically spread populations.</span></div>
+    <div style="margin:10px 0 4px;font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em">Non-probability sampling — selection not random</div>
+    <div class="row"><span class="rk">Convenience</span><span class="rv">Whoever is easiest to reach. Fast, highly biased. Can't generalise statistically.</span></div>
+    <div class="row"><span class="rk">Purposive</span><span class="rv">Deliberately select specific people. e.g. only domain experts for a specialist study.</span></div>
+    <div class="row"><span class="rk">Snowball</span><span class="rv">Existing participants recruit more. Used for hard-to-reach groups.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Probability sampling gives every member a known chance of selection and produces representative samples valid for statistical inference. Stratified is my preferred method when the population has important subgroups I want to ensure are represented. Non-probability methods are faster but biased — results can't be generalised to the full population."</div>
+  </div>
+</div>
+
+<div class="qa" id="q12">
+  <div class="qh" onclick="tog('q12')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q13</span><span class="qt">What are the types of sampling bias?</span></div><span class="ar" id="aq12">▼</span></div>
+  <div class="qb" id="bq12">
+    <div class="row"><span class="rk">Selection bias</span><span class="rv">Sample not representative. e.g. online survey only captures people with internet access.</span></div>
+    <div class="row"><span class="rk">Survivorship bias</span><span class="rv">Studying only survivors. e.g. analysing only successful startups to find success factors — ignoring all failed ones skews every conclusion.</span></div>
+    <div class="row"><span class="rk">Response bias</span><span class="rv">Respondents answer inaccurately. e.g. overreporting exercise, underreporting unhealthy habits.</span></div>
+    <div class="row"><span class="rk">Undercoverage</span><span class="rv">Some population groups excluded or underrepresented entirely.</span></div>
+    <div class="row"><span class="rk">Confirmation bias</span><span class="rv">Researcher unconsciously collects data that confirms existing beliefs.</span></div>
+    <div class="say"><div class="sl">Say this</div>"The most important type to know is survivorship bias — it leads to completely wrong conclusions by ignoring failures. If you study only successful companies to find what makes a startup succeed, you're missing all the companies that did the same things and failed. Always ask: what data am I not seeing?"</div>
+  </div>
+</div>
+
+<!-- ─── RESAMPLING ─── -->
+<div class="cat">Resampling</div>
+
+<div class="qa" id="q13">
+  <div class="qh" onclick="tog('q13')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q14</span><span class="qt">What is resampling? Bootstrap vs cross-validation?</span></div><span class="ar" id="aq13">▼</span></div>
+  <div class="qb" id="bq13">
+    <p class="ctx">Creating <strong>multiple samples from the same dataset</strong> to estimate performance or statistical variability.</p>
+    <div class="g2">
+      <div class="card" style="border-top:2px solid #534AB7"><div class="cl">Bootstrap</div><div class="cv2" style="color:#3C3489">Sample with replacement</div><div class="cs">Draw N samples, allowing repeats. Repeat many times. Used to estimate confidence intervals and variability of any statistic. Each bootstrap sample is the same size as original.</div></div>
+      <div class="card" style="border-top:2px solid #1D9E75"><div class="cl">Cross-validation</div><div class="cv2" style="color:#085041">Rotate test folds</div><div class="cs">Split into k folds, rotate which is test. Used to estimate how well a model generalises. Every data point is used for testing exactly once.</div></div>
+    </div>
+    <div class="say"><div class="sl">Say this</div>"Resampling creates multiple datasets from one original. Bootstrap samples with replacement — same point can appear multiple times — and is used to estimate the variability of statistics like the mean or a model coefficient. Cross-validation splits data into folds and rotates the test set to evaluate model performance. Bootstrap is about measuring uncertainty of statistics, cross-validation is about evaluating models."</div>
+  </div>
+</div>
+
+<div class="qa" id="q14">
+  <div class="qh" onclick="tog('q14')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q15</span><span class="qt">What are the types of cross-validation?</span></div><span class="ar" id="aq14">▼</span></div>
+  <div class="qb" id="bq14">
+    <div class="row"><span class="rk">K-fold</span><span class="rv">Split into k equal parts. Train on k−1, test on 1, rotate. Average k scores. Standard choice. Typically k=5 or k=10.</span></div>
+    <div class="row"><span class="rk">Stratified k-fold</span><span class="rv">Same as k-fold but ensures each fold has the same class distribution. Essential for imbalanced classification.</span></div>
+    <div class="row"><span class="rk">Leave-one-out (LOO)</span><span class="rv">Each single data point is the test set once. Computationally expensive but great for tiny datasets.</span></div>
+    <div class="row"><span class="rk">Time series split</span><span class="rv">For time series — always train on past, test on future. Never shuffle. Prevents data leakage from the future.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Standard k-fold is the default — 5 or 10 folds. For classification with imbalanced classes I always use stratified k-fold to ensure each fold represents the class distribution correctly. For time series data I use time series split where the training window always precedes the test window — shuffling would be data leakage."</div>
+  </div>
+</div>
+
+<!-- ─── ANALYSIS TYPES ─── -->
+<div class="cat">Univariate, bivariate and multivariate analysis</div>
+
+<div class="qa" id="q15">
+  <div class="qh" onclick="tog('q15')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q16</span><span class="qt">What is univariate analysis?</span></div><span class="ar" id="aq15">▼</span></div>
+  <div class="qb" id="bq15">
+    <p class="ctx">Analysing <strong>one variable at a time</strong> — understanding its distribution, center, and spread.</p>
+    <div class="row"><span class="rk">Numerical data</span><span class="rv">Mean, median, mode, std dev, variance, IQR, skewness, kurtosis, percentiles. Plots: histogram, box plot, density plot.</span></div>
+    <div class="row"><span class="rk">Categorical data</span><span class="rv">Frequency count, mode, percentage. Plots: bar chart, pie chart.</span></div>
+    <div class="row"><span class="rk">Goal</span><span class="rv">Understand shape, spot outliers, check for missing values, decide if transformations are needed.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Univariate analysis examines one variable at a time. For numerical columns I check distribution shape with a histogram, identify outliers with a box plot, and compute central tendency and spread. For categorical columns I count frequencies and plot a bar chart. It's the mandatory first step of EDA — you must understand each feature individually before looking at relationships."</div>
+  </div>
+</div>
+
+<div class="qa" id="q16">
+  <div class="qh" onclick="tog('q16')"><div class="ql"><span class="qn" style="background:#E1F5EE;color:#085041">Q17</span><span class="qt">What is bivariate analysis?</span></div><span class="ar" id="aq16">▼</span></div>
+  <div class="qb" id="bq16">
+    <p class="ctx">Analysing the <strong>relationship between two variables</strong>.</p>
+    <div class="row"><span class="rk">Num vs Num</span><span class="rv">Scatter plot. Pearson or Spearman correlation. Covariance. Trend line.</span></div>
+    <div class="row"><span class="rk">Cat vs Cat</span><span class="rv">Contingency table (cross-tab). Chi-square test of independence. Stacked or grouped bar chart.</span></div>
+    <div class="row"><span class="rk">Num vs Cat</span><span class="rv">Box plot by group. Violin plot. t-test for 2 groups. ANOVA for 3+ groups.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Bivariate analysis looks at the relationship between two variables. For two numerical variables I use scatter plots and correlation. For two categorical variables I build a contingency table and run a chi-square test to check if they're independent. For numerical versus categorical — like salary by job title — I plot box plots per group and use a t-test or ANOVA to test if group differences are statistically significant."</div>
+  </div>
+</div>
+
+<div class="qa" id="q17">
+  <div class="qh" onclick="tog('q17')"><div class="ql"><span class="qn" style="background:#E6F1FB;color:#0C447C">Q18</span><span class="qt">What is multivariate analysis?</span></div><span class="ar" id="aq17">▼</span></div>
+  <div class="qb" id="bq17">
+    <p class="ctx">Analysing <strong>three or more variables simultaneously</strong> to find complex relationships and patterns.</p>
+    <div class="row"><span class="rk">Correlation heatmap</span><span class="rv">Shows pairwise correlations between all numerical features at once. Go-to starting point for multivariate EDA.</span></div>
+    <div class="row"><span class="rk">Pair plot</span><span class="rv">Grid of scatter plots between all feature pairs. Quickly reveals clusters, correlations and outliers across all combinations.</span></div>
+    <div class="row"><span class="rk">PCA</span><span class="rv">Reduces many features into fewer components that capture maximum variance. Used for visualisation and removing multicollinearity.</span></div>
+    <div class="row"><span class="rk">Multiple regression</span><span class="rv">Models relationship between one target and multiple features simultaneously. Shows each feature's effect controlling for others.</span></div>
+    <div class="row"><span class="rk">Clustering (K-means)</span><span class="rv">Groups observations based on patterns across many features at once. Unsupervised multivariate technique.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Multivariate analysis handles three or more variables simultaneously. My first step is always a correlation heatmap — it shows every pairwise relationship in one view and immediately reveals multicollinearity. A pair plot gives scatter plots for every feature pair. For high-dimensional data I use PCA to reduce dimensions while preserving variance. Multiple regression quantifies each feature's effect on the target while controlling for all the others."</div>
+  </div>
+</div>
+
+<div class="qa" id="q18">
+  <div class="qh" onclick="tog('q18')"><div class="ql"><span class="qn" style="background:#FAEEDA;color:#633806">Q19</span><span class="qt">What is EDA and what is your process?</span></div><span class="ar" id="aq18">▼</span></div>
+  <div class="qb" id="bq18">
+    <div class="row"><span class="rk">Step 1</span><span class="rv">Shape, dtypes, .info(), .describe() — understand size and data types.</span></div>
+    <div class="row"><span class="rk">Step 2</span><span class="rv">Missing values — count per column, decide strategy (impute or drop).</span></div>
+    <div class="row"><span class="rk">Step 3</span><span class="rv">Univariate — distribution, outliers, skewness for each feature.</span></div>
+    <div class="row"><span class="rk">Step 4</span><span class="rv">Bivariate — relationship of each feature with the target variable.</span></div>
+    <div class="row"><span class="rk">Step 5</span><span class="rv">Multivariate — correlation heatmap, pair plot, feature interactions.</span></div>
+    <div class="row"><span class="rk">Step 6</span><span class="rv">Document findings — what needs encoding, scaling, transformation, or dropping.</span></div>
+    <div class="say"><div class="sl">Say this</div>"EDA is how I understand a dataset before building any model. I start with shape and dtypes, then check missing values, then do univariate analysis on each feature to understand distributions and outliers, then bivariate analysis between features and the target to understand what's predictive, then a correlation heatmap for the full multivariate picture. EDA drives all my preprocessing and modelling decisions."</div>
+  </div>
+</div>
+
+<!-- ─── QUARTILES ─── -->
+<div class="cat">Quartiles and IQR — quick recap</div>
+
+<div class="qa" id="q19">
+  <div class="qh" onclick="tog('q19')"><div class="ql"><span class="qn" style="background:#EEEDFE;color:#3C3489">Q20</span><span class="qt">Percentile, quartile, IQR — one clean answer.</span></div><span class="ar" id="aq19">▼</span></div>
+  <div class="qb" id="bq19">
+    <div class="row"><span class="rk">Percentile</span><span class="rv">Nth percentile = value below which N% of data falls. It's a rank, not a count.</span></div>
+    <div class="row"><span class="rk">Q1 = P25</span><span class="rv">25% of data falls below this. Lower quartile.</span></div>
+    <div class="row"><span class="rk">Q2 = P50</span><span class="rv">The median. 50% falls below.</span></div>
+    <div class="row"><span class="rk">Q3 = P75</span><span class="rv">75% of data falls below. Upper quartile.</span></div>
+    <div class="row"><span class="rk">IQR = Q3 − Q1</span><span class="rv">Spread of middle 50%. Robust — not distorted by outliers.</span></div>
+    <div class="row"><span class="rk">Outlier fences</span><span class="rv">Below Q1 − 1.5×IQR or above Q3 + 1.5×IQR = outlier. Used in box plots.</span></div>
+    <div class="say"><div class="sl">Say this</div>"Percentile is a rank — the 90th percentile means 90% fall below you. Quartiles are four named percentiles at 25, 50, 75%. IQR is Q3 minus Q1 — the spread of the middle 50% — and is robust to outliers because it completely ignores the extreme 25% on each side. Tukey's fences use IQR to flag outliers, which is what box plots visualise."</div>
+  </div>
+</div>
+
+<div class="btns">
+  <button onclick="sendPrompt('Give me Python EDA code covering univariate, bivariate and multivariate analysis on a pandas DataFrame')">Full EDA Python code ↗</button>
+  <button onclick="sendPrompt('Explain Central Limit Theorem simply for a data science interview')">Central Limit Theorem ↗</button>
+  <button onclick="sendPrompt('What is chi-square test and when do you use it?')">Chi-square test ↗</button>
+</div>
+
+<script>
+function tog(id){
+  const b=document.getElementById('b'+id),a=document.getElementById('a'+id);
+  const o=b.classList.contains('open');
+  b.classList.toggle('open',!o);a.classList.toggle('open',!o);
+}
+</script>
