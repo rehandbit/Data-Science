@@ -1,1 +1,1 @@
-* [Statistics notes here](https://rehandbit.github.io/Data-Science/statistics-notes.html)
+* [Statistics notes here](https://rehandbit.github.io/Data-Science/notes/statistics-notes.html)
