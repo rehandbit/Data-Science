@@ -36,9 +36,28 @@
   background:var(--color-background-tertiary);
 }
 #site-nav a.active{
-  background:var(--color-background-tertiary);
   font-weight:600;
-  box-shadow:inset 2px 0 0 #378ADD;
+  box-shadow:inset 3px 0 0 #378ADD;
+}
+
+/* Theme-specific active-link contrast, since background-tertiary
+   is too close to the sidebar's own background to stand out */
+[data-theme="light"] #site-nav a.active,
+:root #site-nav a.active{
+  background:#e8e8e8;
+  color:#111;
+}
+[data-theme="dark"] #site-nav a.active{
+  background:#ffffff;
+  color:#111;
+}
+[data-theme="sepia"] #site-nav a.active{
+  background:#d8c9a3;
+  color:#2a2010;
+}
+[data-theme="slate"] #site-nav a.active{
+  background:#eef2f6;
+  color:#161a1f;
 }
 
 /* Hamburger toggle, only shown on narrow screens */

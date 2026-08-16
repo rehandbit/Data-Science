@@ -4,7 +4,7 @@
 // file = exact filename in the notes/ folder. title = label shown in the menu.
  
 var PAGES = [
-  { file: "notes.html",                          title: "Home" },
+  // { file: "notes.html",                          title: "Home" },
   { file: "statistics-notes.html",                title: "Statistics — All Topics" },
   { file: "hypothesis_testing_complete_guide.html", title: "Hypothesis Testing" },
   { file: "hypothesis_interview_qa.html",         title: "Hypothesis Q&A" },
