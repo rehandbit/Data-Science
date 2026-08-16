@@ -1,0 +1,64 @@
+/* ===== Shared theme for all notes pages ===== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  max-width:760px;
+  margin:0 auto;
+  padding:24px 16px 60px;
+  background:var(--color-background-primary);
+  color:var(--color-text-primary);
+  transition:background .25s ease;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+:root, [data-theme="light"]{
+  --color-background-primary:#ffffff;
+  --color-background-secondary:#f6f7f8;
+  --color-background-tertiary:#eef0f2;
+  --color-text-primary:#1a1a1a;
+  --color-text-secondary:#5b6068;
+  --color-border-tertiary:#d9dce0;
+  --border-radius-lg:10px;
+  --border-radius-md:8px;
+}
+[data-theme="dark"]{
+  --color-background-primary:#15171a;
+  --color-background-secondary:#1e2124;
+  --color-background-tertiary:#26292d;
+  --color-text-primary:#eaecee;
+  --color-text-secondary:#9aa0a6;
+  --color-border-tertiary:#33373b;
+}
+[data-theme="sepia"]{
+  --color-background-primary:#f4ecd8;
+  --color-background-secondary:#ece1c8;
+  --color-background-tertiary:#e3d6b8;
+  --color-text-primary:#3b2f1e;
+  --color-text-secondary:#6b5a3f;
+  --color-border-tertiary:#d4c4a0;
+}
+[data-theme="slate"]{
+  --color-background-primary:#20262e;
+  --color-background-secondary:#2a323c;
+  --color-background-tertiary:#333d49;
+  --color-text-primary:#e6ebf0;
+  --color-text-secondary:#a3afbb;
+  --color-border-tertiary:#3d4753;
+}
+
+/* Theme toggle widget */
+#theme-toggle{
+  position:fixed;top:14px;right:14px;z-index:999;
+  display:flex;gap:6px;background:var(--color-background-secondary);
+  border:0.5px solid var(--color-border-tertiary);border-radius:20px;
+  padding:5px;box-shadow:0 2px 8px rgba(0,0,0,.12)
+}
+#theme-toggle button{
+  width:22px;height:22px;border-radius:50%;border:1.5px solid var(--color-border-tertiary);
+  cursor:pointer;padding:0;outline:none
+}
+#theme-toggle button.active{border-color:#378ADD;box-shadow:0 0 0 2px rgba(55,138,221,.35)}
+#theme-toggle button[data-t="light"]{background:#ffffff}
+#theme-toggle button[data-t="dark"]{background:#15171a}
+#theme-toggle button[data-t="sepia"]{background:#f4ecd8}
+#theme-toggle button[data-t="slate"]{background:#20262e}
