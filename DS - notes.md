@@ -19,7 +19,7 @@ Assumption of Linear Regression
 
 |topic| Answer|
 |-----|-------|
-| 1.  Linearity ~| Relationship between each predictor (x) and the target (y) must be straight line. <br><br><b>Detect ~ </b>Check residual vs fitted values. if a curve is present, non-linear model or data transformation is required.<br><br><b>Fix</b> ~ log or sqrt. add polunomial features. or use tree-based model.
+|1.  Linearity ~| Relationship between each predictor (x) and the target (y) must be straight line. <br><br><b>Detect ~ </b>Check residual vs fitted values. if a curve is present, non-linear model or data transformation is required.<br><br><b>Fix</b> ~ log or sqrt. add polunomial features. or use tree-based model.
 |2. Independence of errors ~|  Each residual must be independence of others. One errror should not predict the next.<br><br>In other word it mean ~ <i> every piece of data must be totally tell separate story with no copycat</i>
 |3. Normality of residuals(normal distribution) ~|  Normality mean the mistake make must form a bell shape. Most mistake should be very small and close to the line, not giant surprise.<br><br> <i>Diagnosis: Look for a straight diagonal line on a Quantile-Quantile (Q-Q) plot, or use a Shapiro-Wilk Test.
 |4. Equal variance (Homoscedasticity) ~|  Residual(dot) must have constant spread across all fitted values. Violation is called heteroscedasticity -- errors fan out like a cone.
